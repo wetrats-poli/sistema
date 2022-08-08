@@ -1,0 +1,29 @@
+[07-Apr-2022 11:40:29 UTC] PHP Notice:  Undefined index: MSG in /home/u418844475/domains/wetrats.com.br/public_html/esqueceu_a_senha.php on line 99
+[08-Apr-2022 15:49:18 UTC] PHP Notice:  Undefined index: email in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 13
+[08-Apr-2022 15:49:18 UTC] PHP Notice:  Undefined index: senha in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 14
+[08-Apr-2022 22:17:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 20
+[21-Apr-2022 14:26:05 UTC] PHP Notice:  Undefined index: email in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 13
+[21-Apr-2022 14:26:05 UTC] PHP Notice:  Undefined index: senha in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 14
+[22-Apr-2022 14:31:42 UTC] PHP Notice:  Undefined index: email in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 13
+[22-Apr-2022 14:31:42 UTC] PHP Notice:  Undefined index: senha in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 14
+[24-Apr-2022 09:45:39 UTC] PHP Notice:  Undefined index: email in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 13
+[24-Apr-2022 09:45:39 UTC] PHP Notice:  Undefined index: senha in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 14
+[24-Apr-2022 09:45:40 UTC] PHP Notice:  Undefined variable: apelido in /home/u418844475/domains/wetrats.com.br/public_html/esqueceu_a_senha.php on line 82
+[24-Apr-2022 09:46:04 UTC] PHP Notice:  Undefined variable: apelido in /home/u418844475/domains/wetrats.com.br/public_html/esqueceu_a_senha.php on line 82
+[24-Apr-2022 09:46:04 UTC] PHP Notice:  Undefined variable: apelido in /home/u418844475/domains/wetrats.com.br/public_html/esqueceu_a_senha.php on line 82
+[29-Apr-2022 02:53:11 UTC] PHP Notice:  Undefined index: email in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 13
+[29-Apr-2022 02:53:11 UTC] PHP Notice:  Undefined index: senha in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 14
+[01-May-2022 07:20:38 UTC] PHP Notice:  Undefined index: email in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 13
+[01-May-2022 07:20:38 UTC] PHP Notice:  Undefined index: senha in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 14
+[09-May-2022 18:34:42 UTC] PHP Warning:  mysqli_connect(): (HY000/1226): User 'u418844475_wtr' has exceeded the 'max_connections_per_hour' resource (current value: 500) in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 11
+[09-May-2022 18:34:42 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 18
+[09-May-2022 18:34:42 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 20
+[09-May-2022 18:34:47 UTC] PHP Warning:  mysqli_connect(): (HY000/1226): User 'u418844475_wtr' has exceeded the 'max_connections_per_hour' resource (current value: 500) in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 11
+[09-May-2022 18:34:47 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 18
+[09-May-2022 18:34:47 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 20
+[09-May-2022 18:34:54 UTC] PHP Warning:  mysqli_connect(): (HY000/1226): User 'u418844475_wtr' has exceeded the 'max_connections_per_hour' resource (current value: 500) in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 11
+[09-May-2022 18:34:54 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 18
+[09-May-2022 18:34:54 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 20
+[11-May-2022 01:15:01 UTC] PHP Notice:  Undefined index: MSG in /home/u418844475/domains/wetrats.com.br/public_html/esqueceu_a_senha.php on line 99
+[22-May-2022 00:37:55 UTC] PHP Notice:  Undefined index: email in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 13
+[22-May-2022 00:37:55 UTC] PHP Notice:  Undefined index: senha in /home/u418844475/domains/wetrats.com.br/public_html/validacao.php on line 14

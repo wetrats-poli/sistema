@@ -1,0 +1,320 @@
+.calendario {
+    width: 100%;
+    height: 670px;
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+.calendario table {
+    border-collapse: collapse;
+    text-align: center; 
+    color: lightgray;
+}
+
+.calendario table, .calendario td, .calendario tr {
+    border: 3px solid lightgray;
+}
+
+.calendario a {
+    color: lightgray;
+}
+
+.calendario .mes {
+    display: none;
+}
+
+.calendario td {
+    width: 14.28%;
+    background-color: rgb(36, 43, 86);
+}
+
+.calendario td.dias {
+    height: 100px;
+}
+
+
+.calendario .mes_title {
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.calendario .dias_title {
+    font-size: 16px;
+}
+
+.calendario #ret, .calendario #pro {
+    padding: 5px 8px;
+    font-size: 24px;
+    text-decoration: none;
+    text-align: start;
+}
+
+.calendario button {
+    background: none;
+    border: 0;
+}
+
+.link {
+    color: lightskyblue;
+    padding: 0 6 0 6px;
+}
+
+.evento {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    padding-bottom: 3px;
+    letter-spacing: 2px;
+}
+.evento p, .evento a {
+    line-height: 40px;
+}
+
+.evento a {
+    color: white;
+}
+
+.comp {
+    background-color: rgb(255, 26, 26);
+    color: black;
+    text-transform: uppercase;
+} 
+
+.reuniao {
+    background-color: rgb(255, 140,0);
+    color: black;
+    text-transform: uppercase;
+}
+
+.social {
+    background-color: rgb(50, 205, 50);
+    color: black;
+    text-transform: uppercase;
+}
+
+.evnt_pessoal {
+    background-color: rgb(255, 255, 64);
+    color: black;
+    text-transform: uppercase;
+}
+
+.sel {
+    font-size: 17px;
+    height: 6%;
+}
+
+.evento_pessoal {
+    background-color: rgb(36, 43, 86);
+    top: -25px;
+    width: 360px;  
+    margin: 5px;
+    height: 378px;
+    left: 30%;
+    position: relative;
+    z-index: 1000;
+}
+
+.evento_pessoal h2, .contg h2 {
+    color: rgb(255, 187,0);
+}
+
+.evento_pessoal label, .contg label {
+    color: white;
+}
+
+.evento_pessoal h4, .contg h4 {
+    color: grey;
+    margin-top: -12px;
+    margin-bottom: 3px;
+}
+
+.evento_pessoal form {
+    padding: 25px;
+}
+
+.evento_pessoal input, .contg input {
+    background-color: white;
+}
+
+.evento_pessoal button, .contg button {
+    position: relative;
+    top: 10px;
+    left: 60%;
+}
+
+.confirma {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    width: 100%;  
+    height: 100%;
+    z-index: 100000;
+    top: 45px;
+}
+
+.box {
+    background-color: white;
+    position: absolute;
+    top: 37%;
+    left: 40%;
+    width: 25%;
+    height: 10%;
+    text-align: center;
+    z-index: 100001;
+    padding: 5px;
+}
+
+.box h2 {
+    color: rgb(130, 130, 130);
+    padding-top: 5%;
+}
+
+.contg {
+    background-color: rgb(36, 43, 86);
+    top: -408px;
+    width: 30%;  
+    padding: 25px;
+    padding-bottom: 60px;
+    right: -68%;
+    position: relative;
+    z-index: 1000;
+}
+.container1 {
+    display: block;
+    position: absolute;
+    top: 75%;
+    left: 7%;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container1 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+  
+  /* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    left: 5%;
+    top: 25%;
+    height: 17px;
+    width: 17px;
+    background-color: #eee;
+}
+  
+  /* On mouse-over, add a grey background color */
+.container1:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+  
+  /* When the checkbox is checked, add a blue background */
+.container1 input:checked ~ .checkmark {
+    background-color: rgb(255, 187, 0);
+}
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+  /* Show the checkmark when checked */
+.container1 input:checked ~ .checkmark:after {
+    display: block;
+}
+  
+  /* Style the checkmark/indicator */
+.container1 .checkmark:after {
+    left: 6px;
+    top: 0px;
+    width: 6px;
+    height: 14px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.cont_table {
+    width: 100%;
+    background-color: rgb(255, 187, 0);
+}
+
+.cont_equipe {
+    width: 100%;
+    background-color: rgb(255, 255, 255, 0.8);
+}
+
+.cont_indiv {
+    width: 100%;
+    background-color: rgb(255, 255, 255, 0.6);
+}
+
+.cont_txt {
+    width: 50%;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: start;
+    color: rgb(161, 12, 42);
+    padding-left: 10px;
+}
+
+.contagem {
+    width: 50%;
+    text-align: right;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
+.contagem p {
+    padding-top: 20px;
+    color: rgb(161, 12, 42);
+    font-size: 28px;
+}
+
+.space {
+    background-color: rgb(36, 43, 86);
+    height: 5px;
+}
+
+#cont_form {
+    display: none;
+}
+
+.cont_btn {
+    background: none;
+    color: white;
+    border: none;
+    padding-top: 10px;
+    right: -10%;
+    outline-color: transparent;
+    text-decoration: underline;
+    box-shadow: none;
+}
+
+a:hover.cont_btn {
+    color: rgb(255, 187, 0);
+    text-decoration: underline;
+}
+
+#envia_cont {
+    left: 59%;
+    top: 3.75em;
+    position: relative;
+}
+
+
+

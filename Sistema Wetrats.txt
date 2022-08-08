@@ -1,0 +1,181 @@
+﻿Banco de Dados - u418844475_wtr
+auth-db213.hostinger.com.br
+Usuário: u418844475_wtr
+Senha: wetrats2019
+
+FTP
+Host: srv213.main-hosting.eu
+Usuário: u418844475
+Senha: wetrats2019
+Porta: 21
+
+Email
+contato@wetrats.com.br
+Senha: wetrats2019
+
+Tabelas: (criadas no banco de dados)
+	-Usuário(usuarios);
+	-Financeiro(financeiro);
+	-Competições(competicoes);
+    -Treinos(treinos);
+    -Resultados nos treinos(resultados_treinos);
+    ** competiçoes com inscrição em aberto recebem uma 
+    tabela especifica criada pelo form "criacao_competicao" **
+
+Descrição Tabelas:
+    Usuário:
+        Cada usuário é gerado e pode conter 3 níveis de permissão no sistema:
+        -Nível 1:Atleta;
+        -Nível 2:Técnico;
+        -Nível 3:DM's;
+
+        Campos: Id(Primary Key), Nome Completo, Sexo, Apelido, Aniversario, Celular, RG, Email, Senha, Foto, Nível, Ativo;
+        
+    Dívidas:
+        Cada entrada da tabela corresponde a uma dívida e é relacionada a um usuário;
+        Campos: Id(Primary Key), Descrição, Id_Devedor(Foreign Key),Nome_devedor, Valor, descricao, Status, Data_criacao;
+        Formulário: No formulário para criar a dívida, terá um campo onde será possível selecionar 
+        por checkbox as pessoas que devem ter essa dívida incluída, e um botão para marcar todos os checkboxes; 
+
+    Competições:
+        Para cada competiçõo, criar uma tabela;
+        Formulário contendo opção para selecionar a competição que será feita a inscrição, e tempos para balizamento;
+        Posteriormente, gerar um excel com as informações do banco de dados;
+        Campos:Id(Primary Key), Id_Usuario(Foreign Key), Programa de Provas da Competição;
+
+        Histórico de competições: Para cada competição criada é registrado no histórico informaçoes desta competicao
+        Campos: (Id(Primary Key), Data, Local, Valor, Tipo de inscricao, Ordem das provas, Numero de inscritos e Status[aberta ou nao para inscricao];
+
+
+
+    Treinos:
+        Campos: Id(Primary Key), Data, Foto , Treino, comentario, Serie controle, Tipo
+        Série_controle : caso o treinador deseje que os atletas enviem sua perfomance no treino em determinada série do dia,ele 
+                        pode incluir a série controle que irá gerar um formulário específico para cada série dependendo do "Tipo".
+        
+    Presença:
+        Campos: Id(Primary Key), Id_Treino, Id_usuario ?
+
+
+    Calendário:
+        Datas importantes, definidas pelos DM's e/ou técnico apareceram no calendário;
+        Possibilidade do usuário incluir eventos que ele queira no próprio calendário;
+        Contagem regressiva, o usuário escolhe datas para contagem regressiva;
+
+Outras Funcionalidades:
+	-Calendário;
+    -Rankings;
+    -Pontuação;
+
+Páginas Área Restrita
+-Perfil
+	-> Contém algumas informações do usuário;
+	-> Botão para editar seus registros;
+	-> Detalhamento do financeiro;
+
+-Calendário
+	-> Calendário;
+	-> Área para o usuário adicionar eventos dele;
+	-> Contagem regressiva;
+
+-Competições
+	-> Próximas competições com balizamento aberto;
+	-> Campo para balizamento;
+	-> Histórico de competições com resultados sispoível para download;
+
+-Performances
+	-> Definir perfomances tanto em competições quanto em treinos;
+
+-Treinos
+	-> Visualizar o treino pelo dia;
+	
+-Gerenciamento(Só acessável pelos DMs)
+	-> Adicionar ou editar dívidas;
+	-> Criar competição;
+	-> Gerar planilha com o balizamento completo;
+	-> Definir data importante no calendário;
+
+-Gerenciamento(Só acessável pelo Técnico)
+	-> Incluir os treinos;
+	-> Definir datas importantes no calendário;
+
+
+
+RGB
+    Azul 0, 0, 46
+    Amarelo 255, 187, 0
+
+CHECKLIST
+
+    SQL
+        - Codificação ( ) Problemas com acentuação e caracteres especiais
+
+    HOMEPAGE
+        - Interatividade(PHP/SQL)
+        - Links
+        - Estilo
+
+    LOGIN
+        - Funcional (X)
+        - Esqueceu a senha? (X)             
+        - Mantenha me conectado( ) *verificar a session.gc_maxlifetime no php.ini do servidor, ou implementar manualmente
+
+    USUARIOS
+        - Criaçao (X)                   
+        - Edição  (X)
+        - Remoção (*) Talvez apenas desativar seja melhor opcao para manter os dados
+        - Pagina do perfil (X)              
+
+    FINANCEIRO
+        - Criacao (X) 
+        - Remoção (X)
+        - Fácil atualização de status (X) 
+        - Email (*)                            *aprimorar estilo do Email
+        - Visualização (X) 
+        - Integração PagSeguro (X) 
+
+    COMPETIÇÕES
+        - Criaçao (X) 
+        - Remoção (X) 
+        - Visualização (X)
+        - Inscriçao (X) 
+        - Cobranças por inscriçao (X) 
+
+    TREINOS
+        - Criaçao (X)
+        - Edição (X)
+        - Remoção (X)
+        - Visualização (X)
+        - Resposta a série controle (X)
+        - Inclusão de presença (X)
+        - Edição de presença (X)
+        - Relação de atletas x presença (X)	
+
+    RESULTADOS
+        - Treinos (X)
+        - Individuais Competições (X)
+        - Upload resultado (X)
+        - Visualização (X)
+        - Rankings (X)
+        - Estatisticas (X)
+
+    CALENDARIO
+        - Visualização (X)
+        - Interação ( )
+        - Edição ( )
+    
+    PONTUAÇÃO
+        - Funcionamento ( )
+        - Visualização ( )
+
+    FRONT-END
+        - Menu lateral para celular (X)
+        - Ajustes formulários (X)
+
+    
+
+
+    
+
+
+

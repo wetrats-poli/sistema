@@ -1,0 +1,7 @@
+[18-Jan-2020 17:32:53 America/Sao_Paulo] PHP Warning:  mysqli_connect(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /home/u418844475/domains/wetrats.com.br/public_html/distribuicao_metros/index.php on line 54
+[18-Jan-2020 17:32:53 America/Sao_Paulo] PHP Warning:  mysqli_connect(): (HY000/2002): php_network_getaddresses: getaddrinfo failed: Name or service not known in /home/u418844475/domains/wetrats.com.br/public_html/distribuicao_metros/index.php on line 54
+[18-Jan-2020 17:32:53 America/Sao_Paulo] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/u418844475/domains/wetrats.com.br/public_html/distribuicao_metros/index.php on line 56
+[18-Jan-2020 17:32:53 America/Sao_Paulo] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/u418844475/domains/wetrats.com.br/public_html/distribuicao_metros/index.php on line 59
+[26-Aug-2020 16:24:46 America/Sao_Paulo] PHP Notice:  Undefined variable: ans in /home/u418844475/domains/wetrats.com.br/public_html/preparacao_fisica/prog_semanas.php on line 21
+[08-Nov-2020 00:29:57 America/Sao_Paulo] PHP Notice:  Undefined variable: ans in /home/u418844475/domains/wetrats.com.br/public_html/preparacao_fisica/prog_semanas.php on line 21
+[13-Nov-2020 02:28:12 America/Sao_Paulo] PHP Notice:  Undefined variable: ans in /home/u418844475/domains/wetrats.com.br/public_html/preparacao_fisica/prog_semanas.php on line 21

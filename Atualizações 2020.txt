@@ -1,0 +1,49 @@
+﻿GERENCIAMENTO DOS TREINOS
+- (X) Incluir método de duplicar treino
+	"É possível eu ter acesso aos treinos antigos e utilizá-los para criar outros treinos? Estou perguntando porque o grupo Hipertrofia terá uma semana regenerativa na qual apenas tirei séries do treino atual. Se eu tivesse acesso aos treinos antigos e pudesse criar um novo treino em cima dos antigos, como se fosse a função "duplicar" evento do Google agenda, teria facilitado"
+
+- (X) Modificar forma de gerenciamento de visibilidade dos treinos, ao invés de ser por data
+	(Acho melhor deixar automaticamente por data, mas incluir a opção de visualização)
+	 "Eu estava pensando aqui, ao invés de colocar o período que o treino ficará disponível, tem como colocar um botão "Deixar treino visível" e outro "Ocultar treino"?"
+
+- (X) Adicionar campo para nome do treino
+	(Pensar num jeito de marcar treino A e B para as pessoas não se perderem em que treino fizeram ou não. (Acho interessante mas não necessário))
+	"Ao invés de deixar duas opções de nome para os treinos ("A" e "B"), tem como deixar um espaço para eu escrever o nome que eu quiser?"
+
+- () Implementar visualização de carga externa e evolução por blocos
+
+
+RELATÓRIOS DE MONITORAMENTOS - DANI VAI FAZER
+- (X) Modificar visualização para aparecer os dados sem precisar clicar no atleta
+	"Ao invés de nós precisarmos entrar em atleta por atleta, facilitaria muito a nossa vida, se ao selecionarmos a semana, já aparecessem todos os atletas um em baixo do outro e todas as informações juntas"
+
+- (X) Criar layout de visualização seguindo modelo que enviaram
+
+- () Implementar monitoramento de monotonia e carga interna crônica pela aguda 
+	(Perguntar para o Diogo se é algo direto, só um tabela com os valores atuais; no caso da CIT Aguda:Crônica como fica a visualização nas semanas antes da quarta;)
+	"O valor da carga interna de cada dia da semana, equivale a soma da carga interna de todos os treinos daquele dia. A carga interna da sessão de treino é calculada pelo tempo de treino em minutos multiplicado pela percepção subjetiva de esforço (PSE). A monotonia é calculada pela média da carga interna semanal (considera-se todos os dias da semana, inclusive os dias sem treino que a carga interna foi zero) dividida pelo desvio padrão das cargas internas diárias (também se considera os dias em que a carga interna foi zero para calcular o desvio padrão)."
+
+	"A carga interna semanal e a soma da carga interna de todos os treinos realizados na semana.
+	Considerem para o cálculo esse exemplo: Acabamos de completar a semana 51. O cálculo é: a carga interna da semana 51 (soma da carga interna de todos os treinos realizados na semana), dividida pela média da carga interna semanal das semanas 51, 50, 49 e 48."
+ 
+MUDANÇAS TREINO ÁGUA
+- (X) Na criação do treino, adicionar campos para inclusão do total de metros em A1, A2, A3, An e força de cada treino
+
+- (X) Criar um gráfico com a informação do total de metros em A1, A2, A3, An e força de cada treino por dia e um gráfico com o total semanal
+
+- () Criar um gráfico com a metragem total por dia durante a semana, e um gráfico com o total semanal
+	(Perguntar no grupo pro Lucas se ele prefere as informações em gráficos diferentes ou pode ser junto)
+
+- (X) Criar um gráfico que multiplique o valor da PSE do treino pela metragem do dia na página de visualização da PSE existente
+
+- (X) Adicionar a possibilidade de visualização individual da PSE
+	(Adicionar à página da PSE existente um filtro com o nome das pessoas e ao selecionar, abre o gráfico com a PSE)
+
+- (X) Guardar gráficos de teia de aranha e resetar o DB
+	(Perguntar pro Lucas se ele quer resetar a avaliação dele também ou só a nossa)
+	(Pra guardar os gráficos, modificar o nome da tabela incluindo a especificação de 'segundo semestre 2019')
+
+RESETAR PARA O NOVO SEMESTRE
+- (X) Definir data de início e semana zero(prog_semana.php)
+
+- (X) Resetar cargas e pse(confirmar com os técnicos antes)

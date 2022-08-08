@@ -1,0 +1,61 @@
+SISTEMA DE CONTROLE DA PREPARA��O FISICA
+
+1)TABELAS
+
+	a)treinos_academia
+  		id(indice)	
+		grupo(varchar)	
+		periodo(varchar)	
+		etapa(varchar)	
+		tipo(A ou B)	
+		n_exercicios(int)	
+		data_inicio(date)	
+		data_termino(date)
+
+	b)series_academia 
+  		id(indice) 
+		id_treino(int) 
+		exercicio(varchar) 
+		n_series(int) 
+		repeticoes(varchar "10/10/8/6/5") 
+		intervalo(varchar "60/60/45/30")
+		intensidade(varchar "80%/60%/50%")
+			
+
+	c)cargas_academia
+  		id(indice) 
+		id_serie(int) 
+		id_atleta(int) 
+		datetime(datetime **uma entrada para inicio e uma entrada para termino) 
+		1(int) 
+		2(int) 
+		3(int) 
+		4(int) 
+		5(int) 
+		6(int) 
+		7(int) 
+		8(int)
+
+	d)monitoramentos_academia
+		id(indice)
+		semana(int)
+		dia_semana(int)
+		resp(int)
+		tqr(int)
+		fdg(int)
+		qls(int)
+		dmg(int)
+		etr(int)
+		hmr(int)
+
+2)PAGINAS
+	  
+Cria��o de treino(X)
+Edi��o de treino(X)
+Visualiza��o de treino (c/ formulario)(-)
+Edi�ao de cargas(X)
+Visualiza��o de todos os treinos()
+Estatisticas()
+
+
+
