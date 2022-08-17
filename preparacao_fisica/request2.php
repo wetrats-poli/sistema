@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $link = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
 
     $sql1 = "SET time_zone = 'America/Sao_Paulo'";
     mysqli_query($link, $sql1);

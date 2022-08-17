@@ -60,7 +60,7 @@
     $soma = 0;
     $vermelho = ' style="background-color:rgb(256,0,0); color:rgb(0,0,0);"';
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
     
     $sql="SELECT id_devedor , usuarios.nome AS 'nome' , SUM(valor) AS 'total' FROM `financeiro`
     INNER JOIN `usuarios` ON financeiro.id_devedor = usuarios.id

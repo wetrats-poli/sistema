@@ -64,7 +64,7 @@
 
     <?php
 
-    $link = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
     $sql1 = "SELECT tqr, fdg, qls, dmg, etr, hmr  FROM monitoramentos_academia WHERE semana=0 and dia_semana=1";
     $sql2 = "SELECT tqr, fdg, qls, dmg, etr, hmr  FROM monitoramentos_academia WHERE semana=0 and dia_semana=2";
     $sql3 = "SELECT tqr, fdg, qls, dmg, etr, hmr  FROM monitoramentos_academia WHERE semana=0 and dia_semana=3";

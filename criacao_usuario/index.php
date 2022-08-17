@@ -164,7 +164,7 @@ if ($_POST){
   //hash de senha
   $hash = password_hash($senha, PASSWORD_DEFAULT);
   $nivel = $_POST['nivel'];
-  $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+  $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
   $sql = "INSERT INTO usuarios (email,sexo,senha,nivel,ativo,perfil) VALUES ("."'$email'".","."'$sexo'".","."'$hash'".","."'$nivel'".", '1', 0)";
   $query = mysqli_query($con,$sql);
   if ($query) {

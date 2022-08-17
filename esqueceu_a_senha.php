@@ -71,7 +71,7 @@
 if (isset($_POST['email'])){
   $email = $_POST['email'];
 // Conexão com o servidor MySQL
-  $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+  $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
   
   // Validação do usuário
   $sql =  "SELECT apelido FROM usuarios WHERE email= '$email' " ;
