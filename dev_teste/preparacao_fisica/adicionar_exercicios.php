@@ -27,7 +27,7 @@ $id_usuario = $_SESSION['ID'];
 $nivel_usuario = $_SESSION['NIVEL'];
 $id_treino = $_GET['id_treino'];
 
-$con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+$con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
 $sql0 = "SELECT * FROM treinos_academia WHERE id=".$id_treino.";";
 $query_treino=mysqli_query($con, $sql0);
 $treino = mysqli_fetch_assoc($query_treino);
@@ -180,7 +180,7 @@ if ($nivel_usuario!='2'){
 if ($_POST){
     
   //conexao e envio de informaçoes ao banco de dados
-  $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+  $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
   $sql = "INSERT INTO series_academia (id_treino,ordem,exercicio,n_series,repeticoes,intensidade, intervalo) 
           VALUES ";
  $i=1;

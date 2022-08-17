@@ -1,5 +1,5 @@
 ﻿Banco de Dados - u418844475_wtr
-auth-db213.hostinger.com.br
+auth-db213.hstgr.io
 Usuário: u418844475_wtr
 Senha: wetrats2019
 

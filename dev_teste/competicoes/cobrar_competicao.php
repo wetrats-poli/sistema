@@ -5,7 +5,7 @@ session_start();
 $id_competicao=$_GET['id'];
 
 //aquisicao das informacoes principais da competicao a qual tera suas cobranças lançadas
-$con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+$con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
 $sql= "SELECT evento, valor, tipo_inscricao, nprovas FROM `competicoes` WHERE id=".$id_competicao ;
 $resultado = mysqli_query($con,$sql);
 $competicao= mysqli_fetch_array($resultado);

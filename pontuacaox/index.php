@@ -83,7 +83,7 @@ if($_SESSION['NIVEL'] != '2'){
     $nomes = array();
     $tabela="";
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
     
     // calculo do total de pontos
     $sql="SELECT usuarios.nome AS 'nome', usuarios.apelido AS 'apelido', usuarios.id AS 'id' , 
@@ -117,7 +117,7 @@ if($_SESSION['NIVEL'] != '2'){
     
 }
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
     $tabela2 = "";
     $soma2 = 0;
     $sql2 = "SELECT (SELECT COUNT(*) FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND execucao=1) AS 'execucao' , 

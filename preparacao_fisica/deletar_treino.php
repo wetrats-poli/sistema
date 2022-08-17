@@ -3,7 +3,7 @@ ob_start();
 session_start();
 
 // Conexão com o servidor MySQL
-$con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+$con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
 
 $sql = 'DELETE from `treinos_academia` WHERE id="'.$_GET['id'].'"' ;
 $sql2= 'DELETE from `series_academia` WHERE id_treino="'.$_GET['id'].'"';

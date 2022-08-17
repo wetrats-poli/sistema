@@ -33,7 +33,7 @@
   $link="index.php?id=".$id_treino.'&data='.$data_treino ;
 
   // Conexão com o servidor MySQL
-  $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+  $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
 
   $sql = "SELECT id_atleta FROM `presencas` WHERE id_treino=".$id_treino.";" ;
   $resultado = mysqli_query($con,$sql);
@@ -124,7 +124,7 @@
           <?php
 
               // Conexão com o servidor MySQL
-              $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+              $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
 
               //busca pelos nomes dos atletas cadastrados no sistema e ativos
               $sql = "SELECT id, apelido, email FROM usuarios WHERE sexo ='F' AND ativo='1' ORDER BY apelido  ";
@@ -235,7 +235,7 @@
           <?php
 
               // Conexão com o servidor MySQL
-              $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+              $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
 
               //busca pelos nomes dos atletas cadastrados no sistema e ativos
               $sql = "SELECT id, apelido, email FROM usuarios WHERE sexo ='M' AND ativo='1' ORDER BY apelido  ";
@@ -302,7 +302,7 @@
 if (($_POST['finalizado']=="1")){
 
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
 
     $data = $_GET['data'];
 

@@ -80,7 +80,7 @@
             $hoje=date("Y-m-d");
             $semana_atual = acha_semana($hoje);
             
-            $link = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+            $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
 
             $A1 = array();
             $A2 = array();

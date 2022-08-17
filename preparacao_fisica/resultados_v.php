@@ -66,7 +66,7 @@
                                     $semana_atual = acha_semana($hoje);
                                 }
 
-                                $link = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+                                $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
                                 $sql4 = "SELECT DISTINCT semana FROM monitoramentos_academia ORDER BY semana ASC";
                                 $semanas = mysqli_query($link, $sql4);
 
@@ -89,7 +89,7 @@
             <div class="col-12">
                 <?php
                     echo '<table class="tabela_prep" style="width:100%;">';
-                    $link = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+                    $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
                     $sql = "SELECT DISTINCT nome FROM grupos_preparacao";
                     $grupos = mysqli_query($link, $sql);
                     $todos_ids = array();

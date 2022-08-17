@@ -92,7 +92,7 @@ if(isset($_POST['alterar_senha'])){
         //redefinição da senha
         $hash = password_hash($senha,PASSWORD_DEFAULT);
         $sql= "UPDATE usuarios SET senha ="."'$hash'"." WHERE id = $id_usuario " ;
-        $con = mysqli_connect("auth-db213.hostinger.com.br", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+        $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
         if (!mysqli_query($con, $sql)) {
             $_SESSION['ALERTA'] = mysqli_error($con);
             echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
