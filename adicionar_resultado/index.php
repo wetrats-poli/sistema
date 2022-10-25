@@ -54,7 +54,7 @@
       
         <h1>Inclusão de resultado individual</h1>
         <p>Seleciona a competicao ou a data e insira o seu tempo na prova em que deseja se inscrever. <br>
-        PS.: a separação dos minutos, segundos e centésimos deve ser realizada da seguinte forma: Min'Seg"Cent(Minutos e segundos separados por aspas simples e segundos e centésimos separados por aspas duplas)</p>
+        PS.: a separação dos minutos, segundos e centésimos deve ser realizada da seguinte forma: Min.Seg..Cent(Minutos e segundos separados por um ponto e segundos e centésimos separados por dois pontos)</p>
         <hr>
         
         <div class="row form-group">
