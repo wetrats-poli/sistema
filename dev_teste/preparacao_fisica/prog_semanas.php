@@ -1,7 +1,7 @@
 <?php
     function acha_semana($date){
         $semanas = array();
-        $start = new DateTime('2022-01-16');
+        $start = new DateTime('2023-07-17');
         for($i=1; $i<=30; $i++){
             $fim = clone $start;
             $fim = $fim->modify('+7days');
