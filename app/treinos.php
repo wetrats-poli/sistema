@@ -3,7 +3,7 @@
 class Constants
 {
     //DATABASE DETAILS
-    static $DB_SERVER="auth-db213.hstgr.io";
+    static $DB_SERVER="srv976.hstgr.io";
     static $DB_NAME="u418844475_wtr";
     static $USERNAME="u418844475_wtr";
     static $PASSWORD="Wetrats2019";

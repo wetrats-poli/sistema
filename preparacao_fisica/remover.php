@@ -4,7 +4,7 @@ ob_start();
 session_start();
 
 // Conexão com o servidor MySQL
-$link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+$link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
 if(isset($_GET['id'])){
     $sql = "DELETE FROM grupos_preparacao WHERE id_atleta=".$_GET['id'];

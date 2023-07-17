@@ -1,5 +1,5 @@
 ﻿Banco de Dados - u418844475_wtr
-auth-db213.hstgr.io
+srv976.hstgr.io
 Usuário: u418844475_wtr
 Senha: Wetrats2019
 

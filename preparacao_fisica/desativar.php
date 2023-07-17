@@ -2,7 +2,7 @@
 ob_start();
 
 // Conexão com o servidor MySQL
-$con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+$con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
 $sql = 'UPDATE treinos_academia SET status=0 WHERE id='.$_GET['id'] ;
 

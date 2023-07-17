@@ -3,7 +3,7 @@ ob_start();
 
 session_start(); 
 // Conexão com o servidor MySQL
-$con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+$con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 $evento=str_replace("+"," ",$_GET['evento']);
 $sql = 'DELETE from competicoes WHERE id="'.$_GET['id'].'"' ;
 $sql2 = 'DROP TABLE `'.$evento.'`'; 

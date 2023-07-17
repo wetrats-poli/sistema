@@ -32,7 +32,7 @@
   else $post="index.php";
   
   // Conexão com o servidor MySQL
-  $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+  $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
   // Busca das informações referentes ao usuário que será editado
   $sql =  "SELECT id, nome, sexo, apelido, aniversario, email, celular, RG, NUSP, endereco, foto, nivel, ativo FROM usuarios WHERE id = $id_usuario ";
@@ -257,7 +257,7 @@
 
 // Extrai as informações preenchidas no formulário
 if ($_POST){
-  $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+  $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
   $erro = False;
 

@@ -167,7 +167,7 @@
 <?php
 
 // Conexão com o servidor MySQL
-$con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+$con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
 // Busca das informações referentes ao usuário
 $sql =  "SELECT id, evento, data, local FROM competicoes WHERE ativo = '1' ORDER BY data ";
@@ -236,7 +236,7 @@ while ($competicao = mysqli_fetch_array($competicoes)){
 <?php
 
 // Conexão com o servidor MySQL
-$con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+$con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
 // Busca das informações referentes ao usuário
 $sql =  "SELECT id, evento, data, local, resultado FROM competicoes WHERE ativo = '0' ORDER BY data DESC ";

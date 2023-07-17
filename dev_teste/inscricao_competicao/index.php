@@ -30,7 +30,7 @@
   $atletas=array();
   $n=0;
   // Conexão com o servidor MySQL
-  $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+  $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
   //busca das informacoes referentes a competicao
   $sql = "SELECT * FROM `competicoes` WHERE evento="."'".$_SESSION['competicao']."'".";" ;
@@ -310,7 +310,7 @@ if (($_POST['finalizado']=="1")){
     }
 
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
      // Busca do id do treino ao qual será incluída a presença
     $sql =  "SELECT atleta_id FROM "."`".$_SESSION['competicao']."`"." WHERE atleta_id = '$id_usuario' ";

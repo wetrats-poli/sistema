@@ -47,7 +47,7 @@
                 <div class="col-12">
                     <?php
                         echo '<table style="margin-left: 40px; width:95%" class="tabela_prep">';
-                        $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                        $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                 
                         $todos_ids = array();
 
@@ -120,7 +120,7 @@
             $dia_s = 7;
         }
 
-        $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+        $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
         $sql2 = "SELECT data FROM treinos WHERE id >= 238 AND total>0";
         $res2 = mysqli_query($link, $sql2);
 

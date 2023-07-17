@@ -87,7 +87,7 @@ if($_SESSION['NIVEL'] != '3' and $_SESSION['NIVEL'] != '2' ){
     $nomes = array();
     $tabela="";
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     
     // calculo do total de pontos
     $sql="SELECT usuarios.nome AS 'nome', usuarios.apelido AS 'apelido', usuarios.id AS 'id' , SUM(
@@ -121,7 +121,7 @@ if($_SESSION['NIVEL'] != '3' and $_SESSION['NIVEL'] != '2' ){
     
 }
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     $tabela2 = "";
     $soma2 = 0;
     $sql2 = "SELECT id , data , tipo FROM `projetoiusp` 

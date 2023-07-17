@@ -139,7 +139,7 @@
                 
                         <?php 
                         // Conexão com o servidor MySQL
-                        $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                         if($nivel_usuario !="2"){
                         //busca das informacoes referentes a tabela de tiros
@@ -283,7 +283,7 @@
                 
                         <?php 
                         // Conexão com o servidor MySQL
-                        $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                         if($nivel_usuario !="2"){
                             //busca das informacoes referentes a tabela de BTs
@@ -383,7 +383,7 @@
                 
                         <?php 
                         // Conexão com o servidor MySQL
-                        $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                         if($nivel_usuario !="2"){
                         //busca das informacoes referentes a tabela de Melhor media

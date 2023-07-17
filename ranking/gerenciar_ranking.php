@@ -134,7 +134,7 @@
                 
                         <?php 
                         // Conexão com o servidor MySQL
-                        $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                         //busca das informacoes referentes a tabela de tiros
                         $sql = "SELECT  id,nome_atleta, sexo, prova, competicao, data, tempo FROM `ranking` ";

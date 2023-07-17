@@ -4,7 +4,7 @@
     date_default_timezone_set('America/Sao_Paulo');
     $hoje=date("Y-m-d");
 
-    $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     //$sql = "SELECT id FROM treinos WHERE data=(SELECT DATE_ADD("."'".$hoje."'".", INTERVAL 1 DAY))";
     $sql = "SELECT id FROM treinos WHERE data='".$hoje."'";
     $id_treino = mysqli_fetch_assoc(mysqli_query($link, $sql));

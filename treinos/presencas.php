@@ -78,7 +78,7 @@
 
           <?php 
                 // Conexão com o servidor MySQL
-                $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                 // Contagem do número de treinos
                 $sql1="SELECT (SELECT COUNT(DISTINCT id_treino) FROM presencas WHERE id_treino>=238) AS 'ntreinos'  , 
