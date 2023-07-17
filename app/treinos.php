@@ -6,7 +6,7 @@ class Constants
     static $DB_SERVER="auth-db213.hstgr.io";
     static $DB_NAME="u418844475_wtr";
     static $USERNAME="u418844475_wtr";
-    static $PASSWORD="wetrats2019";
+    static $PASSWORD="Wetrats2019";
 
     //STATEMENTS
     static $SQL_SELECT_TREINOS="SELECT * FROM treinos ORDER BY data ASC";

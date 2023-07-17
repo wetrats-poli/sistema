@@ -17,7 +17,7 @@
     $nivel_usuario = $_SESSION['NIVEL'];
     
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
     // Busca das informações referentes ao usuário
     $sql =  "SELECT id, nome, sexo, apelido, aniversario, email, senha, celular, RG, NUSP, endereco, foto, nivel, ativo FROM usuarios WHERE id = '$id_usuario' ";

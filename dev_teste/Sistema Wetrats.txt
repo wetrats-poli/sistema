@@ -1,17 +1,17 @@
 ﻿Banco de Dados - u418844475_wtr
 auth-db213.hstgr.io
 Usuário: u418844475_wtr
-Senha: wetrats2019
+Senha: Wetrats2019
 
 FTP
 Host: srv213.main-hosting.eu
 Usuário: u418844475
-Senha: wetrats2019
+Senha: Wetrats2019
 Porta: 21
 
 Email
 contato@wetrats.com.br
-Senha: wetrats2019
+Senha: Wetrats2019
 
 Tabelas: (criadas no banco de dados)
 	-Usuário(usuarios);

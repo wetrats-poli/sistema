@@ -72,7 +72,7 @@
                 <?php
 
                 // Conexão com o servidor MySQL
-                $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+                $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                 //busca pelos nomes das competicoes cadastrados no sistema e ativas
                 $sql = "SELECT nome FROM usuarios ORDER BY nome ";
@@ -115,7 +115,7 @@
                 <?php
 
                 // Conexão com o servidor MySQL
-                $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+                $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                 //busca pelos nomes das competicoes cadastrados no sistema e ativas
                 $sql = "SELECT evento, data FROM competicoes ORDER BY data ";
@@ -272,7 +272,7 @@ if (($_POST['finalizado']=="1")){
     $mensagem .= " em ".date_format($date,"d/m/y")." foi incluído com sucesso.";
 
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     
     // Grava as informações no banco de dados
     if (!mysqli_query($con,$sql)){

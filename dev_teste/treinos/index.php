@@ -12,7 +12,7 @@
     $nivel_usuario = $_SESSION['NIVEL'];
 
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     
     if ($nivel_usuario != "2"){
     $sql1 =  "SELECT (SELECT COUNT(*) FROM `presencas` WHERE `id_atleta`=$id_usuario AND id_treino>=238) AS npresenca , 

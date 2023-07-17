@@ -27,7 +27,7 @@
   if(strlen($_GET['id'])>0){
     $id = $_GET['id'];
     $form = "editar_performance.php?id=".$id;
-    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     $sql= "SELECT id_atleta, evento, data, estilo, metragem, tempo 
            FROM `resultados_pessoais`
            WHERE id=".$id ;
@@ -97,7 +97,7 @@
                 <?php
 
                 // Conexão com o servidor MySQL
-                $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+                $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                 //busca pelos nomes das competicoes cadastrados no sistema e ativas
                 $sql = "SELECT evento, data FROM competicoes ORDER BY data DESC ";
@@ -216,7 +216,7 @@ if (($_POST['finalizado']=="1")){
             WHERE id=".$id." ;" ; 
 
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     
     // Grava as informações no banco de dados
     if (!mysqli_query($con,$sql)){

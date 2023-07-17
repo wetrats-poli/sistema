@@ -30,7 +30,7 @@
     }
 
     function carga_interna_agua($id_atleta, $semana_atual){
-        $link = mysqli_connect("p:auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+        $link = mysqli_connect("p:auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
         
         $sql_1_a = mysqli_fetch_array(mysqli_query($link, "SELECT pse_nova.ses , duracao_agua.duracao 
                                                            FROM pse_nova
@@ -116,7 +116,7 @@
     }
 
     function carga_interna_fisico($id_atleta, $semana_atual){
-        $link = mysqli_connect("p:auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+        $link = mysqli_connect("p:auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
         $sql_1_f = mysqli_fetch_array(mysqli_query($link, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=1 AND semana=$semana_atual"));
         $sql_2_f = mysqli_fetch_array(mysqli_query($link, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=2 AND semana=$semana_atual"));

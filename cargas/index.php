@@ -77,7 +77,7 @@
     $nomes = array();
     $tabela="";
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     
     // calculo do total de pontos
     $sql="SELECT grupos_preparacao.nome AS 'grupo',usuarios.nome AS 'nome' , usuarios.id AS 'id'
@@ -105,7 +105,7 @@
     
 }
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+    $con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     $exercicios = array();
     $datas=array();
     $header="<th style='background-color: #242b56;color:#FFB000;text-tranform:uppercase;'>

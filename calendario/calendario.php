@@ -96,7 +96,7 @@
         $arrayEvento = montaEventos();
         $arrayEventosPessoais = montaEventosPessoais($_SESSION['ID']);
         
-        $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+        $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
         $sql = "SELECT `data` FROM `competicoes` WHERE ativo = '1'";
         $res = mysqli_query($link, $sql);
         $arrayCompAb = array();

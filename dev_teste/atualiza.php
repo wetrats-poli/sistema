@@ -30,7 +30,7 @@
         $cha=$resposta['80625d79-bc79-4b8e-a9c9-c733e3721c71'];
         echo "<br>Ayumi:".$ayumi."<br>";
         echo "Cha:".$cha;
-        //$con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+        //$con = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
         //$sql =  "INSERT INTO beat(cha,ayumi) VALUES (".$cha.",".$ayumi.")";
         //mysqli_query($con,$sql);
         

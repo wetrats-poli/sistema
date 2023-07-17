@@ -74,7 +74,7 @@
         </div>
         <div class="row">
             <?php
-                $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+                $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                 $sql = "SELECT id_atleta FROM grupos_preparacao";
                 $atletas = mysqli_fetch_assoc(mysqli_query($link, $sql));
 

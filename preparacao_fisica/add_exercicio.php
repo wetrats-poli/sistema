@@ -4,7 +4,7 @@ ob_start();
 session_start();
 
 // Conexão com o servidor MySQL
-$link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+$link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 if(isset($_POST['id_treino'])){
     $sql = "INSERT INTO series_academia (id_treino,ordem,exercicio,n_series,repeticoes,intensidade, intervalo) 
     VALUES (".$_POST['id_treino'].",".$_POST['ordem'].",'".$_POST['exercicio']."'

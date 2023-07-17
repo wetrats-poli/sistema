@@ -77,7 +77,7 @@
                     $desc = $_POST["desc"];
                     $id = (int)$_SESSION['ID'];
                     
-                    $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+                    $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                     $sql = "INSERT INTO eventos_pessoais (id_usuario, `data`, nome) VALUES ('$id', '$data', '$desc')";
                     $res = mysqli_query($link, $sql); 
 
@@ -93,7 +93,7 @@
                 <?php
                     session_start();
 
-                    $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+                    $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                     $sql = "SELECT `descricao`, `data` FROM `contagem` WHERE `equipe` = 1 OR `id_usuario` = ".$_SESSION['ID']." ORDER BY `data` ASC";
                     $res = mysqli_query($link, $sql); 
                     echo '<tbody>';
@@ -160,7 +160,7 @@
                                 $equipe = (int)$_POST["cont_rd"];
 
 
-                                $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+                                $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                                 $sql = "INSERT INTO contagem (id_usuario, equipe, `data`, descricao) VALUES ('$id', $equipe, '$data', '$desc')";
                                 mysqli_query($link, $sql);
 

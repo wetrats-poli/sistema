@@ -76,7 +76,7 @@
         </div>      
     <?php
        //Adiciona automaticamente todos os usuários cadstrados no banco de dados
-        $conn = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+        $conn = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
         //$sql = "SELECT id, nome, apelido, email FROM usuarios WHERE ativo='1' AND nivel!='2' ORDER BY nome  ";
         $sql = "SELECT id, nome, apelido, email FROM usuarios where nivel!='2' and id!='31' and ativo=1 ORDER BY apelido  ";
         $resultado = mysqli_query($conn,$sql);

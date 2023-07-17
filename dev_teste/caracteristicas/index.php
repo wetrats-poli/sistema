@@ -45,7 +45,7 @@
                                     <?php
 
                                     if($_SESSION['NIVEL'] == 2){
-                                        $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr");
+                                        $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                                         $sql = "SELECT id, nome FROM usuarios where nivel!='2' and id!='31' and ativo=1 ORDER BY nome";
                                         $resultado = mysqli_query($link, $sql);
                                         
@@ -106,7 +106,7 @@
                 </div>
                 <div class="col-3">
                     <?php
-                        $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "wetrats2019", "u418844475_wtr"); 
+                        $link = mysqli_connect("auth-db213.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr"); 
                         $sql2 = "SELECT forc, vel, res_ae, res_ana, tg, ee, est1, cb1, pr1, br1, tr1, qd1, co1, sa1, vr1, ch1, est2, cb2, pr2, br2, tr2, qd2, co2, sa2, vr2, ch2 FROM caracteristicas2020 WHERE id_atleta=".$_SESSION['ID']." AND tipo=1";
                         $resp2 = mysqli_fetch_assoc(mysqli_query($link, $sql2));               
                     ?>

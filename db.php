@@ -2,7 +2,7 @@
 
 $dns ="mysql:host=localhost;dbname=u418844475_wtr";
 $user = 'u418844475_wtr';
-$password = 'wetrats2019';
+$password = 'Wetrats2019';
 
 try{
     $db = new PDO ($dns, $user, $password);
