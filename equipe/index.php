@@ -118,7 +118,7 @@
                     <td>".
                         ($row['pagante'] == 0 ? "<a href='./ativar_pagante.php?id=".$row['id']."'><img src='../common/images/Red_Light_Icon.svg.png' height='15' width='15'></a>" : "<a href='./desativar_pagante.php?id=".$row['id']."'><img src='../common/images/Green_Light_Icon.svg.png' height='15' width='15'></a>")
                     ."</td>
-                    <td><a href='./ativar.php?id=".$row['id']."'><img src='../common/images/Green_Light_Icon.svg.png' height='15' width='15'></a>
+                    <td><a href='./desativar.php?id=".$row['id']."'><img src='../common/images/Green_Light_Icon.svg.png' height='15' width='15'></a>
                         <a href='../edicao_usuario/index.php?id=".$row['id']."'>Editar</a></td>
                    </tr>";
         $totalm+=1;
