@@ -121,7 +121,7 @@
         }
 
         $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
-        $sql2 = "SELECT data FROM treinos WHERE id >= 238 AND total>0";
+        $sql2 = "SELECT data FROM treinos WHERE id >= 573 AND total>0";
         $res2 = mysqli_query($link, $sql2);
 
         foreach($todos_ids as $_id){
