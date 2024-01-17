@@ -39,7 +39,7 @@
         $ratio = 0;
     }
 
-    $sql2 = "INSERT INTO pse_2022 (id_atleta, id_treino, ses, descs, ratio, dia_semana, semana) VALUES (".$_SESSION['ID'].", ".$id_treino['id'].", ".$ses.", ".$descs.", ".$ratio.", ".$dia_semana.", ".$semana.")";
+    $sql2 = "INSERT INTO pse_2024 (id_atleta, id_treino, ses, descs, ratio, dia_semana, semana) VALUES (".$_SESSION['ID'].", ".$id_treino['id'].", ".$ses.", ".$descs.", ".$ratio.", ".$dia_semana.", ".$semana.")";
     if(!mysqli_query($link, $sql2)){
         $_SESSION['ALERTA'] = "Erro ao enviar PSE! Por favor, verifique sua conexão e envie novamente.";
     }

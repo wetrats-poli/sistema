@@ -133,7 +133,7 @@
                     for($dia = 1; $dia <= 7; $dia++){
                         $sqlt = "SELECT id FROM treinos WHERE semana=$sem AND dia_semana=$dia AND total>0 AND id >= 238 LIMIT 1";
                         if(mysqli_num_rows(mysqli_query($link, $sqlt))>0){
-                            $sql = "SELECT ses, descs, ratio FROM pse_2022 WHERE id_atleta=$_id AND semana=$sem AND dia_semana=$dia";
+                            $sql = "SELECT ses, descs, ratio FROM pse_2024 WHERE id_atleta=$_id AND semana=$sem AND dia_semana=$dia";
                             $qry = mysqli_query($link, $sql);
                             if(mysqli_num_rows($qry)>0){
                                 $res = mysqli_fetch_assoc($qry);
@@ -154,7 +154,7 @@
                     for($dia = 1; $dia <= $dia_s; $dia++){
                         $sqlt = "SELECT id FROM treinos WHERE semana=$sem AND dia_semana=$dia AND total>0 LIMIT 1";
                         if(mysqli_num_rows(mysqli_query($link, $sqlt))>0){
-                            $sql = "SELECT ses, descs, ratio FROM pse_2022 WHERE id_atleta=$_id AND semana=$sem AND dia_semana=$dia";
+                            $sql = "SELECT ses, descs, ratio FROM pse_2024 WHERE id_atleta=$_id AND semana=$sem AND dia_semana=$dia";
                             $qry = mysqli_query($link, $sql);
                             if(mysqli_num_rows($qry)>0){
                                 $res = mysqli_fetch_assoc($qry);
