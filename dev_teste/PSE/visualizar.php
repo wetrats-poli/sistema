@@ -49,8 +49,8 @@
                         echo '<table style="margin-left: 40px; width:95%" class="tabela_prep">';
                         $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                         
-                        $sql2 = 'SELECT id, apelido FROM usuarios WHERE nivel != 2 AND ativo != 0 ORDER BY apelido ASC ';
-                        $ids = mysqli_query($link, $sql2);
+                        $sql = 'SELECT id, apelido FROM usuarios WHERE nivel != 2 AND ativo != 0 ORDER BY apelido ASC ';
+                        $ids = mysqli_query($link, $sql);
                         while($id = mysqli_fetch_assoc($ids)){
                             echo '<tr class="tabela_prep"><td class="tabela_prep"><h3 style="color:white; font-size:24px; text-align:center">'.$id['apelido'].'</h3>
                                     <div class="row" style="margin-right: 0px;">
@@ -99,10 +99,11 @@
         $sql2 = "
             SELECT 
                 td.id_atleta AS ATLETA,
-                GROUP_CONCAT(DATE_FORMAT(td.data_treino, '%d/%m') ORDER BY td.data_treino) AS DATAS,
+                GROUP_CONCAT(CAST(DATE_FORMAT(td.data_treino, '%d/%m') AS CHAR) ORDER BY td.data_treino) AS DATAS,
                 GROUP_CONCAT(COALESCE(pse.ses, 0) ORDER BY td.data_treino) AS PSE_SES,
                 GROUP_CONCAT(COALESCE(pse.descs, 0) ORDER BY td.data_treino) AS PSE_DESCS,
-                GROUP_CONCAT(COALESCE(ROUND(pse.ratio, 2), 0) ORDER BY td.data_treino) AS PSE_RATIO
+                GROUP_CONCAT(COALESCE(ROUND(pse.ratio, 2), 0) ORDER BY td.data_treino) AS PSE_RATIO,
+                COUNT(1) AS TOTAL_DIAS
             FROM (
                 SELECT 
                     t.data AS data_treino,
@@ -111,7 +112,7 @@
                 FROM treinos t
                 CROSS JOIN usuarios u
                 WHERE t.id >= 573
-                AND t.data <= ".$hoje."
+                AND t.data <= '".$hoje."'
                 AND u.nivel != 2
                 AND u.ativo != 0
             ) AS td
@@ -122,9 +123,16 @@
             ORDER BY 1;
         ";
         $res2 = mysqli_query($link, $sql2);
-        $pse_data = mysqli_fetch_assoc($res);
-
-        foreach($pse_data as $pse_row){            
+        
+        while($pse_row = mysqli_fetch_assoc($res2)){ 
+            $datas = "" ;
+            foreach(explode(',', $pse_row['DATAS']) as $i=>$data){ 
+                $datas .= "'".$data."'";
+                if($i < $pse_row['TOTAL_DIAS']) {
+                    $datas .= ",";
+                }
+            }
+            
             echo "
             var ctx_ses".$pse_row['ATLETA']." = document.getElementById('myChart_ses_".$pse_row['ATLETA']."');
             var ctx_des".$pse_row['ATLETA']." = document.getElementById('myChart_des_".$pse_row['ATLETA']."');
@@ -133,11 +141,11 @@
             var myChart_ses".$pse_row['ATLETA']." = new Chart(ctx_ses".$pse_row['ATLETA'].", {
                 type: 'bar',
                 data: {
-                    labels: [".implode($pse_row['DATAS'], ',')."],
+                    labels: [".$datas."],
                     datasets: [{
                         type: 'line',
                         label: 'PSE Sessão',
-                        data: [".implode($pse_row['PSE_SES'], ',')."],
+                        data: [".$pse_row['PSE_SES']."],
                         borderColor: 'rgba(0, 0, 0, 1)',
                         borderWidth: 2,
                         fill: false
@@ -145,7 +153,7 @@
                     {
                         type: 'bar',
                         label: 'PSE Sessão',
-                        data: [".implode($pse_row['PSE_SES'], ',')."],
+                        data: [".$pse_row['PSE_SES']."],
                         backgroundColor: 'rgba(255, 187, 0, 0.3)',
                         borderColor: 'rgba(255, 187, 0, 1)',
                         pointBackgroundColor: 'rgba(255, 187, 0, 1)',
@@ -187,11 +195,11 @@
             var myChart_des".$pse_row['ATLETA']." = new Chart(ctx_des".$pse_row['ATLETA'].", {
                 type: 'bar',
                 data: {
-                    labels: [".implode($pse_row['DATAS'], ',')."],
+                    labels: [".$datas."],
                     datasets: [{
                         type: 'line',
                         label: 'PSE do Descanso',
-                        data: [".implode($pse_row['PSE_DESCS'], ',')."],
+                        data: [".$pse_row['PSE_DESCS']."],
                         borderColor: 'rgba(0, 0, 0, 1)',
                         borderWidth: 2,
                         fill: false
@@ -199,7 +207,7 @@
                     {
                         type: 'bar',
                         label: 'PSE do Descanso',
-                        data: [".implode($pse_row['PSE_DESCS'], ',')."],
+                        data: [".$pse_row['PSE_DESCS']."],
                         backgroundColor: 'rgba(255, 187, 0, 0.3)',
                         borderColor: 'rgba(255, 187, 0, 1)',
                         pointBackgroundColor: 'rgba(255, 187, 0, 1)',
@@ -241,11 +249,11 @@
             var myChart_rat".$pse_row['ATLETA']." = new Chart(ctx_rat".$pse_row['ATLETA'].", {
                 type: 'bar',
                 data: {
-                    labels: [".implode($pse_row['DATAS'], ',')."],
+                    labels: [".$datas."],
                     datasets: [{
                         type: 'line',
                         label: 'PSE Ratio',
-                        data: [".implode($pse_row['PSE_RATIO'], ',')."],
+                        data: [".$pse_row['PSE_RATIO']."],
                         borderColor: 'rgba(0, 0, 0, 1)',
                         borderWidth: 2,
                         fill: false
@@ -253,7 +261,7 @@
                     {
                         type: 'bar',
                         label: 'PSE Ratio',
-                        data: [".implode($pse_row['PSE_RATIO'], ',')."],
+                        data: [".$pse_row['PSE_RATIO']."],
                         backgroundColor: 'rgba(255, 187, 0, 0.3)',
                         borderColor: 'rgba(255, 187, 0, 1)',
                         pointBackgroundColor: 'rgba(255, 187, 0, 1)',
