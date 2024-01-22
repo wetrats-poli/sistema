@@ -50,31 +50,31 @@
         $ch2 = 0;
     }
 
-    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
     $sql = "SELECT tipo FROM caracteristicas2020 WHERE id_atleta = $id";
-    $resultado = mysqli_query($link, $sql);
+    $resultado = mysqli_query($con, $sql);
     if($resultado->num_rows == 0){
         $nsql = "INSERT INTO caracteristicas2020 (id_atleta, tipo, forc, vel, res_ae, res_ana, tg, ee, est1, cb1, pr1, br1, tr1, qd1, co1, sa1, vr1, ch1, est2, cb2, pr2, br2, tr2, qd2, co2, sa2, vr2, ch2) VALUE ($id, $tipo, $for, $vel, $res_ae, $res_ana, $tg, $ee, '$est1', $cb1, $pr1, $br1, $tr1, $qd1, $co1, $sa1, $vr1, $ch1, '$est2', $cb2, $pr2, $br2, $tr2, $qd2, $co2, $sa2, $vr2, $ch2)";
-        if(!mysqli_query($link, $nsql)){
-            printf("Errormessage: %s\n", mysqli_error($link));
+        if(!mysqli_query($con, $nsql)){
+            printf("Errormessage: %s\n", mysqli_error($con));
         }
     } elseif ($resultado->num_rows == 1){
         $res = $resultado->fetch_array(MYSQLI_ASSOC);
         if($res["tipo"] == $tipo){
             $nsql = "UPDATE caracteristicas2020 SET forc=$for, vel=$vel, res_ae=$res_ae, res_ana=$res_ana, tg=$tg, ee=$ee, est1='$est1', cb1=$cb1, pr1=$pr1, br1=$br1, tr1=$tr1, qd1=$qd1, co1=$co1, sa1=$sa1, vr1=$vr1, ch1=$ch1, est2='$est2', cb2=$cb2, pr2=$pr2, br2=$br2, tr2=$tr2, qd2=$qd2, co2=$co2, sa2=$sa2, vr2=$vr2, ch2=$ch2 WHERE id_atleta=$id AND tipo=$tipo";
-            if(!mysqli_query($link, $nsql)){
-                printf("Errormessage: %s\n", mysqli_error($link));
+            if(!mysqli_query($con, $nsql)){
+                printf("Errormessage: %s\n", mysqli_error($con));
             }
         } else {
             $nsql = "INSERT INTO caracteristicas2020 (id_atleta, tipo, forc, vel, res_ae, res_ana, tg, ee, est1, cb1, pr1, br1, tr1, qd1, co1, sa1, vr1, ch1, est2, cb2, pr2, br2, tr2, qd2, co2, sa2, vr2, ch2) VALUE ($id, $tipo, $for, $vel, $res_ae, $res_ana, $tg, $ee, '$est1', $cb1, $pr1, $br1, $tr1, $qd1, $co1, $sa1, $vr1, $ch1, '$est2', $cb1, $pr2, $br2, $tr2, $qd2, $co2, $sa2, $vr2, $ch2)";
-            if(!mysqli_query($link, $nsql)){
-                printf("Errormessage: %s\n", mysqli_error($link));
+            if(!mysqli_query($con, $nsql)){
+                printf("Errormessage: %s\n", mysqli_error($con));
             }
         }    
     } else {
         $nsql = "UPDATE caracteristicas2020 SET forc=$for, vel=$vel, res_ae=$res_ae, res_ana=$res_ana, tg=$tg, ee=$ee, est1='$est1', cb1=$cb1, pr1=$pr1, br1=$br1, tr1=$tr1, qd1=$qd1, co1=$co1, sa1=$sa1, vr1=$vr1, ch1=$ch1, est2='$est2', cb2=$cb2, pr2=$pr2, br2=$br2, tr2=$tr2, qd2=$qd2, co2=$co2, sa2=$sa2, vr2=$vr2, ch2=$ch2 WHERE id_atleta=$id AND tipo=$tipo";
-        if(!mysqli_query($link, $nsql)){
-            printf("Errormessage: %s\n", mysqli_error($link));
+        if(!mysqli_query($con, $nsql)){
+            printf("Errormessage: %s\n", mysqli_error($con));
         }
     }
 

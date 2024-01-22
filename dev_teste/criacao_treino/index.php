@@ -206,7 +206,7 @@ if ($_POST){
   }
   
   //conexao e envio de informaçoes ao banco de dados
-  $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+  require_once '../db_con.php';
   $tabela ="treinos";
   //Se for o treinador das 17
   if($_SESSION['ID']==81){

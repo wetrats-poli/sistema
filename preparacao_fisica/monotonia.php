@@ -30,39 +30,39 @@
     }
 
     function carga_interna_agua($id_atleta, $semana_atual){
-        $link = mysqli_connect("p:srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+        $con = mysqli_connect("p:srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
         
-        $sql_1_a = mysqli_fetch_array(mysqli_query($link, "SELECT pse_nova.ses , duracao_agua.duracao 
+        $sql_1_a = mysqli_fetch_array(mysqli_query($con, "SELECT pse_nova.ses , duracao_agua.duracao 
                                                            FROM pse_nova
                                                            INNER JOIN duracao_agua ON (pse_nova.id_atleta = duracao_agua.id_atleta)
                                                            WHERE pse_nova.id_atleta=$id_atleta AND pse_nova.dia_semana=1 AND pse_nova.semana=$semana_atual
                                                            AND duracao_agua.dia_semana=1 AND duracao_agua.semana=$semana_atual"));
-        $sql_2_a = mysqli_fetch_array(mysqli_query($link, "SELECT pse_nova.ses , duracao_agua.duracao 
+        $sql_2_a = mysqli_fetch_array(mysqli_query($con, "SELECT pse_nova.ses , duracao_agua.duracao 
                                                            FROM pse_nova
                                                            INNER JOIN duracao_agua ON (pse_nova.id_atleta = duracao_agua.id_atleta)
                                                            WHERE pse_nova.id_atleta=$id_atleta AND pse_nova.dia_semana=2 AND pse_nova.semana=$semana_atual
                                                            AND duracao_agua.dia_semana=2 AND duracao_agua.semana=$semana_atual"));
-        $sql_3_a = mysqli_fetch_array(mysqli_query($link, "SELECT pse_nova.ses , duracao_agua.duracao 
+        $sql_3_a = mysqli_fetch_array(mysqli_query($con, "SELECT pse_nova.ses , duracao_agua.duracao 
                                                            FROM pse_nova
                                                            INNER JOIN duracao_agua ON (pse_nova.id_atleta = duracao_agua.id_atleta)
                                                            WHERE pse_nova.id_atleta=$id_atleta AND pse_nova.dia_semana=3 AND pse_nova.semana=$semana_atual
                                                            AND duracao_agua.dia_semana=3 AND duracao_agua.semana=$semana_atual"));
-        $sql_4_a = mysqli_fetch_array(mysqli_query($link, "SELECT pse_nova.ses , duracao_agua.duracao 
+        $sql_4_a = mysqli_fetch_array(mysqli_query($con, "SELECT pse_nova.ses , duracao_agua.duracao 
                                                            FROM pse_nova
                                                            INNER JOIN duracao_agua ON (pse_nova.id_atleta = duracao_agua.id_atleta)
                                                            WHERE pse_nova.id_atleta=$id_atleta AND pse_nova.dia_semana=4 AND pse_nova.semana=$semana_atual
                                                            AND duracao_agua.dia_semana=4 AND duracao_agua.semana=$semana_atual"));
-        $sql_5_a = mysqli_fetch_array(mysqli_query($link, "SELECT pse_nova.ses , duracao_agua.duracao 
+        $sql_5_a = mysqli_fetch_array(mysqli_query($con, "SELECT pse_nova.ses , duracao_agua.duracao 
                                                            FROM pse_nova
                                                            INNER JOIN duracao_agua ON (pse_nova.id_atleta = duracao_agua.id_atleta)
                                                            WHERE pse_nova.id_atleta=$id_atleta AND pse_nova.dia_semana=5 AND pse_nova.semana=$semana_atual
                                                            AND duracao_agua.dia_semana=5 AND duracao_agua.semana=$semana_atual"));
-        $sql_6_a = mysqli_fetch_array(mysqli_query($link, "SELECT pse_nova.ses , duracao_agua.duracao 
+        $sql_6_a = mysqli_fetch_array(mysqli_query($con, "SELECT pse_nova.ses , duracao_agua.duracao 
                                                            FROM pse_nova
                                                            INNER JOIN duracao_agua ON (pse_nova.id_atleta = duracao_agua.id_atleta)
                                                            WHERE pse_nova.id_atleta=$id_atleta AND pse_nova.dia_semana=6 AND pse_nova.semana=$semana_atual
                                                            AND duracao_agua.dia_semana=6 AND duracao_agua.semana=$semana_atual"));
-        $sql_7_a = mysqli_fetch_array(mysqli_query($link, "SELECT pse_nova.ses , duracao_agua.duracao 
+        $sql_7_a = mysqli_fetch_array(mysqli_query($con, "SELECT pse_nova.ses , duracao_agua.duracao 
                                                            FROM pse_nova
                                                            INNER JOIN duracao_agua ON (pse_nova.id_atleta = duracao_agua.id_atleta)
                                                            WHERE pse_nova.id_atleta=$id_atleta AND pse_nova.dia_semana=7 AND pse_nova.semana=$semana_atual
@@ -116,15 +116,15 @@
     }
 
     function carga_interna_fisico($id_atleta, $semana_atual){
-        $link = mysqli_connect("p:srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+        $con = mysqli_connect("p:srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
-        $sql_1_f = mysqli_fetch_array(mysqli_query($link, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=1 AND semana=$semana_atual"));
-        $sql_2_f = mysqli_fetch_array(mysqli_query($link, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=2 AND semana=$semana_atual"));
-        $sql_3_f = mysqli_fetch_array(mysqli_query($link, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=3 AND semana=$semana_atual"));
-        $sql_4_f = mysqli_fetch_array(mysqli_query($link, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=4 AND semana=$semana_atual"));
-        $sql_5_f = mysqli_fetch_array(mysqli_query($link, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=5 AND semana=$semana_atual"));
-        $sql_6_f = mysqli_fetch_array(mysqli_query($link, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=6 AND semana=$semana_atual"));
-        $sql_7_f = mysqli_fetch_array(mysqli_query($link, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=7 AND semana=$semana_atual"));
+        $sql_1_f = mysqli_fetch_array(mysqli_query($con, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=1 AND semana=$semana_atual"));
+        $sql_2_f = mysqli_fetch_array(mysqli_query($con, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=2 AND semana=$semana_atual"));
+        $sql_3_f = mysqli_fetch_array(mysqli_query($con, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=3 AND semana=$semana_atual"));
+        $sql_4_f = mysqli_fetch_array(mysqli_query($con, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=4 AND semana=$semana_atual"));
+        $sql_5_f = mysqli_fetch_array(mysqli_query($con, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=5 AND semana=$semana_atual"));
+        $sql_6_f = mysqli_fetch_array(mysqli_query($con, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=6 AND semana=$semana_atual"));
+        $sql_7_f = mysqli_fetch_array(mysqli_query($con, "SELECT carga_interna FROM pse_academia WHERE id_atleta=$id_atleta AND dia_semana=7 AND semana=$semana_atual"));
 
 
         $cif = Array();

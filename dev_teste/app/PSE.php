@@ -23,10 +23,10 @@
     }
 
 
-    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
     
     $sql = "SELECT id FROM treinos WHERE data='".$hoje."'";
-    $id_treino = mysqli_fetch_assoc(mysqli_query($link, $sql));
+    $id_treino = mysqli_fetch_assoc(mysqli_query($con, $sql));
 
     $ses = (int)$_GET['ses'];
     $descs = (int)$_GET['descs'];
@@ -39,7 +39,7 @@
     }
 
     $sql2 = "INSERT INTO pse_nova (id_atleta, id_treino, ses, descs, ratio, dia_semana, semana) VALUES (".$_GET['ID'].", ".$id_treino['id'].", ".$ses.", ".$descs.", ".$ratio.", ".$dia_semana.", ".$semana.")";
-    if(mysqli_query($link, $sql2)) print(json_encode(array("OK")));
+    if(mysqli_query($con, $sql2)) print(json_encode(array("OK")));
 
     
 ?>

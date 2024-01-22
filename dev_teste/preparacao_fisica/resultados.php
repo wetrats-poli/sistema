@@ -66,9 +66,9 @@
                                     $semana_atual = acha_semana($hoje);
                                 }
 
-                                $link = mysqli_connect("p:srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                                $con = mysqli_connect("p:srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                                 $sql4 = "SELECT DISTINCT semana FROM monitoramentos_academia ORDER BY semana ASC";
-                                $semanas = mysqli_query($link, $sql4);
+                                $semanas = mysqli_query($con, $sql4);
 
                                 echo '<select class="form-control" nome="semana" id="semana" style="width: 25%;">';
                                 while($semana = mysqli_fetch_assoc($semanas)){
@@ -89,19 +89,19 @@
             <div class="col-12">
                 <?php
                     echo '<table class="tabela_prep" style="width:100%;">';
-                    $link = mysqli_connect("p:srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                    $con = mysqli_connect("p:srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                     $sql = "SELECT DISTINCT nome FROM grupos_preparacao";
-                    $grupos = mysqli_query($link, $sql);
+                    $grupos = mysqli_query($con, $sql);
                     $todos_ids = array();
                     $n=0;
 
                     while($grupo = mysqli_fetch_assoc($grupos)){
                         echo '<tr class="tabela_prep"><th class="tabela_prep" style="text-align: center; font-size: 30px">'.$grupo['nome'].'</th></tr>'; 
                         $sql2 = 'SELECT id_atleta FROM grupos_preparacao WHERE nome="'.$grupo['nome'].'"';
-                        $ids = mysqli_query($link, $sql2);
+                        $ids = mysqli_query($con, $sql2);
                         while($id = mysqli_fetch_assoc($ids)){
                             $sql3 = "SELECT nome FROM usuarios WHERE id=".$id['id_atleta'];
-                            $nome = mysqli_fetch_assoc(mysqli_query($link, $sql3));
+                            $nome = mysqli_fetch_assoc(mysqli_query($con, $sql3));
                             echo '<tr class="tabela_prep"><td class="tabela_prep"><h3 style="color:white; font-size:24px; text-align:center">'.$nome['nome'].'</h3>
                                     <div class="row">
                                         <div class="col-6">
@@ -144,7 +144,7 @@
     WHERE cargas_academia.id_atleta= '.$id['id_atleta'].'
     ORDER BY cargas_academia.data DESC;';
 
-    $resultado = mysqli_query($link, $sql21);
+    $resultado = mysqli_query($con, $sql21);
     while ($row = mysqli_fetch_assoc($resultado)){
         $nome_atleta = $row['nome'];
         $exercicio = $row['exercicio'];
@@ -300,13 +300,13 @@
                 $sql_sab = "SELECT tqr, fdg, qls, dmg, etr, hmr FROM monitoramentos_academia WHERE dia_semana=6 AND semana=$semana_atual AND id_atleta=$_id";
                 $sql_dom = "SELECT tqr, fdg, qls, dmg, etr, hmr FROM monitoramentos_academia WHERE dia_semana=7 AND semana=$semana_atual AND id_atleta=$_id";
                 
-                $seg = mysqli_fetch_assoc(mysqli_query($link, $sql_seg));
-                $ter = mysqli_fetch_assoc(mysqli_query($link, $sql_ter));
-                $qua = mysqli_fetch_assoc(mysqli_query($link, $sql_qua));
-                $qui = mysqli_fetch_assoc(mysqli_query($link, $sql_qui));
-                $sex = mysqli_fetch_assoc(mysqli_query($link, $sql_sex));
-                $sab = mysqli_fetch_assoc(mysqli_query($link, $sql_sab));
-                $dom = mysqli_fetch_assoc(mysqli_query($link, $sql_dom));
+                $seg = mysqli_fetch_assoc(mysqli_query($con, $sql_seg));
+                $ter = mysqli_fetch_assoc(mysqli_query($con, $sql_ter));
+                $qua = mysqli_fetch_assoc(mysqli_query($con, $sql_qua));
+                $qui = mysqli_fetch_assoc(mysqli_query($con, $sql_qui));
+                $sex = mysqli_fetch_assoc(mysqli_query($con, $sql_sex));
+                $sab = mysqli_fetch_assoc(mysqli_query($con, $sql_sab));
+                $dom = mysqli_fetch_assoc(mysqli_query($con, $sql_dom));
 
                 //semanal
 
@@ -324,12 +324,12 @@
                     $sem_etr = "SELECT ROUND(AVG(etr)) FROM monitoramentos_academia WHERE semana=$sem AND id_atleta=$_id";
                     $sem_hmr = "SELECT ROUND(AVG(hmr)) FROM monitoramentos_academia WHERE semana=$sem AND id_atleta=$_id";
 
-                    $tqr_q = mysqli_fetch_array(mysqli_query($link, $sem_tqr));
-                    $fdg_q = mysqli_fetch_array(mysqli_query($link, $sem_fdg));
-                    $qls_q = mysqli_fetch_array(mysqli_query($link, $sem_qls));
-                    $dmg_q = mysqli_fetch_array(mysqli_query($link, $sem_dmg));
-                    $etr_q = mysqli_fetch_array(mysqli_query($link, $sem_etr));
-                    $hmr_q = mysqli_fetch_array(mysqli_query($link, $sem_hmr));
+                    $tqr_q = mysqli_fetch_array(mysqli_query($con, $sem_tqr));
+                    $fdg_q = mysqli_fetch_array(mysqli_query($con, $sem_fdg));
+                    $qls_q = mysqli_fetch_array(mysqli_query($con, $sem_qls));
+                    $dmg_q = mysqli_fetch_array(mysqli_query($con, $sem_dmg));
+                    $etr_q = mysqli_fetch_array(mysqli_query($con, $sem_etr));
+                    $hmr_q = mysqli_fetch_array(mysqli_query($con, $sem_hmr));
 
                     $tqr[] = $tqr_q[0];
                     $fdg[] = $fdg_q[0];
@@ -349,13 +349,13 @@
                 $met_6 = "SELECT total FROM treinos WHERE dia_semana=6 AND semana=$semana_atual";
                 $met_7 = "SELECT total FROM treinos WHERE dia_semana=7 AND semana=$semana_atual";
 
-                $met_1_q = mysqli_fetch_assoc(mysqli_query($link, $met_1));
-                $met_2_q = mysqli_fetch_assoc(mysqli_query($link, $met_2));
-                $met_3_q = mysqli_fetch_assoc(mysqli_query($link, $met_3));
-                $met_4_q = mysqli_fetch_assoc(mysqli_query($link, $met_4));
-                $met_5_q = mysqli_fetch_assoc(mysqli_query($link, $met_5));
-                $met_6_q = mysqli_fetch_assoc(mysqli_query($link, $met_6));
-                $met_7_q = mysqli_fetch_assoc(mysqli_query($link, $met_7));
+                $met_1_q = mysqli_fetch_assoc(mysqli_query($con, $met_1));
+                $met_2_q = mysqli_fetch_assoc(mysqli_query($con, $met_2));
+                $met_3_q = mysqli_fetch_assoc(mysqli_query($con, $met_3));
+                $met_4_q = mysqli_fetch_assoc(mysqli_query($con, $met_4));
+                $met_5_q = mysqli_fetch_assoc(mysqli_query($con, $met_5));
+                $met_6_q = mysqli_fetch_assoc(mysqli_query($con, $met_6));
+                $met_7_q = mysqli_fetch_assoc(mysqli_query($con, $met_7));
 
                 $pse_1 = "SELECT ses FROM pse_nova WHERE dia_semana=1 AND semana=$semana_atual AND id_atleta=$_id";
                 $pse_2 = "SELECT ses FROM pse_nova WHERE dia_semana=2 AND semana=$semana_atual AND id_atleta=$_id";
@@ -365,13 +365,13 @@
                 $pse_6 = "SELECT ses FROM pse_nova WHERE dia_semana=6 AND semana=$semana_atual AND id_atleta=$_id";
                 $pse_7 = "SELECT ses FROM pse_nova WHERE dia_semana=7 AND semana=$semana_atual AND id_atleta=$_id";
 
-                $pse_1_q = mysqli_fetch_assoc(mysqli_query($link, $pse_1));
-                $pse_2_q = mysqli_fetch_assoc(mysqli_query($link, $pse_2));
-                $pse_3_q = mysqli_fetch_assoc(mysqli_query($link, $pse_3));
-                $pse_4_q = mysqli_fetch_assoc(mysqli_query($link, $pse_4));
-                $pse_5_q = mysqli_fetch_assoc(mysqli_query($link, $pse_5));
-                $pse_6_q = mysqli_fetch_assoc(mysqli_query($link, $pse_6));
-                $pse_7_q = mysqli_fetch_assoc(mysqli_query($link, $pse_7));
+                $pse_1_q = mysqli_fetch_assoc(mysqli_query($con, $pse_1));
+                $pse_2_q = mysqli_fetch_assoc(mysqli_query($con, $pse_2));
+                $pse_3_q = mysqli_fetch_assoc(mysqli_query($con, $pse_3));
+                $pse_4_q = mysqli_fetch_assoc(mysqli_query($con, $pse_4));
+                $pse_5_q = mysqli_fetch_assoc(mysqli_query($con, $pse_5));
+                $pse_6_q = mysqli_fetch_assoc(mysqli_query($con, $pse_6));
+                $pse_7_q = mysqli_fetch_assoc(mysqli_query($con, $pse_7));
 
                 $cia_1 = $met_1_q['total'] * $pse_1_q['ses'];
                 $cia_2 = $met_2_q['total'] * $pse_2_q['ses'];
@@ -387,8 +387,8 @@
                     $pse_s = "SELECT ROUND(AVG(ses)) FROM pse_nova WHERE semana=$sem AND id_atleta=$_id";
                     $dur_s = "SELECT ROUND(AVG(total)) FROM treinos WHERE semana=$sem";
 
-                    $pse_q = mysqli_fetch_array(mysqli_query($link, $pse_s));
-                    $dur_q = mysqli_fetch_array(mysqli_query($link, $dur_s));
+                    $pse_q = mysqli_fetch_array(mysqli_query($con, $pse_s));
+                    $dur_q = mysqli_fetch_array(mysqli_query($con, $dur_s));
 
                     $cia_s[] = $pse_q[0] * $dur_q[0];
                 }
@@ -403,20 +403,20 @@
                 $cif_6 = "SELECT carga_interna FROM pse_academia WHERE dia_semana=6 AND semana=$semana_atual AND id_atleta=$_id";
                 $cif_7 = "SELECT carga_interna FROM pse_academia WHERE dia_semana=7 AND semana=$semana_atual AND id_atleta=$_id";
 
-                $cif_1_q = mysqli_fetch_assoc(mysqli_query($link, $cif_1));
-                $cif_2_q = mysqli_fetch_assoc(mysqli_query($link, $cif_2));
-                $cif_3_q = mysqli_fetch_assoc(mysqli_query($link, $cif_3));
-                $cif_4_q = mysqli_fetch_assoc(mysqli_query($link, $cif_4));
-                $cif_5_q = mysqli_fetch_assoc(mysqli_query($link, $cif_5));
-                $cif_6_q = mysqli_fetch_assoc(mysqli_query($link, $cif_6));
-                $cif_7_q = mysqli_fetch_assoc(mysqli_query($link, $cif_7));
+                $cif_1_q = mysqli_fetch_assoc(mysqli_query($con, $cif_1));
+                $cif_2_q = mysqli_fetch_assoc(mysqli_query($con, $cif_2));
+                $cif_3_q = mysqli_fetch_assoc(mysqli_query($con, $cif_3));
+                $cif_4_q = mysqli_fetch_assoc(mysqli_query($con, $cif_4));
+                $cif_5_q = mysqli_fetch_assoc(mysqli_query($con, $cif_5));
+                $cif_6_q = mysqli_fetch_assoc(mysqli_query($con, $cif_6));
+                $cif_7_q = mysqli_fetch_assoc(mysqli_query($con, $cif_7));
 
                 //semanal
                 $cif_s = array();
                 for($sem = 1; $sem <= $semana_atual; $sem++){
                     $cif_sem = "SELECT ROUND(AVG(carga_interna)) FROM pse_academia WHERE semana=$sem AND id_atleta=$_id";
 
-                    $cif_q = mysqli_fetch_array(mysqli_query($link, $cif_sem));
+                    $cif_q = mysqli_fetch_array(mysqli_query($con, $cif_sem));
 
                     $cif_s[] = $cif_q[0];
                 }

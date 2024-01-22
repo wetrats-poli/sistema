@@ -72,7 +72,7 @@
                 <?php
 
                 // Conexão com o servidor MySQL
-                $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                require_once '../db_con.php';
 
                 //busca pelos nomes das competicoes cadastrados no sistema e ativas
                 $sql = "SELECT nome FROM usuarios ORDER BY nome ";
@@ -113,9 +113,6 @@
                 <select class="form-control"  name="competicao">
                     <option value=" "> </option>
                 <?php
-
-                // Conexão com o servidor MySQL
-                $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                 //busca pelos nomes das competicoes cadastrados no sistema e ativas
                 $sql = "SELECT evento, data FROM competicoes ORDER BY data ";
@@ -270,9 +267,6 @@ if (($_POST['finalizado']=="1")){
 
     $date=date_create($data);
     $mensagem .= " em ".date_format($date,"d/m/y")." foi incluído com sucesso.";
-
-    // Conexão com o servidor MySQL
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     
     // Grava as informações no banco de dados
     if (!mysqli_query($con,$sql)){

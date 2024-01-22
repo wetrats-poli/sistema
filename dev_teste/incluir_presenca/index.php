@@ -30,10 +30,10 @@
 
   $id_treino = $_GET['id'];
 
-  $link="index.php?id=".$id_treino.'&data='.$data_treino ;
+  $con="index.php?id=".$id_treino.'&data='.$data_treino ;
 
   // Conexão com o servidor MySQL
-  $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+  require_once '../db_con.php';
 
   $sql = "SELECT id_atleta FROM `presencas` WHERE id_treino=".$id_treino.";" ;
   $resultado = mysqli_query($con,$sql);
@@ -76,7 +76,7 @@
   
   <div class="container-fluid" style="padding-top:60px;" >
     <div class="row">
-      <form method="post" action=<?php echo $link;?> class="col-md-12">
+      <form method="post" action=<?php echo $con;?> class="col-md-12">
 
       <?php 
       //Mensagem de alerta
@@ -123,8 +123,6 @@
           </div>
           <?php
 
-              // Conexão com o servidor MySQL
-              $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
               //busca pelos nomes dos atletas cadastrados no sistema e ativos
               $sql = "SELECT id, apelido, email FROM usuarios WHERE sexo ='F' AND ativo='1' ORDER BY apelido  ";
@@ -232,10 +230,7 @@
             <tbody>
 
             
-          <?php
-
-              // Conexão com o servidor MySQL
-              $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+          <?php              
 
               //busca pelos nomes dos atletas cadastrados no sistema e ativos
               $sql = "SELECT id, apelido, email FROM usuarios WHERE sexo ='M' AND ativo='1' ORDER BY apelido  ";
@@ -300,10 +295,6 @@
 
 <?php
 if (($_POST['finalizado']=="1")){
-
-    // Conexão com o servidor MySQL
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
-
     $data = $_GET['data'];
 
     include '../preparacao_fisica/prog_semanas.php';
@@ -351,8 +342,8 @@ if (($_POST['finalizado']=="1")){
         if (!mysqli_query($con,$sql)){
             $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
             echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
-            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$link."');});</script>";
-            //header("Location: ../incluir_presenca/".$link); exit;
+            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$con."');});</script>";
+            //header("Location: ../incluir_presenca/".$con); exit;
         } 
         else {
           $_SESSION['MSG'] = "A presença do dia ".date_format($data,"d/m/Y")." foi incluída com sucesso.";
@@ -387,8 +378,8 @@ if (($_POST['finalizado']=="1")){
           }else{
             $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
             echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
-            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$link."');});</script>";
-            //header("Location: ../incluir_presenca/".$link); exit;
+            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$con."');});</script>";
+            //header("Location: ../incluir_presenca/".$con); exit;
           }
         
         }
@@ -396,8 +387,8 @@ if (($_POST['finalizado']=="1")){
         else {
           $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
           echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
-          echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$link."');});</script>";
-          //header("Location: ../incluir_presenca/".$link); exit;
+          echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$con."');});</script>";
+          //header("Location: ../incluir_presenca/".$con); exit;
         }    
       }
     }

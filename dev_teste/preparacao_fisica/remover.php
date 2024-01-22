@@ -4,7 +4,7 @@ ob_start();
 session_start();
 
 // Conexão com o servidor MySQL
-$link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+require_once '../db_con.php';
 
 if(isset($_GET['id'])){
     $sql = "DELETE FROM grupos_preparacao WHERE id_atleta=".$_GET['id'];
@@ -13,7 +13,7 @@ if(isset($_GET['id'])){
     $sql = 'DELETE FROM grupos_preparacao WHERE nome="'.$_GET['nome'].'"';
     $_SESSION['MSG'] = "Grupo Removido com Sucesso.";
 }
-mysqli_query($link, $sql);
+mysqli_query($con, $sql);
 
 header("Location: ./gerenciar_grupos.php"); exit;
 

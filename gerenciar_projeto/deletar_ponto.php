@@ -2,7 +2,7 @@
 ob_start();
 
 // Conexão com o servidor MySQL
-$con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+require_once '../db_con.php';
 
 $sql = 'DELETE FROM `projetoiusp` WHERE `id`='.$_GET['id'].';';
 

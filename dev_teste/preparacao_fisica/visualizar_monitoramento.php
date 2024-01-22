@@ -64,7 +64,7 @@
 
     <?php
 
-    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
     $sql1 = "SELECT tqr, fdg, qls, dmg, etr, hmr  FROM monitoramentos_academia WHERE semana=0 and dia_semana=1";
     $sql2 = "SELECT tqr, fdg, qls, dmg, etr, hmr  FROM monitoramentos_academia WHERE semana=0 and dia_semana=2";
     $sql3 = "SELECT tqr, fdg, qls, dmg, etr, hmr  FROM monitoramentos_academia WHERE semana=0 and dia_semana=3";
@@ -73,13 +73,13 @@
     $sql6 = "SELECT tqr, fdg, qls, dmg, etr, hmr  FROM monitoramentos_academia WHERE semana=0 and dia_semana=6";
     $sql7 = "SELECT tqr, fdg, qls, dmg, etr, hmr  FROM monitoramentos_academia WHERE semana=0 and dia_semana=7";
     
-    $seg = mysqli_fetch_assoc(mysqli_query($link, $sql1));
-    $ter = mysqli_fetch_assoc(mysqli_query($link, $sql2));
-    $qua = mysqli_fetch_assoc(mysqli_query($link, $sql3));
-    $qui = mysqli_fetch_assoc(mysqli_query($link, $sql4));
-    $sex = mysqli_fetch_assoc(mysqli_query($link, $sql5));
-    $sab = mysqli_fetch_assoc(mysqli_query($link, $sql6));
-    $dom = mysqli_fetch_assoc(mysqli_query($link, $sql7));
+    $seg = mysqli_fetch_assoc(mysqli_query($con, $sql1));
+    $ter = mysqli_fetch_assoc(mysqli_query($con, $sql2));
+    $qua = mysqli_fetch_assoc(mysqli_query($con, $sql3));
+    $qui = mysqli_fetch_assoc(mysqli_query($con, $sql4));
+    $sex = mysqli_fetch_assoc(mysqli_query($con, $sql5));
+    $sab = mysqli_fetch_assoc(mysqli_query($con, $sql6));
+    $dom = mysqli_fetch_assoc(mysqli_query($con, $sql7));
 
     ?>
     <script>

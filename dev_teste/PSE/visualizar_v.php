@@ -66,12 +66,12 @@
 
     <?php
 
-    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
     $sql = "SELECT ses, descs, ratio FROM pse WHERE id_treino > 98";
-    $res = mysqli_query($link, $sql);
+    $res = mysqli_query($con, $sql);
 
     $sql2 = "SELECT data FROM treinos WHERE id > 98";
-    $res2 = mysqli_query($link, $sql2);
+    $res2 = mysqli_query($con, $sql2);
 
     ?>
     <script>
@@ -94,7 +94,7 @@
                 {
                     type: 'bar',
                     label: 'PSE Sessão',
-                    data: <?php $res=mysqli_query($link, $sql); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res)){if($flag==1) {echo $row['ses']; $flag=0;} else {echo ','.$row['ses'];}} echo ']';  ?>,
+                    data: <?php $res=mysqli_query($con, $sql); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res)){if($flag==1) {echo $row['ses']; $flag=0;} else {echo ','.$row['ses'];}} echo ']';  ?>,
                     backgroundColor: 'rgba(255, 187, 0, 0.3)',
                     borderColor: 'rgba(255, 187, 0, 1)',
                     pointBackgroundColor: 'rgba(255, 187, 0, 1)',
@@ -136,11 +136,11 @@
         var myChart2 = new Chart(ctx_des, {
             type: 'bar',
             data: {
-                labels: <?php $res2=mysqli_query($link, $sql2); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res2)){if($flag==1) {echo '"'.date("d/m", strtotime($row['data'])).'"'; $flag=0;} else {echo ',"'.date("d/m", strtotime($row['data'])).'"';}} echo ']';  ?>,
+                labels: <?php $res2=mysqli_query($con, $sql2); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res2)){if($flag==1) {echo '"'.date("d/m", strtotime($row['data'])).'"'; $flag=0;} else {echo ',"'.date("d/m", strtotime($row['data'])).'"';}} echo ']';  ?>,
                 datasets: [{
                     type: 'line',
                     label: 'PSE do Descanso',
-                    data: <?php $res=mysqli_query($link, $sql); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res)){if($flag==1) {echo $row['descs']; $flag=0;} else {echo ','.$row['descs'];}} echo ']';  ?>,
+                    data: <?php $res=mysqli_query($con, $sql); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res)){if($flag==1) {echo $row['descs']; $flag=0;} else {echo ','.$row['descs'];}} echo ']';  ?>,
                     borderColor: 'rgba(0, 0, 0, 1)',
                     borderWidth: 2,
                     fill: false
@@ -148,7 +148,7 @@
                 {
                     type: 'bar',
                     label: 'PSE do Descanso',
-                    data: <?php $res=mysqli_query($link, $sql); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res)){if($flag==1) {echo $row['descs']; $flag=0;} else {echo ','.$row['descs'];}} echo ']';  ?>,
+                    data: <?php $res=mysqli_query($con, $sql); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res)){if($flag==1) {echo $row['descs']; $flag=0;} else {echo ','.$row['descs'];}} echo ']';  ?>,
                     backgroundColor: 'rgba(255, 187, 0, 0.3)',
                     borderColor: 'rgba(255, 187, 0, 1)',
                     pointBackgroundColor: 'rgba(255, 187, 0, 1)',
@@ -190,11 +190,11 @@
         var myChart3 = new Chart(ctx_rat, {
             type: 'bar',
             data: {
-                labels: <?php $res2=mysqli_query($link, $sql2); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res2)){if($flag==1) {echo '"'.date("d/m", strtotime($row['data'])).'"'; $flag=0;} else {echo ',"'.date("d/m", strtotime($row['data'])).'"';}} echo ']';  ?>,
+                labels: <?php $res2=mysqli_query($con, $sql2); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res2)){if($flag==1) {echo '"'.date("d/m", strtotime($row['data'])).'"'; $flag=0;} else {echo ',"'.date("d/m", strtotime($row['data'])).'"';}} echo ']';  ?>,
                 datasets: [{
                     type: 'line',
                     label: 'PSE Ratio',
-                    data: <?php $res=mysqli_query($link, $sql); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res)){if($flag==1) {echo $row['ratio']; $flag=0;} else {echo ','.$row['ratio'];}} echo ']';  ?>,
+                    data: <?php $res=mysqli_query($con, $sql); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res)){if($flag==1) {echo $row['ratio']; $flag=0;} else {echo ','.$row['ratio'];}} echo ']';  ?>,
                     borderColor: 'rgba(0, 0, 0, 1)',
                     borderWidth: 2,
                     fill: false
@@ -202,7 +202,7 @@
                 {
                     type: 'bar',
                     label: 'PSE Ratio',
-                    data: <?php $res=mysqli_query($link, $sql); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res)){if($flag==1) {echo $row['ratio']; $flag=0;} else {echo ','.$row['ratio'];}} echo ']';  ?>,
+                    data: <?php $res=mysqli_query($con, $sql); $flag=1; echo '['; while($row = mysqli_fetch_assoc($res)){if($flag==1) {echo $row['ratio']; $flag=0;} else {echo ','.$row['ratio'];}} echo ']';  ?>,
                     backgroundColor: 'rgba(255, 187, 0, 0.3)',
                     borderColor: 'rgba(255, 187, 0, 1)',
                     pointBackgroundColor: 'rgba(255, 187, 0, 1)',

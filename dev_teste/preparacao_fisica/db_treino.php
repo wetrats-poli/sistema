@@ -3,7 +3,7 @@
 
     $id = (int)$_SESSION['ID'];
 
-    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
 
 
     $pse = (int)$_POST['ses'];
@@ -11,7 +11,7 @@
 
     $sql = 'INSERT INTO pse_academia (id_atleta, pse, duracao) VALUE ('.$id.', '.$pse.', '.$min.')';
 
-    mysqli_query($link, $sql);
+    mysqli_query($con, $sql);
 
     $_SESSION['MSG'] = "Treino Finalizado com Sucesso!";
     //header('Location: ../perfil/');

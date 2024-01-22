@@ -4,7 +4,7 @@ session_start();
 
 if(($_SESSION['ID'] == $_GET['atleta_id'])or($_SESSION['NIVEL']=="3")){
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
 
     $sql = "UPDATE "."`".$_GET['competicao'].'` SET '.$_GET['prova'].'= NULL WHERE `atleta_id`='.$_GET['atleta_id'];
 

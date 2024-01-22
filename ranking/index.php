@@ -110,7 +110,7 @@
                             <tr> 
                              ';
                          // Conexão com o servidor MySQL
-                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                        require_once '../db_con.php';
 
                         //busca das informacoes referentes a tabela do feminino
                         $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
@@ -203,8 +203,6 @@
                          </thead>
                          <tr> 
                              ';
-                         // Conexão com o servidor MySQL
-                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                         //busca das informacoes referentes a tabela do feminino
                         $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
@@ -293,8 +291,6 @@
                                 </thead>
                                 <tr> 
                              ';
-                         // Conexão com o servidor MySQL
-                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                         //busca das informacoes referentes a tabela do feminino
                         $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
@@ -386,8 +382,6 @@
                          </thead>
                          <tr> 
                              ';
-                         // Conexão com o servidor MySQL
-                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                         //busca das informacoes referentes a tabela do feminino
                         $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
@@ -476,9 +470,7 @@
                                 </thead>
                             <tr> 
                              ';
-                         // Conexão com o servidor MySQL
-                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
-
+                             
                         //busca das informacoes referentes a tabela do feminino
                         $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
                         WHERE (`prova`='100 Medley' AND `sexo`='F') ORDER BY `tempo` ASC LIMIT 80" ;

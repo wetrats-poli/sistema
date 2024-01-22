@@ -12,6 +12,7 @@
 <?php
  //Inicia uma sessão
  session_start();
+ require_once '../db.php';
   // Verifica se existe ID da sessão
   if(!isset($_SESSION['ID'])){
     //Destrói a sessão por segurança
@@ -27,7 +28,7 @@
     if(strlen($_GET['id'])>0) {
         $id_treino = $_GET['id'];
         $form = "index.php?id=".$id_treino;
-        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+        
         $sql= "SELECT data , serie_controle , tipo FROM `treinos` WHERE id=".$id_treino ;
         $resultado = mysqli_query($con,$sql);
         if ($resultado){
@@ -235,9 +236,6 @@
 
 <?php
 if (($_POST['finalizado']=="1")){
-    // Conexão com o servidor MySQL
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
-
     // Busca das informações referentes ao treino
     $sql =  "SELECT  data , tipo FROM treinos WHERE id=".$id_treino ;
     $resultado = mysqli_query($con, $sql);

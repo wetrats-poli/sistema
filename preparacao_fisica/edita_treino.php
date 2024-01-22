@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+require_once '../db_con.php';
 
 session_start();
 
@@ -16,7 +16,7 @@ session_start();
             data_termino="'.$_POST['data_termino'].'",
             legenda="'.$_POST['legenda'].'"
             WHERE id='.$id_treino.';';  
-    if(mysqli_query($link, $sql)){
+    if(mysqli_query($con, $sql)){
         $_SESSION['MSG']= "Treino atualizado!";
         header('Location: visualizar_treino.php?id_treino='.$_GET['id']);
     }

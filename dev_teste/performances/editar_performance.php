@@ -13,6 +13,7 @@
 <?php
  //Inicia uma sessão
   session_start();
+  require_once '../db_con.php';
    // Verifica se existe ID da sessão
    if(!isset($_SESSION['ID'])){
     //Destrói a sessão por segurança
@@ -27,7 +28,7 @@
   if(strlen($_GET['id'])>0){
     $id = $_GET['id'];
     $form = "editar_performance.php?id=".$id;
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+
     $sql= "SELECT id_atleta, evento, data, estilo, metragem, tempo 
            FROM `resultados_pessoais`
            WHERE id=".$id ;
@@ -95,10 +96,6 @@
                     <option value=" "> </option>
                 
                 <?php
-
-                // Conexão com o servidor MySQL
-                $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
-
                 //busca pelos nomes das competicoes cadastrados no sistema e ativas
                 $sql = "SELECT evento, data FROM competicoes ORDER BY data DESC ";
                 $achou= False;
@@ -215,9 +212,6 @@ if (($_POST['finalizado']=="1")){
     $sql = "UPDATE `resultados_pessoais` SET evento="."'".$evento."' ,"."data="."'".$data."'"." , estilo="."'".$estilo."', metragem="."'".$metragem."', tempo="."'".$tempo."'
             WHERE id=".$id." ;" ; 
 
-    // Conexão com o servidor MySQL
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
-    
     // Grava as informações no banco de dados
     if (!mysqli_query($con,$sql)){
         $_SESSION['ALERTA'] = "Error description: " . mysqli_error($con);

@@ -12,6 +12,7 @@
 </head>
 <?php
   session_start();
+  require_once '../db_con.php';
     
    // Verifica se existe ID da sessão
    if(!isset($_SESSION['ID'])){
@@ -45,9 +46,8 @@
                                     <?php
 
                                     if($_SESSION['NIVEL'] == 2){
-                                        $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                                         $sql = "SELECT id, nome FROM usuarios where nivel!='2' and id!='31' and ativo=1 ORDER BY nome";
-                                        $resultado = mysqli_query($link, $sql);
+                                        $resultado = mysqli_query($con, $sql);
                                         
                                         echo '<div class="col-5"><h4>Selecione o(a) atleta para editar ou visualizar as características</h4></div>';
                                         echo '<div class="col-7"><form class="form-group"><select class="form-control" id="nome" name="nome">';
@@ -106,9 +106,8 @@
                 </div>
                 <div class="col-3">
                     <?php
-                        $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr"); 
                         $sql2 = "SELECT forc, vel, res_ae, res_ana, tg, ee, est1, cb1, pr1, br1, tr1, qd1, co1, sa1, vr1, ch1, est2, cb2, pr2, br2, tr2, qd2, co2, sa2, vr2, ch2 FROM caracteristicas2020 WHERE id_atleta=".$_SESSION['ID']." AND tipo=1";
-                        $resp2 = mysqli_fetch_assoc(mysqli_query($link, $sql2));               
+                        $resp2 = mysqli_fetch_assoc(mysqli_query($con, $sql2));               
                     ?>
                     <div class="cont_carac formu" style="margin-left: -25px;">
                         <form class="form-group" id="form_carac" method="post" action="db.php">

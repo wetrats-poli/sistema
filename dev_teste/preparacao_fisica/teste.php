@@ -3,15 +3,15 @@
 
     // $id = (int)$_SESSION['ID'];
 
-    // $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    // require_once '../db_con.php';
 
     // $pse = (int)$_POST['ses'];
 
     // $sql2 = 'SELECT inicio FROM treinos_em_andamento WHERE id_atleta='.$id;
-    // $inicio = mysqli_fetch_assoc(mysqli_query($link, $sql2));
+    // $inicio = mysqli_fetch_assoc(mysqli_query($con, $sql2));
 
     // $sql3 = 'DELETE FROM treinos_em_andamento WHERE id_atleta='.$id;
-    // mysqli_query($link, $sql3);
+    // mysqli_query($con, $sql3);
 
     date_default_timezone_set('America/Sao_Paulo');
     $init = new DateTime('2019-09-10 17:18:30');
@@ -23,7 +23,7 @@
 
     // $sql = 'INSERT INTO pse_academia (id_atleta, pse, duracao) VALUE ('.$id.', '.$pse.', '.$min.')';
 
-    // mysqli_query($link, $sql);
+    // mysqli_query($con, $sql);
 
     // $_SESSION['MSG'] = "Treino Finalizado com Sucesso!";
     // header('Location: ../perfil/');

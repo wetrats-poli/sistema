@@ -13,6 +13,8 @@
 <?php
  //Inicia uma sessão
   session_start();
+  // Conexão com o servidor MySQL
+  require_once '../db_con.php';
   // Verifica se existe ID da sessão
   if(!isset($_SESSION['ID'])){
     //Destrói a sessão por segurança
@@ -49,9 +51,6 @@
             <div class="container_form_performance row form-group"> 
 
             <?php if ($nivel_usuario != 1){
-
-                // Conexão com o servidor MySQL
-                $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                 $sql = "SELECT id, nome, apelido FROM `usuarios` WHERE ativo=1 AND nivel!=2 ORDER BY apelido;" ;
                 $resultado = mysqli_query($con, $sql);
@@ -160,8 +159,6 @@ if (($_POST['finalizado']=="1")){
     $estilo= $_POST['estilo'];
     $metragem= $_POST['metragem'];
     $prova= $metragem." ".$estilo;
-    // Conexão com o servidor MySQL
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
     // Busca das informações referentes a performance
     if ($_POST['tipo'] == 'Tiro'){
