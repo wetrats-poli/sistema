@@ -25,7 +25,7 @@
     $semana = acha_semana($hoje);
 
 
-    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
 
     $tqr = $_POST['tqr'];
     $fdg = $_POST['fdg'];
@@ -36,7 +36,7 @@
 
     $sql = "INSERT INTO monitoramentos_academia (tqr, fdg, qls, dmg, etr, hmr, semana, dia_semana, id_atleta) VALUE ($tqr, $fdg, $qls, $dmg, $etr, $hmr, $semana, $dia_semana, ".$_SESSION['ID'].")";
 
-    mysqli_query($link, $sql);
+    mysqli_query($con, $sql);
     
     $_SESSION['MSG'] = 'Monitoramento Psicométrico Respondido com Sucesso!';
     header('Location: ../perfil/');

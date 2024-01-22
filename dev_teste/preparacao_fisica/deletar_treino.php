@@ -3,7 +3,7 @@ ob_start();
 session_start();
 
 // Conexão com o servidor MySQL
-$con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+require_once '../db_con.php';
 
 $sql = 'DELETE from `treinos_academia` WHERE id="'.$_GET['id'].'"' ;
 $sql2= 'DELETE from `series_academia` WHERE id_treino="'.$_GET['id'].'"';

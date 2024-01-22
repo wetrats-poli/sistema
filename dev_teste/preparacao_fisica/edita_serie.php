@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+require_once '../db_con.php';
 
 session_start();
 
@@ -10,9 +10,9 @@ if($_GET['ordem']==0){
             AND ordem=".$de_cima.";";
     $sql2= "UPDATE series_academia SET ordem=".$de_cima." 
             WHERE id=".$_GET['id']." ;";
-    if(mysqli_query($link, $sql1)){
+    if(mysqli_query($con, $sql1)){
         echo "entrou";
-        if(mysqli_query($link,$sql2)){
+        if(mysqli_query($con,$sql2)){
         header('Location: visualizar_treino.php?id_treino='.$_GET['id_treino']);
         }
         else{
@@ -34,8 +34,8 @@ if($_GET['ordem']==1){
             AND ordem=".$de_baixo.";";
     $sql2= "UPDATE series_academia SET ordem=".$de_baixo." 
             WHERE id=".$_GET['id']." ;";
-    if(mysqli_query($link, $sql1)){
-        if(mysqli_query($link,$sql2))
+    if(mysqli_query($con, $sql1)){
+        if(mysqli_query($con,$sql2))
         header('Location: visualizar_treino.php?id_treino='.$_GET['id_treino']);
     }
 }
@@ -50,7 +50,7 @@ if($_GET['ordem']==null){
             intervalo="'.$_POST['intervalo'].'",
             link="'.$_POST['link'].'"
             WHERE id='.$id_serie.';';  
-    if(mysqli_query($link, $sql)){
+    if(mysqli_query($con, $sql)){
         $_SESSION['MSG']= "Série: <strong>".$_POST['exercicio']."</strong> atualizada!";
         header('Location: visualizar_treino.php?id_treino='.$_GET['id_treino']);
     }

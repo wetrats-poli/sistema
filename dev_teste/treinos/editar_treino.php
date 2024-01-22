@@ -12,7 +12,7 @@
 <?php 
 //Inicia uma sessão
 session_start();
-    
+require_once '../db_con.php';
 // Verifica se existe ID da sessão
 if(!isset($_SESSION['ID'])){
 
@@ -34,7 +34,7 @@ if(isset($_GET['id'])) {
     if($_SESSION['ID']==81){
       $tabela = "treinos_17";
     }
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+
     $sql= "SELECT * FROM ".$tabela." WHERE id=".$id_treino ;
     $resultado = mysqli_query($con,$sql);
     if ($resultado){
@@ -236,7 +236,7 @@ if (isset($_POST['editar_treino'])){
     $tabela = "treinos_17";
   }
   //conexao e envio de informaçoes ao banco de dados
-  $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+
   $sql = " UPDATE ".$tabela." SET data = '$data' , nome_foto = '$novo_nome' , treino = '$treino' , serie_controle = '$serie_controle' , tipo = '$tipo', total = $total,A1 = $A1,A2=$A2,A3=$A3,AN=$AN,FO=$FO WHERE id=".$_SESSION['id_treino'] ;
   echo $sql;
   if (!mysqli_query($con,$sql)){

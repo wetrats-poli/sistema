@@ -96,9 +96,9 @@
         $arrayEvento = montaEventos();
         $arrayEventosPessoais = montaEventosPessoais($_SESSION['ID']);
         
-        $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+        require_once '../db_con.php';
         $sql = "SELECT `data` FROM `competicoes` WHERE ativo = '1'";
-        $res = mysqli_query($link, $sql);
+        $res = mysqli_query($con, $sql);
         $arrayCompAb = array();
         $ii = 0;
         while($vet = mysqli_fetch_array($res)){

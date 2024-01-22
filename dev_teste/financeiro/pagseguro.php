@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Conexão com o servidor MySQL
-$con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+require_once '../db_con.php';
     
 // pega algumas informacoes ja do usuario
 $sql="SELECT nome, email, celular FROM `usuarios` WHERE id=".$_SESSION['ID'];

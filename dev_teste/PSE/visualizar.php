@@ -47,10 +47,10 @@
                 <div class="col-12">
                     <?php
                         echo '<table style="margin-left: 40px; width:95%" class="tabela_prep">';
-                        $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                        require_once '../db_con.php';
                         
                         $sql = 'SELECT id, apelido FROM usuarios WHERE nivel != 2 AND ativo != 0 ORDER BY apelido ASC ';
-                        $ids = mysqli_query($link, $sql);
+                        $ids = mysqli_query($con, $sql);
                         while($id = mysqli_fetch_assoc($ids)){
                             echo '<tr class="tabela_prep"><td class="tabela_prep"><h3 style="color:white; font-size:24px; text-align:center">'.$id['apelido'].'</h3>
                                     <div class="row" style="margin-right: 0px;">
@@ -122,7 +122,7 @@
             GROUP BY 1
             ORDER BY 1;
         ";
-        $res2 = mysqli_query($link, $sql2);
+        $res2 = mysqli_query($con, $sql2);
         
         while($pse_row = mysqli_fetch_assoc($res2)){ 
             $datas = "" ;

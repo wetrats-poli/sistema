@@ -1,7 +1,7 @@
 <?php
 ob_start();
 // Conexão com o servidor MySQL
-$con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+require_once '../db_con.php';
 
 $sql = 'UPDATE competicoes SET ativo=1 WHERE id='.$_GET['id'] ;
 

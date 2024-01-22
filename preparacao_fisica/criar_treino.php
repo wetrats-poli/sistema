@@ -85,7 +85,7 @@ if ($nivel_usuario!='2'){
                     <label for="grupo" style="padding-left:15px"><b>Grupo:</b></label>
                     <select name="grupo">
                         <?php
-                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                        require_once '../db_con.php';
                         $sql0 = "SELECT DISTINCT nome FROM grupos_preparacao;";
                         $query_grupos=mysqli_query($con, $sql0);
                         while($grupo = mysqli_fetch_array($query_grupos)){
@@ -211,7 +211,6 @@ if ($_POST){
 
   
   //conexao e envio de informaçoes ao banco de dados
-  $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
   $sql = "INSERT INTO treinos_academia (nome,grupo,tipo,periodo,etapa,n_exercicios, data_inicio, data_termino) 
           VALUES ("."'$nome'".","."'$grupo'".","."'$tipo'".","."'$periodo'".","."'$etapa
                  '".","."'$n_exercicios'".",'".$data_inicio."','".$data_termino."')";

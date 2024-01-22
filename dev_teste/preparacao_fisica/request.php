@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
 
     $id = $_SESSION['ID'];
     
@@ -34,7 +34,7 @@
     
     $sql = "INSERT INTO cargas_academia (id_serie, id_atleta, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`) VALUE ($serie, $id, '$c1', '$c2', '$c3', '$c4', '$c5', '$c6', '$c7', '$c8')";
     
-    mysqli_query($link, $sql);
+    mysqli_query($con, $sql);
 
 
 

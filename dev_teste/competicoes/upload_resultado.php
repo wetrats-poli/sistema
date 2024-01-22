@@ -69,7 +69,7 @@ if ($nivel_usuario != 3){
                 <?php
 
                 // Conexão com o servidor MySQL
-                $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                require_once '../db_con.php';
 
                 //busca pelos nomes das competicoes cadastrados no sistema e ativas
                 $sql = "SELECT id , evento FROM competicoes ORDER BY data DESC ";
@@ -141,8 +141,6 @@ if ($_POST){
   }
 }
   
-  //conexao e envio de informaçoes ao banco de dados
-  $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
   $sql = "UPDATE competicoes SET resultado='$novo_nome' WHERE evento='$competicao' ";
   if (!mysqli_query($con,$sql))
   {

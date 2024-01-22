@@ -139,7 +139,7 @@
                 
                         <?php 
                         // Conexão com o servidor MySQL
-                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                        require_once '../db_con.php';
 
                         if($nivel_usuario !="2"){
                         //busca das informacoes referentes a tabela de tiros
@@ -235,9 +235,9 @@
                             $data = date_format($date , "d/m/Y");
                             $prova = $res['metragem']." ".$res['estilo'];
                             $tempo = $res['tempo'];
-                            $link="";
+                            $con="";
                             if ($res['link']=="treinos"){
-                                $link="_treino";
+                                $con="_treino";
                             }
 
                             $n+=1;
@@ -248,7 +248,7 @@
                             <td>'.$data.'</td>
                             <td>'.$prova.'</td>
                             <td>'.$tempo.'</td>
-                            <td class="text-center"><a style="color: #ffffff;" href="./editar_performance'.$link.'.php?id='.$id.'"> Editar </a> 
+                            <td class="text-center"><a style="color: #ffffff;" href="./editar_performance'.$con.'.php?id='.$id.'"> Editar </a> 
                             
                             <div><button id="'.$n.'" class="treino btn-danger" onclick="exibe_modal(this.id)"
                             value="<div><h1>Deletar performance do dia:'.$data.' ? <h1></div>
@@ -282,8 +282,6 @@
                         <tbody>
                 
                         <?php 
-                        // Conexão com o servidor MySQL
-                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
 
                         if($nivel_usuario !="2"){
                             //busca das informacoes referentes a tabela de BTs
@@ -382,9 +380,7 @@
                         <tbody>
                 
                         <?php 
-                        // Conexão com o servidor MySQL
-                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
-
+                        
                         if($nivel_usuario !="2"){
                         //busca das informacoes referentes a tabela de Melhor media
                         $sql = "SELECT  resultados_treinos.id AS 'id', treinos.data AS 'data' , tempo, estilo, metragem, intensidade, 'treinos' AS 'link' FROM `resultados_treinos`
@@ -437,9 +433,9 @@
                             $prova = $res['metragem']." ".$res['estilo'];
                             $tempo = $res['tempo'];
                             $intensidade = $res['intensidade'];
-                            $link="";
+                            $con="";
                             if ($res['link']=="treinos"){
-                                $link="_treino";
+                                $con="_treino";
                             }
 
                             $n+=1;
@@ -451,7 +447,7 @@
                             <td>'.$prova.'</td>
                             <td>'.$tempo.'</td>
                             <td>'.$intensidade.'</td>
-                            <td class="text-center"><a style="color: #ffffff;" href="./editar_performance'.$link.'.php?id='.$id.'"> Editar </a> 
+                            <td class="text-center"><a style="color: #ffffff;" href="./editar_performance'.$con.'.php?id='.$id.'"> Editar </a> 
                             
                             <div><button id="'.$n.'" class="treino btn-danger" onclick="exibe_modal(this.id)"
                             value="<div><h1>Deletar performance do dia:'.$data.' ? <h1></div>

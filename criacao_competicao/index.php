@@ -206,7 +206,7 @@ if (isset($_POST['finalizado'])){
     }
     $sql .= ");" ;
     echo $sql;
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
     if ($nprovas>0){
         if (!mysqli_query($con,$sql)){
             $_SESSION['ALERTA'] .= "Error description: " . mysqli_error($con);

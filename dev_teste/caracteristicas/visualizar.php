@@ -28,14 +28,14 @@
 <?php
     $id = (int)$_GET["id_atleta"];
 
-    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
 
     $sql1 = "SELECT forc, vel, res_ae, res_ana, tg, ee, est1, cb1, pr1, br1, tr1, qd1, co1, sa1, vr1, ch1, est2, cb2, pr2, br2, tr2, qd2, co2, sa2, vr2, ch2 FROM caracteristicas2020 WHERE id_atleta=$id AND tipo=1";
     $sql2 = "SELECT forc, vel, res_ae, res_ana, tg, ee, est1, cb1, pr1, br1, tr1, qd1, co1, sa1, vr1, ch1, est2, cb2, pr2, br2, tr2, qd2, co2, sa2, vr2, ch2 FROM caracteristicas2020 WHERE id_atleta=$id AND tipo=2";
-    $resultado = mysqli_query($link, $sql1);
+    $resultado = mysqli_query($con, $sql1);
     $resp = mysqli_fetch_array($resultado);
 
-    $resultado2 = mysqli_query($link, $sql2);
+    $resultado2 = mysqli_query($con, $sql2);
     $resp2 = mysqli_fetch_array($resultado2);
 
     $for_1 = $resp["forc"];

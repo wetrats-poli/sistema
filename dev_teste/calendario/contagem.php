@@ -1,8 +1,8 @@
 <?php
+    require_once '../db_con.php';
     function contEquipe(){
-        $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
         $sql = "SELECT `descricao`, `data` FROM `contagem` WHERE `equipe` = 1;";
-        $res = mysqli_query($link, $sql);
+        $res = mysqli_query($con, $sql);
         echo '<tbody>'; 
         while($vet = mysqli_fetch_array($res)){
             $data = $vet[1];
@@ -31,9 +31,8 @@
     }
 
     function contIndiv($id){
-        $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
         $sql = "SELECT `descricao`, `data` FROM `contagem` WHERE `id_usuario`=".$id;
-        $res = mysqli_query($link, $sql); 
+        $res = mysqli_query($con, $sql); 
         echo '<tbody>';
         while($vet = mysqli_fetch_array($res)){
             $data = $vet[1];

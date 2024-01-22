@@ -27,7 +27,7 @@
     if(strlen($_GET['id'])>0){
         $id = $_GET['id'];
         $form = "editar_performance_treino.php?id=".$id;
-        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+        require_once '../db_con.php';
         $sql= "SELECT id_treino, estilo, metragem, tempo, bracadas, frequencia, intensidade,  resultados_treinos.tipo AS 'tipo', treinos.data AS 'data' , treinos.serie_controle AS 'serie_controle' 
                FROM `resultados_treinos`
                INNER JOIN `treinos` ON resultados_treinos.id_treino = treinos.id 

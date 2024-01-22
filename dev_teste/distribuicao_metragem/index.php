@@ -80,7 +80,7 @@
             $hoje=date("Y-m-d");
             $semana_atual = acha_semana($hoje);
             
-            $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+            require_once '../db_con.php';
 
             $A1 = array();
             $A2 = array();
@@ -93,10 +93,10 @@
                 $sql_3 = "SELECT SUM(A3) FROM treinos WHERE semana=$sem";
                 $sql_n = "SELECT SUM(AN) FROM treinos WHERE semana=$sem";
 
-                $res1 = mysqli_fetch_array(mysqli_query($link, $sql_1));
-                $res2 = mysqli_fetch_array(mysqli_query($link, $sql_2));
-                $res3 = mysqli_fetch_array(mysqli_query($link, $sql_3));
-                $resn = mysqli_fetch_array(mysqli_query($link, $sql_n));
+                $res1 = mysqli_fetch_array(mysqli_query($con, $sql_1));
+                $res2 = mysqli_fetch_array(mysqli_query($con, $sql_2));
+                $res3 = mysqli_fetch_array(mysqli_query($con, $sql_3));
+                $resn = mysqli_fetch_array(mysqli_query($con, $sql_n));
 
                 $A1[] = (int)$res1[0];
                 $A2[] = (int)$res2[0];

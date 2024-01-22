@@ -2,9 +2,9 @@
     ob_start();
     $comp = $_GET['nome'];
         
-    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
     $sql = "SELECT * FROM `$comp` ORDER BY sexo ASC, nome_atleta";
-    $res = mysqli_query($link, $sql);
+    $res = mysqli_query($con, $sql);
 
     $output = '<table><tr><th>Nome</th>';
     $var = '';
@@ -41,7 +41,7 @@
         $id = $vet[0];
         $output .= '<tr>';
         $nsql = 'SELECT nome'.$var.' FROM usuarios WHERE id='.$id;
-        $nres = mysqli_query($link, $nsql);
+        $nres = mysqli_query($con, $nsql);
         while($nvet = mysqli_fetch_row($nres)){
             for($i=0; $i<mysqli_num_fields($nres); $i++){
                 $output .= '<td>'.$nvet[$i].'</td>';

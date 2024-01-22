@@ -4,14 +4,14 @@
     date_default_timezone_set('America/Sao_Paulo');
     $hoje=date("Y-m-d");
 
-    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
     //$sql = "SELECT id FROM treinos WHERE data=(SELECT DATE_ADD("."'".$hoje."'".", INTERVAL 1 DAY))";
     $sql = "SELECT id FROM treinos WHERE data='".$hoje."'";
-    $id_treino = mysqli_fetch_assoc(mysqli_query($link, $sql));
+    $id_treino = mysqli_fetch_assoc(mysqli_query($con, $sql));
 
     $sql2 = "SELECT resp_s, ses, resp_d, descs FROM pse WHERE id_treino=".$id_treino['id'];
 
-    $res = mysqli_fetch_assoc(mysqli_query($link, $sql2));
+    $res = mysqli_fetch_assoc(mysqli_query($con, $sql2));
 
     $ses = $_POST['ses'];
 
@@ -30,7 +30,7 @@
     $ratio = $ses_n / $descs_n;
 
     $sql3 = "UPDATE pse SET resp_s=$resp_s_n, ses=$ses_n, resp_d=$resp_d_n, descs=$descs_n, ratio=$ratio WHERE id_treino=".$id_treino['id'];
-    mysqli_query($link, $sql3);
+    mysqli_query($con, $sql3);
 
     $_SESSION['MSG'] = "PSE Respondida com Sucesso!";
     header('Location: ../perfil/');

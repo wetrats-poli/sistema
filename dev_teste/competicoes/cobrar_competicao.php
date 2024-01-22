@@ -5,7 +5,7 @@ session_start();
 $id_competicao=$_GET['id'];
 
 //aquisicao das informacoes principais da competicao a qual tera suas cobranças lançadas
-$con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+require_once '../db_con.php';
 $sql= "SELECT evento, valor, tipo_inscricao, nprovas FROM `competicoes` WHERE id=".$id_competicao ;
 $resultado = mysqli_query($con,$sql);
 $competicao= mysqli_fetch_array($resultado);

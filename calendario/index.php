@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once '../db_con.php';
     
     // Verifica se existe ID da sessão
     if(!isset($_SESSION['ID'])){
@@ -77,9 +78,8 @@
                     $desc = $_POST["desc"];
                     $id = (int)$_SESSION['ID'];
                     
-                    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                     $sql = "INSERT INTO eventos_pessoais (id_usuario, `data`, nome) VALUES ('$id', '$data', '$desc')";
-                    $res = mysqli_query($link, $sql); 
+                    $res = mysqli_query($con, $sql); 
 
                     echo "<div class='confirma'><div class='box'><h2>EVENTO ADICIONADO COM SUCESSO!</h2></div></div>";
                     echo "<div id='meta'><meta http-equiv='refresh' content='2'></div>";
@@ -92,10 +92,8 @@
                 
                 <?php
                     session_start();
-
-                    $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
                     $sql = "SELECT `descricao`, `data` FROM `contagem` WHERE `equipe` = 1 OR `id_usuario` = ".$_SESSION['ID']." ORDER BY `data` ASC";
-                    $res = mysqli_query($link, $sql); 
+                    $res = mysqli_query($con, $sql); 
                     echo '<tbody>';
                     $hoje = new DateTime();
                     $hoje -> setTime(0, 0, 0);
@@ -158,11 +156,9 @@
                                 $desc = $_POST["cont_desc"];
                                 $id = (int)$_SESSION["ID"];
                                 $equipe = (int)$_POST["cont_rd"];
-
-
-                                $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                 
                                 $sql = "INSERT INTO contagem (id_usuario, equipe, `data`, descricao) VALUES ('$id', $equipe, '$data', '$desc')";
-                                mysqli_query($link, $sql);
+                                mysqli_query($con, $sql);
 
                                 echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
                                 echo "<script>$(window).on('load', function(){ $('#meta').empty();});</script>";

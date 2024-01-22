@@ -85,7 +85,7 @@
     $soma = 0;
     $vermelho = ' style="background-color:rgb(256,0,0); color:rgb(0,0,0);"';
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+    require_once '../db_con.php';
     
     // calculo do total q cada um deve
     $sql="SELECT id_devedor , usuarios.nome AS 'nome' , SUM(valor) AS 'total' FROM `financeiro`
@@ -137,7 +137,6 @@
     //segunda tabela(nao pagos)
     
     // Conexão com o servidor MySQL
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     $a=0;
     $tabela2 = "";
     $soma2 = 0;

@@ -35,7 +35,7 @@
         }
 
         // Conexão com o servidor MySQL
-        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+        require_once '../db_con.php';
 
         //busca das informacoes referentes a competicao
         $sql = "SELECT * FROM `competicoes` WHERE id=".$_GET['id'].";" ;
@@ -224,7 +224,6 @@ if (isset($_POST['finalizado'])){
     $mensagem="Competição:<b>".$evento."</b> ";
     $m= False;
     
-    $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
     //mudança de nome da competicao
     if ($_SESSION['evento'] != $_POST['evento']){
         $sql = "ALTER TABLE "."`".$_SESSION['evento']."`"." RENAME TO "."`".$_POST['evento']."` ;";

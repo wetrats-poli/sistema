@@ -74,9 +74,9 @@
         </div>
         <div class="row">
             <?php
-                $link = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                require_once '../db_con.php';
                 $sql = "SELECT id_atleta FROM grupos_preparacao";
-                $atletas = mysqli_fetch_assoc(mysqli_query($link, $sql));
+                $atletas = mysqli_fetch_assoc(mysqli_query($con, $sql));
 
                 if($atletas != false){
                     $sql2 = 'SELECT id, nome FROM usuarios WHERE nivel!="2" AND id!="31" AND ativo=1 AND id NOT IN (SELECT id_atleta FROM grupos_preparacao) ORDER BY nome';
@@ -84,7 +84,7 @@
                     $sql2 = "SELECT id, nome FROM usuarios WHERE nivel!='2' AND id!='31' AND ativo=1 ORDER BY nome";
                 }
                 
-                $atletas2 = mysqli_query($link, $sql2);
+                $atletas2 = mysqli_query($con, $sql2);
             ?>
             <div class="col-4">
                 <div class="cont_carac formu">
@@ -112,8 +112,8 @@
                     <h4>Grupos</h4>
                     <?php
                         $sql3 = 'SELECT DISTINCT nome FROM grupos_preparacao';
-                        $nome = mysqli_query($link, $sql3);
-                        $grupos = mysqli_query($link,$sql3);
+                        $nome = mysqli_query($con, $sql3);
+                        $grupos = mysqli_query($con,$sql3);
                         $html_grupos="";
                         
                         while($nome_grupo = mysqli_fetch_assoc($grupos)){
@@ -132,10 +132,10 @@
                                  <div class="col-4">    
                                     <div class="container tabela_inscricao" style="width:90%">
                                         <table>';
-                                        $ids = mysqli_query($link, $sql4);
+                                        $ids = mysqli_query($con, $sql4);
                                         while($row_g = mysqli_fetch_assoc($ids)){
                                         $sql5 = 'SELECT nome FROM usuarios WHERE id='.$row_g["id_atleta"];
-                                        $nome_atl = mysqli_fetch_assoc(mysqli_query($link, $sql5));
+                                        $nome_atl = mysqli_fetch_assoc(mysqli_query($con, $sql5));
                                         echo '<tr><td style="font-size:12px;">'.$nome_atl['nome'].'</td><td><a style="color:rgb(255, 0, 0); margin-left: 20px;" href="remover.php?id='.$row_g['id_atleta'].'">X</a></td></tr>';
                                         }
                                         echo '</table>
@@ -147,7 +147,7 @@
 
                                  $sql6= 'SELECT id,nome,periodo,etapa, tipo,data_inicio,data_termino,status FROM treinos_academia WHERE grupo='."'".$row['nome']."'";
                                     
-                                 $treinos = mysqli_query($link,$sql6);
+                                 $treinos = mysqli_query($con,$sql6);
                                  if(mysqli_num_rows($treinos)>0){
                                      $i=0;
                                      $b=10000;

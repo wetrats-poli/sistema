@@ -2,7 +2,7 @@
 $ranking = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]]];
 
                          // Conexão com o servidor MySQL
-                        $con = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+                        require_once '../db_con.php';
 
                     //50 borbo
                     
