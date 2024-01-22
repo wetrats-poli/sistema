@@ -116,7 +116,7 @@
             }
             $ano = intval($ano);
             echo "<select name='ano' id='ano' onchange='window.location=\"https://www.wetrats.com.br/treinos/?ano=\"+this.value.toString()'>";
-            for($i=$ano; $i>=2019; $i--){
+            for($i=$ano_atual; $i>=2019; $i--){
                 if($i==2021) {
                     continue;
                 }
