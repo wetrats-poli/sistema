@@ -365,7 +365,7 @@ if(strlen($descricao)>0) echo'
 
             echo '<div class="container_contagem padi">
                 <h1>Contagem Regressiva</h1>
-                    <table style="width: 50%;height: 50%;overflow: auto;margin: auto;position: relative;top: 0;left: 0;bottom: 0;right: 0;">';
+                    <table style="width: 0%;height: 50%;overflow: auto;margin: auto;position: relative;top: 0;left: 0;bottom: 0;right: 0;">';
             $sql3 = "SELECT `data`, `descricao` FROM `contagem` WHERE `data` > SYSDATE() ORDER BY `data` LIMIT 1;";
             $res = mysqli_query($con, $sql3);
             $hoje = new DateTime();
