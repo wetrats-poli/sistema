@@ -364,8 +364,9 @@ if(strlen($descricao)>0) echo'
             
 
             echo '<div class="container_contagem padi">
-                <h1>Contagem Regressiva</h1>';
-            $sql3 = "SELECT `data` FROM contagem WHERE descricao='interusp'";
+                <h1>Contagem Regressiva</h1>
+                    <table style="width: 0%;height: 50%;overflow: auto;margin: auto;position: relative;top: 0;left: 0;bottom: 0;right: 0;">';
+            $sql3 = "SELECT `data`, `descricao` FROM `contagem` WHERE `data` > SYSDATE() ORDER BY `data` LIMIT 1;";
             $res = mysqli_query($con, $sql3);
             $hoje = new DateTime();
             $hoje -> setTime(0, 0, 0);
@@ -393,9 +394,10 @@ if(strlen($descricao)>0) echo'
                     $mes = (int)$mes_s;
                     $dia = (int)$dia_s;
                 }
+                //echo'<table><tr><td class="cont_txt"><strong>INTERUSP</strong></td><td class="contagem" id="contagem'.$ano.$mes.$dia.'"><script>contagem('.$ano.', '.$mes.', '.$dia.')</script></td></tr></table></div>';    
+                echo'<tr><td class="cont_txt"><strong>'.$vet[1].'</strong></td></tr><tr><td class="contagem" id="contagem'.$ano.$mes.$dia.'"><script>contagem('.$ano.', '.$mes.', '.$dia.')</script></td></tr><tr class="space"><td class="space"></td><td class="space"></td></tr>';    
             }
-            //echo'<table><tr><td class="cont_txt"><strong>INTERUSP</strong></td><td class="contagem" id="contagem'.$ano.$mes.$dia.'"><script>contagem('.$ano.', '.$mes.', '.$dia.')</script></td></tr></table></div>';    
-            echo'<table><tr><td class="cont_txt"><strong>INTERUSP</strong></td></tr><tr><td class="contagem" id="contagem'.$ano.$mes.$dia.'"><script>contagem('.$ano.', '.$mes.', '.$dia.')</script></td></tr></table></div>';    
+            echo'</table></div>';
         ?>
         </div> 
 </div>

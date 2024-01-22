@@ -107,22 +107,28 @@
         <div class="col-6 custyle"> 
         <!--<h2 style="color: #fff; font-size:40px;"> HORÁRIO DAS 11</h2>-->
         <?php 
+            $ano_atual = date("Y");
             if($_GET['ano'] != null){
                 $ano = $_GET['ano'];
             }
             else{
-                $ano = date("Y");
+                $ano = $ano_atual;
             }
             $ano = intval($ano);
-            if($ano==2022){
-                $outroano=2020;
-            }elseif($ano==2020){
-                $outroano=2019;
-            }else{
-                $outroano=2022;
+            echo "<select name='ano' id='ano' onchange='window.location=\"https://www.wetrats.com.br/treinos/?ano=\"+this.value.toString()'>";
+            for($i=$ano; $i>=2019; $i--){
+                if($i==2021) {
+                    continue;
+                }
+                elseif($i==$ano){
+                    echo "<option value=".$i." selected>".$i."</option>";
+                }
+                else {
+                    echo "<option value=".$i.">".$i."</option>";
+                }
             }
-            ?>
-            <button onClick="window.location='https://www.wetrats.com.br/treinos/?ano=<?php echo $outroano;?>'"><?php echo $outroano;?></button>
+            echo "</select>";
+        ?>
             <table class="tabela_treinos">
             <thead>
                 <?php if($nivel_usuario !='1') echo '<a href="../criacao_treino/" class="btn btn-primary btn-xs pull-right">Adicionar treino</a>';
