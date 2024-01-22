@@ -494,7 +494,6 @@ input, textarea {
 
 
 .modal-contents {
-  margin-top:60px;
   width: 60%;
   background-color: white;
   opacity: 1;
@@ -503,6 +502,8 @@ input, textarea {
 	position: relative;
   border-radius: 4px;
   z-index : 10001;
+  height: 90%;
+  overflow-y: auto;
 }
 
 .close {
