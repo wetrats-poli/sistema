@@ -79,10 +79,10 @@
         </div>      
     <?php
        //Adiciona automaticamente todos os usuários cadstrados no banco de dados
-        $conn = mysqli_connect("srv976.hstgr.io", "u418844475_wtr", "Wetrats2019", "u418844475_wtr");
+        require_once './db_con.php';
         //$sql = "SELECT id, nome, apelido, email FROM usuarios WHERE ativo='1' AND nivel!='2' ORDER BY nome  ";
         $sql = "SELECT id, nome, apelido, email, pagante FROM usuarios where nivel!='2' and id!='31' and ativo=1 ORDER BY nome  ";
-        $resultado = mysqli_query($conn,$sql);
+        $resultado = mysqli_query($con,$sql);
         while($row = mysqli_fetch_assoc($resultado)){
           //echo '<div class="row"><label for="'.$row['id'].'"><input style="margin:5px;" type="checkbox" name="nomes[]" id='.$row["id"].' value='.$row["id"].'>'.$row["nome"].'</label></div>' ;
           if($row["pagante"] == 1){
@@ -188,9 +188,9 @@ if($_POST['divida']=='ok'){
   }
   $sql = substr($sql, 0, -1);
   $sql .= ";" ;
-  if(!mysqli_query($conn,$sql))
+  if(!mysqli_query($con,$sql))
   {
-    $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($conn);
+    $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
   }
   
   else $_SESSION['MSG'] = "As cobranças foram lançadas com sucesso.";
