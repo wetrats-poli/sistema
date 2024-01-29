@@ -76,7 +76,7 @@
         </div>      
     <?php
        //Adiciona automaticamente todos os usuários cadstrados no banco de dados
-        require_once './db_con.php';
+        require_once '../db_con.php';
         //$sql = "SELECT id, nome, apelido, email FROM usuarios WHERE ativo='1' AND nivel!='2' ORDER BY nome  ";
         $sql = "SELECT id, nome, apelido, email FROM usuarios where nivel!='2' and id!='31' and ativo=1 ORDER BY apelido  ";
         $resultado = mysqli_query($con,$sql);
