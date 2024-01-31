@@ -12,14 +12,14 @@
 
 <?php
  session_start();
+ // Conexão com o servidor MySQL
+ require_once '../db_con.php';
     
  // Verifica se existe ID da sessão
  if(!isset($_SESSION['ID'])){
 
   //Destrói a sessão por segurança
   session_destroy();
-  // Conexão com o servidor MySQL
-  require_once '../db.php';
 
   //Redireciona para o login
   header("Location: ../index.php"); exit;
@@ -84,12 +84,12 @@ if($_SESSION['NIVEL'] != '2'){
             <tbody>'; 
     $nomes = array();
     $tabela="";
-    
+        
     // calculo do total de pontos
     $sql="SELECT usuarios.nome AS 'nome', usuarios.apelido AS 'apelido', usuarios.id AS 'id' , 
           SUM( /*(SELECT COUNT(*) FROM presencas WHERE presencas.id_atleta=usuarios.id AND presencas.id_treino>94) +*/
             (COALESCE((SELECT SUM(IF(execucao=1,1,0)+IF(ced_aquec=1,1,0)+IF(ced_princ=1,1.5,0)+IF(comportamento=1,1.5,0) +IF(justificativa=1,1,0) +IF(outro_horario=1,1.5,0)+IF(feedback=1,2,0) +IF(negativo=1,-5,0)) 
-              FROM pontuacaoX WHERE pontuacaoX.id_atleta=usuarios.id AND pontuacaoX.id_treino>185),0))) 
+              FROM pontuacaoX WHERE pontuacaoX.id_atleta=usuarios.id AND pontuacaoX.id_treino>573),0))) 
           AS 'total' FROM `usuarios` WHERE usuarios.ativo=1 
           GROUP BY `nome` 
           ORDER BY `total` DESC";
@@ -118,14 +118,14 @@ if($_SESSION['NIVEL'] != '2'){
 }
     $tabela2 = "";
     $soma2 = 0;
-    $sql2 = "SELECT (SELECT COUNT(*) FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND execucao=1) AS 'execucao' , 
-            (SELECT COUNT(*) FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND comportamento=1) AS 'comportamento' ,
-            (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND ced_aquec=1) AS 'ced_aquec',
-            (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND ced_princ=1) AS 'ced_princ',
-            (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND justificativa=1) AS 'justificativa',
-            (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND outro_horario=1) AS 'outro_horario',
-            (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND feedback=1) AS 'feedback',
-            (SELECT COUNT(*) FROM `presencas` WHERE id_atleta=".$id_atleta." AND id_treino>186) AS 'presenca' ;";
+    $sql2 = "SELECT (SELECT COUNT(*) FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND execucao=1 AND id_treino>573) AS 'execucao' , 
+            (SELECT COUNT(*) FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND comportamento=1 AND id_treino>573) AS 'comportamento' ,
+            (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND ced_aquec=1 AND id_treino>573) AS 'ced_aquec',
+            (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND ced_princ=1 AND id_treino>573) AS 'ced_princ',
+            (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND justificativa=1 AND id_treino>573) AS 'justificativa',
+            (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND outro_horario=1 AND id_treino>573) AS 'outro_horario',
+            (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND feedback=1 AND id_treino>573) AS 'feedback',
+            (SELECT COUNT(*) FROM `presencas` WHERE id_atleta=".$id_atleta." AND id_treino>573) AS 'presenca' ;";
     $resultado = mysqli_query($con, $sql2);
     while ($row = mysqli_fetch_assoc($resultado)){
         $execucao = 0;

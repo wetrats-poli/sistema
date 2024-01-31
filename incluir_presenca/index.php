@@ -30,7 +30,7 @@
 
   $id_treino = $_GET['id'];
 
-  $con="index.php?id=".$id_treino.'&data='.$data_treino ;
+  $link="index.php?id=".$id_treino.'&data='.$data_treino ;
 
   // Conexão com o servidor MySQL
   require_once '../db_con.php';
@@ -76,7 +76,7 @@
   
   <div class="container-fluid" style="padding-top:60px;" >
     <div class="row">
-      <form method="post" action=<?php echo $con;?> class="col-md-12">
+      <form method="post" action=<?php echo $link;?> class="col-md-12">
 
       <?php 
       //Mensagem de alerta
@@ -122,6 +122,7 @@
             
           </div>
           <?php
+
 
               //busca pelos nomes dos atletas cadastrados no sistema e ativos
               $sql = "SELECT id, apelido, email FROM usuarios WHERE sexo ='F' AND ativo='1' ORDER BY apelido  ";
@@ -229,7 +230,7 @@
             <tbody>
 
             
-          <?php
+          <?php              
 
               //busca pelos nomes dos atletas cadastrados no sistema e ativos
               $sql = "SELECT id, apelido, email FROM usuarios WHERE sexo ='M' AND ativo='1' ORDER BY apelido  ";
@@ -258,10 +259,10 @@
           </div>
         </div>
         </div>
-        <div class="row" style="padding: 10px; padding-left: 95px;">
+        <!--div class="row" style="padding: 10px; padding-left: 95px;">
           <div class="form-group col-12">
             <label for="duracao">Qual foi a duração do treino?<input type="text" name="duracao" id="duracao" style="margin-left: 10px;" required></label>
-          </div>
+          </div-->
         </div>
         <div class="row" style="padding: 10px;">
           <div class="form-group col-6">
@@ -294,29 +295,28 @@
 
 <?php
 if (($_POST['finalizado']=="1")){
-
     $data = $_GET['data'];
 
-    include '../preparacao_fisica/prog_semanas.php';
-    date_default_timezone_set('America/Sao_Paulo');
-    //$hoje=date("Y-m-d");
-    $semana = acha_semana($data);
+    // include '../preparacao_fisica/prog_semanas.php';
+    // date_default_timezone_set('America/Sao_Paulo');
+    // //$hoje=date("Y-m-d");
+    // $semana = acha_semana($data);
 
-    if(date('l', strtotime($data)) == "Monday"){
-        $dia_semana = 1;
-    }elseif (date('l', strtotime($data)) == "Tuesday") {
-        $dia_semana = 2;
-    }elseif (date('l', strtotime($data)) == "Wednesday") {
-        $dia_semana = 3;
-    }elseif (date('l', strtotime($data)) == "Thursday") {
-        $dia_semana = 4;
-    }elseif (date('l', strtotime($data)) == "Friday") {
-        $dia_semana = 5;
-    }elseif (date('l', strtotime($data)) == "Saturday") {
-        $dia_semana = 6;
-    }elseif (date('l', strtotime($data)) == "Sunday") {
-        $dia_semana = 7;
-    }
+    // if(date('l', strtotime($data)) == "Monday"){
+    //     $dia_semana = 1;
+    // }elseif (date('l', strtotime($data)) == "Tuesday") {
+    //     $dia_semana = 2;
+    // }elseif (date('l', strtotime($data)) == "Wednesday") {
+    //     $dia_semana = 3;
+    // }elseif (date('l', strtotime($data)) == "Thursday") {
+    //     $dia_semana = 4;
+    // }elseif (date('l', strtotime($data)) == "Friday") {
+    //     $dia_semana = 5;
+    // }elseif (date('l', strtotime($data)) == "Saturday") {
+    //     $dia_semana = 6;
+    // }elseif (date('l', strtotime($data)) == "Sunday") {
+    //     $dia_semana = 7;
+    // }
 
     $id_treino = $_GET['id'];
 
@@ -325,24 +325,24 @@ if (($_POST['finalizado']=="1")){
 
         $ids_atletas = $_POST['presencas'] ;
         $sql = "INSERT INTO presencas (id_treino, id_atleta) VALUES ";
-        $sql2= "INSERT INTO duracao_agua (id_atleta, duracao, dia_semana, semana) VALUES ";
+        // $sql2= "INSERT INTO duracao_agua (id_atleta, duracao, dia_semana, semana) VALUES ";
         foreach ($ids_atletas as $i){
             $sql .= "(".$id_treino.",".$i." )," ;
-            $sql2 .= "(".$i.",".$_POST['duracao'].",".$dia_semana.",".$semana."),";
+            // $sql2 .= "(".$i.",".$_POST['duracao'].",".$dia_semana.",".$semana."),";
         }
         $sql = substr($sql, 0, -1);
         $sql .= ";" ;
-        $sql2 = substr($sql2, 0, -1);
-        $sql2 .= ";" ;
+        // $sql2 = substr($sql2, 0, -1);
+        // $sql2 .= ";" ;
 
-        if($_SESSION['ID'] == 32){
-          mysqli_query($con, $sql2);
-        }
+        // if($_SESSION['ID'] == 32){
+        //   mysqli_query($con, $sql2);
+        // }
     
         if (!mysqli_query($con,$sql)){
             $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
             echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
-            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$con."');});</script>";
+            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$link."');});</script>";
             //header("Location: ../incluir_presenca/".$con); exit;
         } 
         else {
@@ -378,7 +378,7 @@ if (($_POST['finalizado']=="1")){
           }else{
             $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
             echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
-            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$con."');});</script>";
+            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$link."');});</script>";
             //header("Location: ../incluir_presenca/".$con); exit;
           }
         
@@ -387,7 +387,7 @@ if (($_POST['finalizado']=="1")){
         else {
           $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
           echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
-          echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$con."');});</script>";
+          echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$link."');});</script>";
           //header("Location: ../incluir_presenca/".$con); exit;
         }    
       }

@@ -50,8 +50,8 @@
 
     }
     if($nivel_usuario != "2"){
-        $sql1 =  "SELECT (SELECT COUNT(*) FROM `presencas` WHERE `id_atleta`=$id_usuario AND id_treino>=238) AS npresenca , 
-                  (SELECT COUNT(DISTINCT id_treino) FROM presencas WHERE id_treino>=238) AS 'ntreinos' ;" ;
+        $sql1 =  "SELECT (SELECT COUNT(*) FROM `presencas` WHERE `id_atleta`=$id_usuario AND id_treino>=573) AS npresenca , 
+                  (SELECT COUNT(DISTINCT id_treino) FROM presencas WHERE id_treino>=573) AS 'ntreinos' ;" ;
         $resultado = mysqli_query($con,$sql1);
         $res= mysqli_fetch_assoc($resultado);
         if ($res['ntreinos']>0){
