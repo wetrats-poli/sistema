@@ -89,7 +89,7 @@ if($_SESSION['NIVEL'] != '2'){
     $sql="SELECT usuarios.nome AS 'nome', usuarios.apelido AS 'apelido', usuarios.id AS 'id' , 
           SUM( /*(SELECT COUNT(*) FROM presencas WHERE presencas.id_atleta=usuarios.id AND presencas.id_treino>94) +*/
             (COALESCE((SELECT SUM(IF(execucao=1,1,0)+IF(ced_aquec=1,1,0)+IF(ced_princ=1,1.5,0)+IF(comportamento=1,1.5,0) +IF(justificativa=1,1,0) +IF(outro_horario=1,1.5,0)+IF(feedback=1,2,0) +IF(negativo=1,-5,0)) 
-              FROM pontuacaoX WHERE pontuacaoX.id_atleta=usuarios.id AND pontuacaoX.id_treino>185),0))) 
+              FROM pontuacaoX WHERE pontuacaoX.id_atleta=usuarios.id AND pontuacaoX.id_treino>573),0))) 
           AS 'total' FROM `usuarios` WHERE usuarios.ativo=1 
           GROUP BY `nome` 
           ORDER BY `total` DESC";
@@ -125,7 +125,7 @@ if($_SESSION['NIVEL'] != '2'){
             (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND justificativa=1) AS 'justificativa',
             (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND outro_horario=1) AS 'outro_horario',
             (SELECT COUNT(*)   FROM `pontuacaoX` WHERE id_atleta=".$id_atleta." AND feedback=1) AS 'feedback',
-            (SELECT COUNT(*) FROM `presencas` WHERE id_atleta=".$id_atleta." AND id_treino>186) AS 'presenca' ;";
+            (SELECT COUNT(*) FROM `presencas` WHERE id_atleta=".$id_atleta." AND id_treino>573) AS 'presenca' ;";
     $resultado = mysqli_query($con, $sql2);
     while ($row = mysqli_fetch_assoc($resultado)){
         $execucao = 0;
