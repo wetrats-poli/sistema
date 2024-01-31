@@ -297,26 +297,26 @@
 if (($_POST['finalizado']=="1")){
     $data = $_GET['data'];
 
-    include '../preparacao_fisica/prog_semanas.php';
-    date_default_timezone_set('America/Sao_Paulo');
-    //$hoje=date("Y-m-d");
-    $semana = acha_semana($data);
+    // include '../preparacao_fisica/prog_semanas.php';
+    // date_default_timezone_set('America/Sao_Paulo');
+    // //$hoje=date("Y-m-d");
+    // $semana = acha_semana($data);
 
-    if(date('l', strtotime($data)) == "Monday"){
-        $dia_semana = 1;
-    }elseif (date('l', strtotime($data)) == "Tuesday") {
-        $dia_semana = 2;
-    }elseif (date('l', strtotime($data)) == "Wednesday") {
-        $dia_semana = 3;
-    }elseif (date('l', strtotime($data)) == "Thursday") {
-        $dia_semana = 4;
-    }elseif (date('l', strtotime($data)) == "Friday") {
-        $dia_semana = 5;
-    }elseif (date('l', strtotime($data)) == "Saturday") {
-        $dia_semana = 6;
-    }elseif (date('l', strtotime($data)) == "Sunday") {
-        $dia_semana = 7;
-    }
+    // if(date('l', strtotime($data)) == "Monday"){
+    //     $dia_semana = 1;
+    // }elseif (date('l', strtotime($data)) == "Tuesday") {
+    //     $dia_semana = 2;
+    // }elseif (date('l', strtotime($data)) == "Wednesday") {
+    //     $dia_semana = 3;
+    // }elseif (date('l', strtotime($data)) == "Thursday") {
+    //     $dia_semana = 4;
+    // }elseif (date('l', strtotime($data)) == "Friday") {
+    //     $dia_semana = 5;
+    // }elseif (date('l', strtotime($data)) == "Saturday") {
+    //     $dia_semana = 6;
+    // }elseif (date('l', strtotime($data)) == "Sunday") {
+    //     $dia_semana = 7;
+    // }
 
     $id_treino = $_GET['id'];
 
@@ -342,7 +342,7 @@ if (($_POST['finalizado']=="1")){
         if (!mysqli_query($con,$sql)){
             $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
             echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
-            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$con."');});</script>";
+            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$link."');});</script>";
             //header("Location: ../incluir_presenca/".$con); exit;
         } 
         else {
@@ -378,7 +378,7 @@ if (($_POST['finalizado']=="1")){
           }else{
             $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
             echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
-            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$con."');});</script>";
+            echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$link."');});</script>";
             //header("Location: ../incluir_presenca/".$con); exit;
           }
         
@@ -387,7 +387,7 @@ if (($_POST['finalizado']=="1")){
         else {
           $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
           echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
-          echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$con."');});</script>";
+          echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../incluir_presenca/'".$link."');});</script>";
           //header("Location: ../incluir_presenca/".$con); exit;
         }    
       }
