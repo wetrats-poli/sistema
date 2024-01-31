@@ -30,7 +30,7 @@
 
   $id_treino = $_GET['id'];
 
-  $con="index.php?id=".$id_treino.'&data='.$data_treino ;
+  $link="index.php?id=".$id_treino.'&data='.$data_treino ;
 
   // Conexão com o servidor MySQL
   require_once '../db_con.php';
@@ -76,7 +76,7 @@
   
   <div class="container-fluid" style="padding-top:60px;" >
     <div class="row">
-      <form method="post" action=<?php echo $con;?> class="col-md-12">
+      <form method="post" action=<?php echo $link;?> class="col-md-12">
 
       <?php 
       //Mensagem de alerta
@@ -259,10 +259,10 @@
           </div>
         </div>
         </div>
-        <div class="row" style="padding: 10px; padding-left: 95px;">
+        <!--div class="row" style="padding: 10px; padding-left: 95px;">
           <div class="form-group col-12">
             <label for="duracao">Qual foi a duração do treino?<input type="text" name="duracao" id="duracao" style="margin-left: 10px;" required></label>
-          </div>
+          </div-->
         </div>
         <div class="row" style="padding: 10px;">
           <div class="form-group col-6">
@@ -325,19 +325,19 @@ if (($_POST['finalizado']=="1")){
 
         $ids_atletas = $_POST['presencas'] ;
         $sql = "INSERT INTO presencas (id_treino, id_atleta) VALUES ";
-        $sql2= "INSERT INTO duracao_agua (id_atleta, duracao, dia_semana, semana) VALUES ";
+        // $sql2= "INSERT INTO duracao_agua (id_atleta, duracao, dia_semana, semana) VALUES ";
         foreach ($ids_atletas as $i){
             $sql .= "(".$id_treino.",".$i." )," ;
-            $sql2 .= "(".$i.",".$_POST['duracao'].",".$dia_semana.",".$semana."),";
+            // $sql2 .= "(".$i.",".$_POST['duracao'].",".$dia_semana.",".$semana."),";
         }
         $sql = substr($sql, 0, -1);
         $sql .= ";" ;
-        $sql2 = substr($sql2, 0, -1);
-        $sql2 .= ";" ;
+        // $sql2 = substr($sql2, 0, -1);
+        // $sql2 .= ";" ;
 
-        if($_SESSION['ID'] == 32){
-          mysqli_query($con, $sql2);
-        }
+        // if($_SESSION['ID'] == 32){
+        //   mysqli_query($con, $sql2);
+        // }
     
         if (!mysqli_query($con,$sql)){
             $_SESSION['ALERTA'] .= "Error description: ".mysqli_error($con);
