@@ -81,7 +81,7 @@
                 require_once '../db_con.php';
 
                 // Contagem do número de treinos
-                $sql1="SELECT (SELECT COUNT(DISTINCT id_treino) FROM presencas WHERE id_treino>=238) AS 'ntreinos'  , 
+                $sql1="SELECT (SELECT COUNT(DISTINCT id_treino) FROM presencas WHERE id_treino>=573) AS 'ntreinos'  , 
                 (SELECT COUNT(DISTINCT id_treino) FROM presencas INNER JOIN treinos ON treinos.id=presencas.id_treino
                 WHERE MONTH(treinos.data)="; if(isset($_POST['mes'])) $sql1.=$_POST['mes']; else $sql1.=date('n');
                 $sql1.=" AND YEAR(data)=".date('Y').") AS 'ntreinos_mes' " ;
@@ -91,13 +91,15 @@
                 
 
                 // Contagem da presença por atleta
-                $sql2= "SELECT usuarios.nome, id_atleta, COUNT(CASE WHEN id_treino>=238 THEN 1 ELSE NULL END) AS 'presenca_total', COUNT(CASE WHEN MONTH(treinos.data)=";
+                $sql2= "SELECT usuarios.nome, id_atleta, COUNT(CASE WHEN id_treino>=573 THEN 1 ELSE NULL END) AS 'presenca_total', COUNT(CASE WHEN MONTH(treinos.data)=";
                 if(isset($_POST['mes'])) $sql2.=$_POST['mes']; else $sql2.=date('n');
                 $sql2.= " AND YEAR(treinos.data)=".date('Y')." THEN 1 ELSE NULL END) AS 'presenca_mensal' 
-                FROM `presencas` 
-                INNER JOIN `usuarios` ON presencas.id_atleta = usuarios.id 
-                INNER JOIN `treinos` ON presencas.id_treino = treinos.id 
-                WHERE usuarios.ativo=1 
+                FROM `treinos`
+                LEFT JOIN `presencas` ON treinos.id = presencas.id_treino
+                LEFT JOIN `usuarios` ON usuarios.id = presencas.id_atleta 
+                WHERE usuarios.ativo=1
+                AND usuarios.nivel !=2
+                AND treinos.id >=573
                 GROUP BY usuarios.nome  
                 ORDER BY COUNT(*) DESC  ;" ;
 
