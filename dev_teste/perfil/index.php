@@ -116,7 +116,7 @@
 
         if ($nivel_usuario==2) echo '
         <div class="row" style="margin-left:30px;">
-            <!--button type="button" class="btn-primary" onclick='."'".'window.location.href="../pontuacaox/"'."'".' style="margin-left:60px;">Pontuação X</button-->
+            <button type="button" class="btn-primary" onclick='."'".'window.location.href="../pontuacaox/"'."'".' style="margin-left:60px;">Pontuação X</button>
             <button type="button" class="btn-primary" onclick="window.location.href=\'../caracteristicas/\'" style="margin-left:60px;">Características</button>
             <button type="button" class="btn-primary" onclick="window.location.href=\'../PSE/visualizar.php\'" style="margin-left:60px;">PSE</button>
             <button type="button" class="btn-primary" onclick="window.location.href=\'../preparacao_fisica/gerenciar_grupos.php\'" style="margin-left:60px;">Preparação Física</button>
