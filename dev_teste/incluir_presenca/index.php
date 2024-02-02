@@ -112,8 +112,8 @@
               <th>C&D Principal (1.5)</th>
               <th>Comportamento (1.5)</th>
               <th>Justificativa (1.0)</th>
-              <th>Outro horário (1.5)</th>
-              <th>Feedback (1.5) </th> 
+              <th>Outro horário (2)</th>
+              <th>Feedback (2) </th> 
               <th>Ponto Negativo (-5)</th>
               </tr>
             </thead>
@@ -222,8 +222,8 @@
               <th>C&D Principal (1.5)</th>
               <th>Comportamento (1.5)</th>
               <th>Justificativa (1.0)</th>
-              <th>Outro horário (1.5)</th>
-              <th>Feedback (1.5)</th> 
+              <th>Outro horário (2)</th>
+              <th>Feedback (2)</th> 
               <th>Ponto Negativo (-5)</th>
               </tr>
             </thead>
