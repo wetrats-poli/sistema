@@ -88,7 +88,7 @@ if($_SESSION['NIVEL'] != '2'){
     // calculo do total de pontos
     $sql="SELECT usuarios.nome AS 'nome', usuarios.apelido AS 'apelido', usuarios.id AS 'id' , 
           SUM( /*(SELECT COUNT(*) FROM presencas WHERE presencas.id_atleta=usuarios.id AND presencas.id_treino>94) +*/
-            (COALESCE((SELECT SUM(IF(execucao=1,1,0)+IF(ced_aquec=1,1,0)+IF(ced_princ=1,1.5,0)+IF(comportamento=1,1.5,0) +IF(justificativa=1,1,0) +IF(outro_horario=1,1.5,0)+IF(feedback=1,2,0) +IF(negativo=1,-5,0)) 
+            (COALESCE((SELECT SUM(IF(execucao=1,1,0)+IF(ced_aquec=1,1,0)+IF(ced_princ=1,1.5,0)+IF(comportamento=1,1.5,0) +IF(justificativa=1,1,0) +IF(outro_horario=1,2,0)+IF(feedback=1,2,0) +IF(negativo=1,-5,0)) 
               FROM pontuacaoX WHERE pontuacaoX.id_atleta=usuarios.id AND pontuacaoX.id_treino>573),0))) 
           AS 'total' FROM `usuarios` WHERE usuarios.ativo=1 
           GROUP BY `nome` 
