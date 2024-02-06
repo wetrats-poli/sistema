@@ -88,6 +88,15 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="medley" href=# onclick="show(this.id + '_tab' )">100 Medley</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="100Livre" href=# onclick="show(this.id + '_tab' )">100 Livre</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" id="200Livre" href=# onclick="show(this.id + '_tab' )">200 Livre</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" id="400Livre" href=# onclick="show(this.id + '_tab' )">400 Livre</a>
                     </li> 
                 </ul>
             
@@ -454,6 +463,7 @@
                           </div>';
                         ?>
                     </div>
+                    <!---100 Medley --->
                     <div class="tabela" style="display:none;" id="medley_tab" role="tabpanel" aria-labelledby="medley">
                     <?php
                          echo '<div class="prova"><h1 style="color: rgba(255,187,0);">100 Medley</h1></div> 
@@ -515,6 +525,273 @@
                         //busca das informacoes referentes a tabela do masculino
                         $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
                         WHERE (`prova`='100 Medley' AND `sexo`='M') ORDER BY `tempo` ASC LIMIT 80" ;
+                       $resultado = mysqli_query($con,$sql);
+                       $i=1;
+                       $nomes_atletas = array();
+                        
+                       while(($row = mysqli_fetch_array($resultado)) && ($i <= 10)){
+                           if(!in_array($row['nome_atleta'],$nomes_atletas)){
+                               $temp = str_replace(".", "'", $row['tempo']);
+                               $temp = str_replace("..", "\"", $temp);
+                               $data = date_create($row['data']);                                     
+                               echo '<tr>
+                               <td>'.$i.'</td> 
+                               <td>'.$row['nome_atleta'].'</td>
+                               <td>'.$temp.'</td>
+                               <td>'.$row['competicao'].'</td>
+                               <td>'.date_format($data,"Y").'</td>
+                               ';
+                               $i +=1;
+                               $nomes_atletas[] = $row['nome_atleta'];
+                          }
+                          
+                       }
+                        echo '
+                            </table class="tabela_ranking">
+                          </div>
+                         </div>';
+                        ?>
+                    </div>
+                    <!--- 100 Livre --->
+                    <div class="tabela" style="display:none;" id="100Livre_tab" role="tabpanel" aria-labelledby="livre">
+                    <?php
+                         echo '<div class="prova"><h1 style="color: rgba(255,187,0);">100 Livre</h1></div> 
+                         <div class="row form-group"> 
+                         <div class="container container_ranking"><h2>Feminino</h2>
+                            <table class="tabela_ranking">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Atleta</th>
+                                    <th>Tempo</th>
+                                    <th>Competição</th>
+                                    <th>Ano</th>
+                                    
+                                </thead>
+                            <tr> 
+                             ';
+                             
+                        //busca das informacoes referentes a tabela do feminino
+                        $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
+                        WHERE (`prova`='100 Livre' AND `sexo`='F') ORDER BY `tempo` ASC LIMIT 80" ;
+                       $resultado = mysqli_query($con,$sql);
+                       $i=1;
+                       $nomes_atletas = array();
+                        
+                       while(($row = mysqli_fetch_array($resultado)) && ($i <= 10)){
+                           if(!in_array($row['nome_atleta'],$nomes_atletas)){
+                               $temp = str_replace(".", "'", $row['tempo']);
+                               $temp = str_replace("..", "\"", $temp);
+                               $data = date_create($row['data']);                                     
+                               echo '<tr>
+                               <td>'.$i.'</td> 
+                               <td>'.$row['nome_atleta'].'</td>
+                               <td>'.$temp.'</td>
+                               <td>'.$row['competicao'].'</td>
+                               <td>'.date_format($data,"Y").'</td>
+                               ';
+                               $i +=1;
+                               $nomes_atletas[] = $row['nome_atleta'];
+                          }
+                          
+                       }
+                        echo '
+                            </table class="tabela_ranking">
+                           </div>
+                               
+                         <div class="container container_ranking"><h2>Masculino</h2>
+                         <table class="tabela_ranking" style="background-color:#fffff">
+                         <thead>
+                            <th>#</th>
+                            <th>Atleta</th>
+                            <th>Tempo</th>
+                            <th>Competição</th>
+                            <th>Ano</th>
+                            
+                         </thead>
+                         <tr> 
+                             ';
+
+                        //busca das informacoes referentes a tabela do masculino
+                        $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
+                        WHERE (`prova`='100 Livre' AND `sexo`='M') ORDER BY `tempo` ASC LIMIT 80" ;
+                       $resultado = mysqli_query($con,$sql);
+                       $i=1;
+                       $nomes_atletas = array();
+                        
+                       while(($row = mysqli_fetch_array($resultado)) && ($i <= 10)){
+                           if(!in_array($row['nome_atleta'],$nomes_atletas)){
+                               $temp = str_replace(".", "'", $row['tempo']);
+                               $temp = str_replace("..", "\"", $temp);
+                               $data = date_create($row['data']);                                     
+                               echo '<tr>
+                               <td>'.$i.'</td> 
+                               <td>'.$row['nome_atleta'].'</td>
+                               <td>'.$temp.'</td>
+                               <td>'.$row['competicao'].'</td>
+                               <td>'.date_format($data,"Y").'</td>
+                               ';
+                               $i +=1;
+                               $nomes_atletas[] = $row['nome_atleta'];
+                          }
+                          
+                       }
+                        echo '
+                            </table class="tabela_ranking">
+                          </div>
+                         </div>';
+                        ?>
+                    </div>
+                    <!--- 200 Livre --->
+                    <div class="tabela" style="display:none;" id="200Livre_tab" role="tabpanel" aria-labelledby="livre">
+                    <?php
+                         echo '<div class="prova"><h1 style="color: rgba(255,187,0);">200 Livre</h1></div> 
+                         <div class="row form-group"> 
+                         <div class="container container_ranking"><h2>Feminino</h2>
+                            <table class="tabela_ranking">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Atleta</th>
+                                    <th>Tempo</th>
+                                    <th>Competição</th>
+                                    <th>Ano</th>
+                                    
+                                </thead>
+                            <tr> 
+                             ';
+                             
+                        //busca das informacoes referentes a tabela do feminino
+                        $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
+                        WHERE (`prova`='200 Livre' AND `sexo`='F') ORDER BY `tempo` ASC LIMIT 80" ;
+                       $resultado = mysqli_query($con,$sql);
+                       $i=1;
+                       $nomes_atletas = array();
+                        
+                       while(($row = mysqli_fetch_array($resultado)) && ($i <= 10)){
+                           if(!in_array($row['nome_atleta'],$nomes_atletas)){
+                               $temp = str_replace(".", "'", $row['tempo']);
+                               $temp = str_replace("..", "\"", $temp);
+                               $data = date_create($row['data']);                                     
+                               echo '<tr>
+                               <td>'.$i.'</td> 
+                               <td>'.$row['nome_atleta'].'</td>
+                               <td>'.$temp.'</td>
+                               <td>'.$row['competicao'].'</td>
+                               <td>'.date_format($data,"Y").'</td>
+                               ';
+                               $i +=1;
+                               $nomes_atletas[] = $row['nome_atleta'];
+                          }
+                          
+                       }
+                        echo '
+                            </table class="tabela_ranking">
+                           </div>
+                               
+                         <div class="container container_ranking"><h2>Masculino</h2>
+                         <table class="tabela_ranking" style="background-color:#fffff">
+                         <thead>
+                            <th>#</th>
+                            <th>Atleta</th>
+                            <th>Tempo</th>
+                            <th>Competição</th>
+                            <th>Ano</th>
+                            
+                         </thead>
+                         <tr> 
+                             ';
+
+                        //busca das informacoes referentes a tabela do masculino
+                        $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
+                        WHERE (`prova`='200 Livre' AND `sexo`='M') ORDER BY `tempo` ASC LIMIT 80" ;
+                       $resultado = mysqli_query($con,$sql);
+                       $i=1;
+                       $nomes_atletas = array();
+                        
+                       while(($row = mysqli_fetch_array($resultado)) && ($i <= 10)){
+                           if(!in_array($row['nome_atleta'],$nomes_atletas)){
+                               $temp = str_replace(".", "'", $row['tempo']);
+                               $temp = str_replace("..", "\"", $temp);
+                               $data = date_create($row['data']);                                     
+                               echo '<tr>
+                               <td>'.$i.'</td> 
+                               <td>'.$row['nome_atleta'].'</td>
+                               <td>'.$temp.'</td>
+                               <td>'.$row['competicao'].'</td>
+                               <td>'.date_format($data,"Y").'</td>
+                               ';
+                               $i +=1;
+                               $nomes_atletas[] = $row['nome_atleta'];
+                          }
+                          
+                       }
+                        echo '
+                            </table class="tabela_ranking">
+                          </div>
+                         </div>';
+                        ?> 
+                    </div>
+                    <!--- 400 Livre --->
+                    <div class="tabela" style="display:none;" id="400Livre_tab" role="tabpanel" aria-labelledby="livre">
+                    <?php
+                         echo '<div class="prova"><h1 style="color: rgba(255,187,0);">400 Livre</h1></div> 
+                         <div class="row form-group"> 
+                         <div class="container container_ranking"><h2>Feminino</h2>
+                            <table class="tabela_ranking">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Atleta</th>
+                                    <th>Tempo</th>
+                                    <th>Competição</th>
+                                    <th>Ano</th>
+                                    
+                                </thead>
+                            <tr> 
+                             ';
+                             
+                        //busca das informacoes referentes a tabela do feminino
+                        $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
+                        WHERE (`prova`='400 Livre' AND `sexo`='F') ORDER BY `tempo` ASC LIMIT 80" ;
+                       $resultado = mysqli_query($con,$sql);
+                       $i=1;
+                       $nomes_atletas = array();
+                        
+                       while(($row = mysqli_fetch_array($resultado)) && ($i <= 10)){
+                           if(!in_array($row['nome_atleta'],$nomes_atletas)){
+                               $temp = str_replace(".", "'", $row['tempo']);
+                               $temp = str_replace("..", "\"", $temp);
+                               $data = date_create($row['data']);                                     
+                               echo '<tr>
+                               <td>'.$i.'</td> 
+                               <td>'.$row['nome_atleta'].'</td>
+                               <td>'.$temp.'</td>
+                               <td>'.$row['competicao'].'</td>
+                               <td>'.date_format($data,"Y").'</td>
+                               ';
+                               $i +=1;
+                               $nomes_atletas[] = $row['nome_atleta'];
+                          }
+                          
+                       }
+                        echo '
+                            </table class="tabela_ranking">
+                           </div>
+                               
+                         <div class="container container_ranking"><h2>Masculino</h2>
+                         <table class="tabela_ranking" style="background-color:#fffff">
+                         <thead>
+                            <th>#</th>
+                            <th>Atleta</th>
+                            <th>Tempo</th>
+                            <th>Competição</th>
+                            <th>Ano</th>
+                            
+                         </thead>
+                         <tr> 
+                             ';
+
+                        //busca das informacoes referentes a tabela do masculino
+                        $sql = "SELECT `nome_atleta`, `competicao` , `data`, `tempo` FROM `ranking` 
+                        WHERE (`prova`='400 Livre' AND `sexo`='M') ORDER BY `tempo` ASC LIMIT 80" ;
                        $resultado = mysqli_query($con,$sql);
                        $i=1;
                        $nomes_atletas = array();
