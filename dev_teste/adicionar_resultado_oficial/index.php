@@ -175,6 +175,9 @@
                                   <option value="50 Peito" >50m Peito</option>
                                   <option value="50 Livre" >50m Livre</option>
                                   <option value="100 Medley" >100m Medley</option>
+                                  <option value="100 Livre" >100m Livre</option>
+                                  <option value="200 Livre" >200m Livre</option>
+                                  <option value="400 Livre" >400m Livre</option>
                               </select>
                           </div>
                           <div class="col-3">

@@ -102,6 +102,9 @@
                         <option value="50 Peito"<?php if($_POST['prova']=="50 Peito") echo "selected";?>>50 Peito</option>
                         <option value="50 Livre"<?php if($_POST['prova']=="50 Livre") echo "selected";?>>50 Livre</option>
                         <option value="100 Medley"<?php if($_POST['prova']=="100 Medley") echo "selected";?>>100 Medley</option>
+                        <option value="100 Livre"<?php if($_POST['prova']=="100 Livre") echo "selected";?>>100 Livre</option>
+                        <option value="200 Livre"<?php if($_POST['prova']=="200 Livre") echo "selected";?>>200 Livre</option>
+                        <option value="400 Livre"<?php if($_POST['prova']=="400 Livre") echo "selected";?>>400 Livre</option>
                     </select>
                 </div>
 
