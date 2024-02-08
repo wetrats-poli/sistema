@@ -112,7 +112,7 @@
                 <label for="competicao"><b>Competição:</b></label>
                 <select class="form-control"  name="competicao">
                     <option value=" "> </option>
-                <?php               
+                <?php
 
                 //busca pelos nomes das competicoes cadastrados no sistema e ativas
                 $sql = "SELECT evento, data FROM competicoes ORDER BY data ";
@@ -175,6 +175,9 @@
                                   <option value="50 Peito" >50m Peito</option>
                                   <option value="50 Livre" >50m Livre</option>
                                   <option value="100 Medley" >100m Medley</option>
+                                  <option value="100 Livre" >100m Livre</option>
+                                  <option value="200 Livre" >200m Livre</option>
+                                  <option value="400 Livre" >400m Livre</option>
                               </select>
                           </div>
                           <div class="col-3">
@@ -266,7 +269,7 @@ if (($_POST['finalizado']=="1")){
     $sql .= ";" ;
 
     $date=date_create($data);
-    $mensagem .= " em ".date_format($date,"d/m/y")." foi incluído com sucesso.";    
+    $mensagem .= " em ".date_format($date,"d/m/y")." foi incluído com sucesso.";
     
     // Grava as informações no banco de dados
     if (!mysqli_query($con,$sql)){
