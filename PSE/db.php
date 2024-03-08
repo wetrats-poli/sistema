@@ -2,7 +2,7 @@
     session_start();
 
     date_default_timezone_set('America/Sao_Paulo');
-    $hoje=date("Y-m-d");
+    $hoje=date($_POST['data_treino']);
 
     include '../preparacao_fisica/prog_semanas.php';
     $semana = acha_semana($hoje);
@@ -26,7 +26,7 @@
 
     require_once '../db_con.php';
     
-    $sql = "SELECT id FROM treinos WHERE data='".$hoje."'";
+    $sql = "SELECT id FROM treinos WHERE data='".$_POST["data_treino"]."'";
     $id_treino = mysqli_fetch_assoc(mysqli_query($con, $sql));
 
     $ses = (int)$_POST['ses'];
