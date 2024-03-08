@@ -82,13 +82,20 @@
                 <div class="cont_carac formu" style="margin-left: -25px;">
                     <form class="form-group" id="form_carac" method="post" action="db.php">
                         
-                        <h4>PSE Hoje</h4>
-                        <div class="row"><label for="ses">PSE da Sessão</label><input type="number" min=0 max=10
-                                class="form-control" style="width:30%; margin-bottom:5px; margin-left: 18px;" name="ses" id="ses" required></div>
+                        <h4>PSE</h4>
+                        <div class="row">
+                            <label for="data_treino">Data</label>
+                            <input class="form-control" style="width:15.5rem; margin-bottom:7px; margin-left:1rem;" type="date" placeholder="Insira a data..." name="data_treino" id="data_treino" required>
+                        </div>
+                        <div class="row">
+                            <label for="ses">PSE da Sessão</label>
+                            <input type="number" min=0 max=10 class="form-control" style="width:30%; margin-bottom:5px; margin-left: 18px;" name="ses" id="ses" required>
+                        </div>
 
-                        <div class="row"><label for="descs">PSE do Descanso</label><input type="number" min=0 max=10
-                                class="form-control" style="width:30%; margin-bottom:7px;" name="descs" id="descs" ></div>
-
+                        <div class="row">
+                            <label for="descs">PSE do Descanso</label>
+                            <input type="number" min=0 max=10 class="form-control" style="width:30%; margin-bottom:7px;" name="descs" id="descs">
+                        </div>
                         <button class="btn btn-primary" type="submit">Enviar</button>
                     </form>
                 </div>
@@ -111,6 +118,7 @@
     <script>
         $("#menu").load("../common/menu/menu.html #menu_");
         $("#menus").load("../common/menu/menu.html #side_menu");
+        document.getElementById('data_treino').valueAsDate = new Date();
     </script>
 </body>
 
