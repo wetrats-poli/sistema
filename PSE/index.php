@@ -23,6 +23,8 @@
     header("Location: ../index.php"); exit;
   }
 
+  date_default_timezone_set('America/Sao_Paulo');
+  $hoje=date('Y-m-d');
 ?>
 
 
@@ -118,7 +120,7 @@
     <script>
         $("#menu").load("../common/menu/menu.html #menu_");
         $("#menus").load("../common/menu/menu.html #side_menu");
-        document.getElementById('data_treino').valueAsDate = new Date();
+        document.getElementById('data_treino').valueAsDate = new Date(<?php echo "'".$hoje."'"?>);
     </script>
 </body>
 
