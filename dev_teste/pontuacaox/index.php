@@ -70,7 +70,7 @@ if($_SESSION['NIVEL'] != '2'){
     if ($nivel_usuario == "2"){ // mostra o relatorio geral
     echo '<div class="col-12">
     <div class="row">
-    <div class="container_financeiro_geral col-4">
+    <div class="container_financeiro_geral col-2">
         <h2>Relação de atletas</h2>
         <hr>
 
@@ -204,7 +204,7 @@ if($_SESSION['NIVEL'] != '2'){
     }
 
     ?>
-    <div class="container_financeiro_geral col-7">
+    <div class="container_financeiro_geral col-6">
     <div class="row">
         <?php
             session_start();
@@ -220,6 +220,8 @@ if($_SESSION['NIVEL'] != '2'){
             }
         ?>    
     </div>
+    
+    
     <div class="col-12" style="line-height:2;">
 
             <h2>Relatório Individual</h2>
@@ -247,9 +249,41 @@ if($_SESSION['NIVEL'] != '2'){
         </div>
       </div>
       </div>
+      <div class="col-4">
+              <div class="container_form">
+                <form action="presencas.php" method="post">
+
+                <div class="row form-group">
+                    <div class="col-8">
+                    <label>Mês:</label>
+                    <select name="mes">
+                        <option value="1" <?if($_POST['mes']=="1") echo 'selected';?>>Janeiro</option>
+                        <option value="2" <?if($_POST['mes']=="2") echo 'selected';?>>Fevereiro</option>
+                        <option value="3" <?if($_POST['mes']=="3") echo 'selected';?>>Março</option>
+                        <option value="4" <?if($_POST['mes']=="4") echo 'selected';?>>Abril</option>
+                        <option value="5" <?if($_POST['mes']=="5") echo 'selected';?>>Maio</option>
+                        <option value="6" <?if($_POST['mes']=="6") echo 'selected';?>>Junho</option>
+                        <option value="7" <?if($_POST['mes']=="7") echo 'selected';?>>Julho</option>
+                        <option value="8" <?if($_POST['mes']=="8") echo 'selected';?>>Agosto</option>
+                        <option value="9" <?if($_POST['mes']=="9") echo 'selected';?>>Setembro</option>
+                        <option value="10" <?if($_POST['mes']=="10") echo 'selected';?>>Outubro</option>
+                        <option value="11" <?if($_POST['mes']=="11") echo 'selected';?>>Novembro</option>
+                        <option value="12" <?if($_POST['mes']=="12") echo 'selected';?>>Dezembro</option>
+                    </select>
+                    </div>
+
+                    <div class="col-4"><button class="btn btn-primary" type="submit">Filtrar</button></div>
+                </div>
+                </form>
+              </div>
+            </div>
+            </div>
+      </div>
     </div>
   </div>
 </div>
+
+    
 <!-- jQuery -->
 <script src="../common/js/jquery.min.js"></script>
 <!-- Bootstrap -->
