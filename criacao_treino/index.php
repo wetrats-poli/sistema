@@ -79,24 +79,24 @@ if ($nivel_usuario!='2'){
         <div class="col-6">
           <div class="row form-group">
               <div class="col-2">
-                <label for="A1"><b>A1:</b></label>
-                <input class="form-control" type="number" placeholder="A1..." name="A1" value=0 required>
+                <label for="A1"><b>Z1:</b></label>
+                <input class="form-control" type="number" placeholder="Z1..." name="A1" value=0 required>
               </div>
               <div class="col-2">
-                <label for="A2"><b>A2:</b></label>
-                <input class="form-control" type="number" placeholder="A2..." name="A2" value=0 required>
+                <label for="A2"><b>Z2:</b></label>
+                <input class="form-control" type="number" placeholder="Z2..." name="A2" value=0 required>
               </div>
               <div class="col-2">
-                <label for="A3"><b>A3:</b></label>
-                <input class="form-control" type="number" placeholder="A3..." name="A3" value=0 required>
+                <label for="A3"><b>Z3:</b></label>
+                <input class="form-control" type="number" placeholder="Z3..." name="A3" value=0 required>
               </div>
               <div class="col-2">
-                <label for="AN"><b>AN:</b></label>
-                <input class="form-control" type="number" placeholder="AN..." name="AN" value=0 required>
+                <label for="AN"><b>Z4:</b></label>
+                <input class="form-control" type="number" placeholder="Z4..." name="AN" value=0 required>
               </div>
               <div class="col-2">
-                <label for="FO"><b>FO:</b></label>
-                <input class="form-control" type="number" placeholder="FO..." name="FO" value=0 required>
+                <label for="FO"><b>Z5:</b></label>
+                <input class="form-control" type="number" placeholder="Z5..." name="FO" value=0 required>
               </div>
 
           </div>
