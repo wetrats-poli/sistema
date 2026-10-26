@@ -113,15 +113,15 @@
             data: {
                 labels: <?php echo "['S1'"; for($i=2; $i<=sizeof($A1); $i++){echo ",'S".$i."'";} echo ']'; ?>,
                 datasets: [{
-                    label: 'A1',
+                    label: 'Z1',
                     backgroundColor: '#00aaff',
                     data: <?php echo '['.implode($A1, ',').']'; ?>
                 },{
-                    label: 'A2',
+                    label: 'Z2',
                     backgroundColor: '#47d618',
                     data: <?php echo '['.implode($A2, ',').']'; ?>
                 },{
-                    label: 'A3',
+                    label: 'Z3',
                     backgroundColor: '#ffd70d',
                     data: <?php echo '['.implode($A3, ',').']'; ?>
                 },{
@@ -144,15 +144,15 @@
             data: {
                 labels: <?php echo "['S1'"; for($i=2; $i<=sizeof($A1); $i++){echo ",'S".$i."'";} echo ']'; ?>,
                 datasets: [{
-                    label: 'A1',
+                    label: 'Z1',
                     backgroundColor: '#00aaff',
                     data: <?php echo '['.implode($A1, ',').']'; ?>
                 },{
-                    label: 'A2',
+                    label: 'Z2',
                     backgroundColor: '#47d618',
                     data: <?php echo '['.implode($A2, ',').']'; ?>
                 },{
-                    label: 'A3',
+                    label: 'Z3',
                     backgroundColor: '#ffd70d',
                     data: <?php echo '['.implode($A3, ',').']'; ?>
                 },{

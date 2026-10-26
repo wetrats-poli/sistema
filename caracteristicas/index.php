@@ -83,7 +83,7 @@
                                 <ul>
                                     <li><h5><strong>FORÇA: </strong>Aplicação de força pelas mãos (fase de apoio e impulsão) e pés(de cima para baixo ou para trás);</h5></li>
                                     <li><h5><strong>VELOCIDADE: </strong>Quantidade de produção de giro de braço e do batimento de pernas coordenativamente com auxílio dos demais segmentos corporais, na máxima velocidade possível;</h5></li>
-                                    <li><h5><strong>RESISTÊNCIA AERÓBIA: </strong>Facilidade de produção e manutenção da intensidade em séries de A1, A2 e A3;</h5></li>
+                                    <li><h5><strong>RESISTÊNCIA AERÓBIA: </strong>Facilidade de produção e manutenção da intensidade em séries de Z1, Z2 e Z3;</h5></li>
                                     <li><h5><strong>RESISTÊNCIA ANAERÓBIA: </strong>Facilidade de produção e manutenção da intensidade em séries de An1;</h5></li>
                                     <li><h5><strong>TÉCNICA GERAL: </strong>Facilidade em modificar, adiquirir ou refinar novas habilidades técnicas;</h5></li>
                                     <li><h5><strong>EQUILÍBRIO EMOCIONAL: </strong>Compõe todas emoções que devem ser controladas, como ansiedade, concentração, autoconfiança, nervosismo, etc...</h5></li>

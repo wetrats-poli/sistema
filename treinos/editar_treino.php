@@ -116,24 +116,24 @@ if ($nivel_usuario!="2" and $nivel_usuario!="3"){
         <div class="col-6">
           <div class="row form-group">
               <div class="col-2">
-                <label for="A1"><b>A1:</b></label>
-                <input class="form-control" type="number" placeholder="A1..." name="A1" value=<?php echo $A1?> required>
+                <label for="A1"><b>Z1:</b></label>
+                <input class="form-control" type="number" placeholder="Z1..." name="A1" value=<?php echo $A1?> required>
               </div>
               <div class="col-2">
-                <label for="A2"><b>A2:</b></label>
-                <input class="form-control" type="number" placeholder="A2..." name="A2" value=<?php echo $A2?> required>
+                <label for="A2"><b>Z2:</b></label>
+                <input class="form-control" type="number" placeholder="Z2..." name="A2" value=<?php echo $A2?> required>
               </div>
               <div class="col-2">
-                <label for="A3"><b>A3:</b></label>
-                <input class="form-control" type="number" placeholder="A3..." name="A3" value=<?php echo $A3?> required>
+                <label for="A3"><b>Z3:</b></label>
+                <input class="form-control" type="number" placeholder="Z3..." name="A3" value=<?php echo $A3?> required>
               </div>
               <div class="col-2">
-                <label for="AN"><b>AN:</b></label>
-                <input class="form-control" type="number" placeholder="AN..." name="AN" value=<?php echo $AN?> required>
+                <label for="AN"><b>Z4:</b></label>
+                <input class="form-control" type="number" placeholder="Z4..." name="AN" value=<?php echo $AN?> required>
               </div>
               <div class="col-2">
-                <label for="FO"><b>FO:</b></label>
-                <input class="form-control" type="number" placeholder="FO..." name="FO" value=<?php echo $FO?> required>
+                <label for="FO"><b>Z5:</b></label>
+                <input class="form-control" type="number" placeholder="Z5..." name="FO" value=<?php echo $FO?> required>
               </div>
 
           </div>
