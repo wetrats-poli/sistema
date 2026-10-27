@@ -133,6 +133,12 @@
             });
         });
 
+        // grupo(s) exibido(s): 'ambos', 'g1' ou 'g2'
+        var modo = 'ambos';
+        function grupoOculto(stack){
+            return (modo === 'g1' && stack === 'g2') || (modo === 'g2' && stack === 'g1');
+        }
+
         var grafico = new Chart(document.getElementById('myChart_comparacao'), {
             type: 'bar',
             data: {labels: labels, datasets: datasets},
@@ -142,6 +148,14 @@
                     display: true,
                     text: ['Distribuição das Metragens por Zona - Semana a Semana',
                            'Azul = Grupo 1 (barra da esquerda)  |  Laranja = Grupo 2 (barra da direita)  |  tom mais escuro = zona mais intensa']
+                },
+                legend: {
+                    labels: {
+                        // a legenda só mostra as zonas do(s) grupo(s) exibido(s)
+                        filter: function(item, data){
+                            return !grupoOculto(data.datasets[item.datasetIndex].stack);
+                        }
+                    }
                 },
                 tooltips: {
                     callbacks: {
@@ -159,9 +173,9 @@
 
         // Escolha de exibição: comparar os dois grupos ou ver só um deles
         document.getElementById('exibir').addEventListener('change', function(){
-            var modo = this.value;
+            modo = this.value;
             grafico.data.datasets.forEach(function(d, i){
-                grafico.getDatasetMeta(i).hidden = (modo === 'g1' && d.stack === 'g2') || (modo === 'g2' && d.stack === 'g1');
+                grafico.getDatasetMeta(i).hidden = grupoOculto(d.stack);
             });
             grafico.update();
         });
