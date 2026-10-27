@@ -46,8 +46,30 @@ function grupo2_preenchido($foto_existente = ''){
     return strlen($foto_existente) > 3;
 }
 
+// Cria a tabela do Grupo 2 se ela ainda não existir (mesmo script de sql/2026-10-treinos_grupo2.sql).
+// Assim o recurso funciona logo após a publicação, sem precisar rodar o SQL à mão.
+function garante_tabela_grupo2($con){
+    return consulta_segura($con, "CREATE TABLE IF NOT EXISTS `treinos_grupo2` (
+        `id` INT NOT NULL AUTO_INCREMENT,
+        `id_treino` INT NOT NULL,
+        `nome_foto` VARCHAR(255) DEFAULT NULL,
+        `treino` TEXT,
+        `serie_controle` VARCHAR(255) DEFAULT NULL,
+        `tipo` VARCHAR(50) DEFAULT NULL,
+        `total` INT NOT NULL DEFAULT 0,
+        `A1` INT NOT NULL DEFAULT 0,
+        `A2` INT NOT NULL DEFAULT 0,
+        `A3` INT NOT NULL DEFAULT 0,
+        `AN` INT NOT NULL DEFAULT 0,
+        `FO` INT NOT NULL DEFAULT 0,
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `uq_treino` (`id_treino`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+}
+
 // Grava (insere ou atualiza) o treino do Grupo 2. Retorna true se deu certo.
 function salva_grupo2($con, $id_treino, $data){
+    garante_tabela_grupo2($con);
     $existente = carrega_grupo2($con, $id_treino);
     $foto = salva_foto_treino('foto_g2', $data, '_g2');
     if ($foto === null) $foto = $existente ? $existente['nome_foto'] : '';
