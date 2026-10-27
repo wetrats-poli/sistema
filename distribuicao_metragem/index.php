@@ -43,12 +43,22 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6">                   
-                    <canvas id="myChart_dia" height="80%" width="100%"></canvas>
+            <div class="row" style="padding-bottom:10px; align-items:flex-end;">
+                <div class="col-md-3 col-sm-6">
+                    <label for="exibir"><b>Exibir:</b></label>
+                    <select class="form-control" id="exibir">
+                        <option value="ambos">Comparar os dois grupos</option>
+                        <option value="g1">Só o Grupo 1</option>
+                        <option value="g2">Só o Grupo 2</option>
+                    </select>
                 </div>
-                <div class="col-6">                   
-                    <canvas id="myChart_sem" height="80%" width="100%"></canvas>
+                <div class="col-md-3 col-sm-6">
+                    <a href="./exportar.php" class="btn btn-primary">Exportar para Excel</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <canvas id="myChart_comparacao" width="100" height="38"></canvas>
                 </div>
             </div>
         </div>
@@ -76,110 +86,98 @@
 
         <?php
             include '../preparacao_fisica/prog_semanas.php';
+            require_once '../treinos/grupos.php';
             date_default_timezone_set('America/Sao_Paulo');
             $hoje=date("Y-m-d");
             $semana_atual = acha_semana($hoje);
             
             require_once '../db_con.php';
 
-            $A1 = array();
-            $A2 = array();
-            $A3 = array();
-            $An = array();
-            
-            for($sem = 1; $sem <= $semana_atual; $sem++){
-                $sql_1 = "SELECT SUM(A1) FROM treinos WHERE semana=$sem";
-                $sql_2 = "SELECT SUM(A2) FROM treinos WHERE semana=$sem";
-                $sql_3 = "SELECT SUM(A3) FROM treinos WHERE semana=$sem";
-                $sql_n = "SELECT SUM(AN) FROM treinos WHERE semana=$sem";
-
-                $res1 = mysqli_fetch_array(mysqli_query($con, $sql_1));
-                $res2 = mysqli_fetch_array(mysqli_query($con, $sql_2));
-                $res3 = mysqli_fetch_array(mysqli_query($con, $sql_3));
-                $resn = mysqli_fetch_array(mysqli_query($con, $sql_n));
-
-                $A1[] = (int)$res1[0];
-                $A2[] = (int)$res2[0];
-                $A3[] = (int)$res3[0];
-                $An[] = (int)$resn[0];
-                
-            }
+            $grupo1 = zonas_por_semana($con, $semana_atual, 1);
+            $grupo2 = zonas_por_semana($con, $semana_atual, 2);
+            $labels = array();
+            for ($i = 1; $i <= $semana_atual; $i++) $labels[] = 'S'.$i;
         ?>
-        var ctx_dia = document.getElementById('myChart_dia');
-        var ctx_sem = document.getElementById('myChart_sem');
 
-        var myChart_dia = new Chart(ctx_dia, {
-            type: 'bar',
-            data: {
-                labels: <?php echo "['S1'"; for($i=2; $i<=sizeof($A1); $i++){echo ",'S".$i."'";} echo ']'; ?>,
-                datasets: [{
-                    label: 'Z1',
-                    backgroundColor: '#00aaff',
-                    data: <?php echo '['.implode($A1, ',').']'; ?>
-                },{
-                    label: 'Z2',
-                    backgroundColor: '#47d618',
-                    data: <?php echo '['.implode($A2, ',').']'; ?>
-                },{
-                    label: 'Z3',
-                    backgroundColor: '#ffd70d',
-                    data: <?php echo '['.implode($A3, ',').']'; ?>
-                },{
-                    label: 'An1/2',
-                    backgroundColor: '#e75f00',
-                    data: <?php echo '['.implode($An, ',').']'; ?>
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Distribuição das Metragens - Separado'
-                },
-                responsive: true,
-            }    
+        var labels = <?php echo json_encode($labels); ?>;
+        var dados = {
+            g1: <?php echo json_encode($grupo1); ?>,
+            g2: <?php echo json_encode($grupo2); ?>
+        };
+
+        // Cada grupo tem a sua cor (Grupo 1 azul, Grupo 2 laranja); o tom vai do claro (Z1) ao escuro (Z5)
+        var zonas = [
+            {col: 'A1', nome: 'Z1'},
+            {col: 'A2', nome: 'Z2'},
+            {col: 'A3', nome: 'Z3'},
+            {col: 'AN', nome: 'Z4'},
+            {col: 'FO', nome: 'Z5'}
+        ];
+        var grupos = [
+            {id: 'g1', nome: 'Grupo 1', cores: ['#a6cee3', '#5aa9d6', '#2a7fbf', '#1a5a9a', '#0b2f66']},
+            {id: 'g2', nome: 'Grupo 2', cores: ['#fdd49e', '#fdae61', '#f07d2e', '#c9481a', '#7f1d0d']}
+        ];
+
+        // Em cada semana, uma barra empilhada por grupo
+        var datasets = [];
+        grupos.forEach(function(grupo){
+            zonas.forEach(function(z, i){
+                datasets.push({
+                    label: z.nome + ' - ' + grupo.nome,
+                    stack: grupo.id,
+                    backgroundColor: grupo.cores[i],
+                    borderColor: '#ffffff',
+                    borderWidth: 1,
+                    data: dados[grupo.id][z.col]
+                });
+            });
         });
 
-        var myChart_sem = new Chart(ctx_sem, {
+        // grupo(s) exibido(s): 'ambos', 'g1' ou 'g2'
+        var modo = 'ambos';
+        function grupoOculto(stack){
+            return (modo === 'g1' && stack === 'g2') || (modo === 'g2' && stack === 'g1');
+        }
+
+        var grafico = new Chart(document.getElementById('myChart_comparacao'), {
             type: 'bar',
-            data: {
-                labels: <?php echo "['S1'"; for($i=2; $i<=sizeof($A1); $i++){echo ",'S".$i."'";} echo ']'; ?>,
-                datasets: [{
-                    label: 'Z1',
-                    backgroundColor: '#00aaff',
-                    data: <?php echo '['.implode($A1, ',').']'; ?>
-                },{
-                    label: 'Z2',
-                    backgroundColor: '#47d618',
-                    data: <?php echo '['.implode($A2, ',').']'; ?>
-                },{
-                    label: 'Z3',
-                    backgroundColor: '#ffd70d',
-                    data: <?php echo '['.implode($A3, ',').']'; ?>
-                },{
-                    label: 'An1/2',
-                    backgroundColor: '#e75f00',
-                    data: <?php echo '['.implode($An, ',').']'; ?>
-                }]
-            },
+            data: {labels: labels, datasets: datasets},
             options: {
+                responsive: true,
                 title: {
                     display: true,
-                    text: 'Distribuição das Metragens - Acumulado'
+                    text: ['Distribuição das Metragens por Zona - Semana a Semana',
+                           'Azul = Grupo 1 (barra da esquerda)  |  Laranja = Grupo 2 (barra da direita)  |  tom mais escuro = zona mais intensa']
+                },
+                legend: {
+                    labels: {
+                        // a legenda só mostra as zonas do(s) grupo(s) exibido(s)
+                        filter: function(item, data){
+                            return !grupoOculto(data.datasets[item.datasetIndex].stack);
+                        }
+                    }
                 },
                 tooltips: {
-                    mode: 'index',
-                    intersect: false
+                    callbacks: {
+                        label: function(item, data){
+                            return data.datasets[item.datasetIndex].label + ': ' + item.yLabel + ' m';
+                        }
+                    }
                 },
-                responsive: true,
                 scales: {
-                    xAxes: [{
-                        stacked: true
-                    }],
-                    yAxes: [{
-                        stacked: true
-                    }]
+                    xAxes: [{stacked: true, categoryPercentage: 0.9, barPercentage: 0.95}],
+                    yAxes: [{stacked: true, scaleLabel: {display: true, labelString: 'Metragem (m)'}}]
                 }
-            }    
+            }
+        });
+
+        // Escolha de exibição: comparar os dois grupos ou ver só um deles
+        document.getElementById('exibir').addEventListener('change', function(){
+            modo = this.value;
+            grafico.data.datasets.forEach(function(d, i){
+                grafico.getDatasetMeta(i).hidden = grupoOculto(d.stack);
+            });
+            grafico.update();
         });
 
     </script>

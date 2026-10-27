@@ -13,6 +13,7 @@
 //Inicia uma sessão
 session_start();
 require_once '../db_con.php';
+require_once './grupos.php';
 
 // Verifica se existe ID da sessão
 if(!isset($_SESSION['ID'])){
@@ -60,6 +61,9 @@ if(isset($_GET['id'])) {
     }
 }
 
+//treino opcional do Grupo 2 (o treinador das 17h não tem)
+$g2 = (isset($id_treino) && $id_usuario != 81) ? carrega_grupo2($con, $id_treino) : null;
+
 if ($nivel_usuario!="2" and $nivel_usuario!="3"){
     $_SESSION['ALERTA']="Acesso não permitido!"; 
     echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
@@ -106,68 +110,23 @@ if ($nivel_usuario!="2" and $nivel_usuario!="3"){
         </div>
         </div>
 
-        <div class="row form-group">
-        <div class="col-6">
-                <label for="foto"><b>Treino:</b></label>
-                <input class="form-control" type="file" placeholder="Selecione uma foto" name="foto" value="<?php echo $foto?>" accept="image/*" >
-                <textarea class="form-control" type="text" rows="5" placeholder="Ou digite aqui..." name="treino"  ><?php echo $treino?></textarea>
+        <?php
+        bloco_treino_grupo('', 'Grupo 1', array('treino' => $treino, 'serie_controle' => $serie, 'tipo' => $tipo, 'total' => $total,
+                           'A1' => $A1, 'A2' => $A2, 'A3' => $A3, 'AN' => $AN, 'FO' => $FO), true);
+        // O treinador das 17h usa outra tabela e não tem Grupo 2
+        if ($id_usuario != 81) {
+        ?>
+        <hr style="border-top:4px solid #0f0f36; margin-top:30px;">
+        <p>Opcional: preencha apenas se houver um segundo treino neste dia.</p>
+        <?php
+        bloco_treino_grupo('_g2', 'Grupo 2', $g2 ? $g2 : array('A1' => 0, 'A2' => 0, 'A3' => 0, 'AN' => 0, 'FO' => 0), false);
+        if ($g2) {
+            if (strlen($g2['nome_foto']) > 3) echo '<p>Foto atual do Grupo 2: <a href="../common/uploads/treinos/'.htmlspecialchars($g2['nome_foto']).'"><u>Visualizar</u></a> (enviar uma nova foto substitui a atual)</p>';
+            echo '<div class="form-group"><label><input type="checkbox" name="remover_g2" value="1"> <b>Remover o treino do Grupo 2</b></label></div>';
+        }
+        }
+        ?>
         </div>
-
-        <div class="col-6">
-          <div class="row form-group">
-              <div class="col-2">
-                <label for="A1"><b>Z1:</b></label>
-                <input class="form-control" type="number" placeholder="Z1..." name="A1" value=<?php echo $A1?> required>
-              </div>
-              <div class="col-2">
-                <label for="A2"><b>Z2:</b></label>
-                <input class="form-control" type="number" placeholder="Z2..." name="A2" value=<?php echo $A2?> required>
-              </div>
-              <div class="col-2">
-                <label for="A3"><b>Z3:</b></label>
-                <input class="form-control" type="number" placeholder="Z3..." name="A3" value=<?php echo $A3?> required>
-              </div>
-              <div class="col-2">
-                <label for="AN"><b>Z4:</b></label>
-                <input class="form-control" type="number" placeholder="Z4..." name="AN" value=<?php echo $AN?> required>
-              </div>
-              <div class="col-2">
-                <label for="FO"><b>Z5:</b></label>
-                <input class="form-control" type="number" placeholder="Z5..." name="FO" value=<?php echo $FO?> required>
-              </div>
-
-          </div>
-
-                <label for="total"><b>Metragem total:</b></label>
-                <input class="form-control" type="number" placeholder="Metragem..." name="total" value=<?php echo $total?> required>
-        </div>
-        </div>  
-        </div>  
-            
-                
-                
-        <div class="row" style="padding-left:20px;padding-top:20px;">
-            <h2>Série controle</h2>
-            <hr>
-        </div>
-        
-        <div class="row form-group">    
-            <div class="col-sm-6 col-md-6">
-                <label for="serie_controle"><b>Descrição:</b></label>
-                <input class="form-control" type="text" placeholder="Insira uma descrição para a série ..." name="serie_controle" value="<?php echo $serie?>">
-            </div>
-
-            <div class="col-sm-6 col-md-6">
-                <label for="tipo"><b>Tipo:</b></label>
-                <select class="form-control"  name="tipo">
-                    <option value=" " <?php if($tipo==" ") echo 'selected'?>> </option>
-                    <option value ="BT" <?php if($tipo=="BT") echo 'selected'?>>BT</option>
-                    <option value ="Tiro" <?php if($tipo=="Tiro") echo 'selected'?>>Tiro</option>
-                    <option value ="Melhor media">Melhor média</option>
-                    <!--<option value ="Intervalada">Intervalada</option>-->
-                </select>
-            </div>
-        </div>                 
         
 
         <div class="row" >
@@ -213,23 +172,8 @@ if (isset($_POST['editar_treino'])){
  
 
   //tratamento da foto do treino a ser upada
-  if (isset ($_FILES['foto'])){
-    $file = $_FILES['foto']['name'];
-    $ext = explode(".", $file);
-    $extensao = end($ext);
-    if (strlen($extensao) > 0) { //verifica se não esta gravando um arquivo vazio 
-        $novo_nome = "treino"."$data"."."."$extensao";
-        $diretorio = "../common/uploads/treinos/";
-        move_uploaded_file ($_FILES['foto']['tmp_name'], $diretorio.$novo_nome);
-    }
-    else {
-        $novo_nome = $_SESSION['foto'];
-    }
-} 
-
-  else {
-    $novo_nome = $_SESSION['foto'];
-  }
+  $novo_nome = salva_foto_treino('foto', $data, '');
+  if ($novo_nome === null) $novo_nome = $_SESSION['foto'];
 
   $tabela = "treinos";
   if($_SESSION['ID']==81){
@@ -247,6 +191,19 @@ if (isset($_POST['editar_treino'])){
   }
   else {
       $_SESSION['MSG'] = "Treino do dia ".date_format($date,("d/m/Y"))." editado com sucesso." ;
+      //treino opcional do Grupo 2
+      if($_SESSION['ID']!=81){
+        $id_edit = (int)$_SESSION['id_treino'];
+        $g2_atual = carrega_grupo2($con, $id_edit);
+        if (isset($_POST['remover_g2'])){
+          if ($g2_atual) consulta_segura($con, "DELETE FROM treinos_grupo2 WHERE id_treino=".$id_edit);
+        }
+        elseif (grupo2_preenchido($g2_atual ? $g2_atual['nome_foto'] : '')){
+          if (!salva_grupo2($con, $id_edit, $data)){
+            $_SESSION['ALERTA'] = "O treino do Grupo 1 foi salvo, mas não foi possível salvar o do Grupo 2. Contate o DM.";
+          }
+        }
+      }
       echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
       echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', './');});</script>";
       //header("Location: ./index.php"); exit; 

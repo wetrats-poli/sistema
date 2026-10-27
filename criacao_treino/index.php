@@ -12,6 +12,7 @@
 <?php 
 //Inicia uma sessão
 session_start();
+require_once '../treinos/grupos.php';
     
 // Verifica se existe ID da sessão
 if(!isset($_SESSION['ID'])){
@@ -69,67 +70,17 @@ if ($nivel_usuario!='2'){
         </div>
         </div>
 
-        <div class="row form-group">
-        <div class="col-6">
-                <label for="foto"><b>Treino:</b></label>
-                <input class="form-control" type="file" placeholder="Selecione uma foto" name="foto"  accept="image/*" >
-                <textarea class="form-control" type="text" rows="5" placeholder="Ou digite aqui..." name="treino"  ></textarea>
-        </div>
-
-        <div class="col-6">
-          <div class="row form-group">
-              <div class="col-2">
-                <label for="A1"><b>Z1:</b></label>
-                <input class="form-control" type="number" placeholder="Z1..." name="A1" value=0 required>
-              </div>
-              <div class="col-2">
-                <label for="A2"><b>Z2:</b></label>
-                <input class="form-control" type="number" placeholder="Z2..." name="A2" value=0 required>
-              </div>
-              <div class="col-2">
-                <label for="A3"><b>Z3:</b></label>
-                <input class="form-control" type="number" placeholder="Z3..." name="A3" value=0 required>
-              </div>
-              <div class="col-2">
-                <label for="AN"><b>Z4:</b></label>
-                <input class="form-control" type="number" placeholder="Z4..." name="AN" value=0 required>
-              </div>
-              <div class="col-2">
-                <label for="FO"><b>Z5:</b></label>
-                <input class="form-control" type="number" placeholder="Z5..." name="FO" value=0 required>
-              </div>
-
-          </div>
-
-                <label for="total"><b>Metragem total:</b></label>
-                <input class="form-control" type="number" placeholder="Metragem..." name="total" required>
-        </div>
-        </div>  
-            
-                
-                
-        <div class="row" style="padding-left:20px;padding-top:20px;">
-            <h2>Série controle</h2>
-            <hr>
-        </div>
-        
-        <div class="row form-group">    
-            <div class="col-sm-6 col-md-6">
-                <label for="serie_controle"><b>Descrição:</b></label>
-                <input class="form-control" type="text" placeholder="Insira uma descrição para a série ..." name="serie_controle">
-            </div>
-
-            <div class="col-sm-6 col-md-6">
-                <label for="tipo"><b>Tipo:</b></label>
-                <select class="form-control"  name="tipo">
-                    <option value=" "> </option>
-                    <option value ="BT">BT</option>
-                    <option value ="Tiro">Tiro</option>
-                    <option value ="Melhor media">Melhor média</option>
-                    <!--<option value ="Intervalada">Intervalada</option>-->
-                </select>
-            </div>
-        </div>
+        <?php
+        bloco_treino_grupo('', 'Grupo 1', array('A1' => 0, 'A2' => 0, 'A3' => 0, 'AN' => 0, 'FO' => 0), true);
+        // O treinador das 17h usa outra tabela e não tem Grupo 2
+        if ($id_usuario != 81) {
+        ?>
+        <hr style="border-top:4px solid #0f0f36; margin-top:30px;">
+        <p>Opcional: preencha apenas se houver um segundo treino neste dia.</p>
+        <?php
+        bloco_treino_grupo('_g2', 'Grupo 2', array('A1' => 0, 'A2' => 0, 'A3' => 0, 'AN' => 0, 'FO' => 0), false);
+        }
+        ?>
       </div>                 
         
 
@@ -164,6 +115,7 @@ if ($_POST){
   $treino = str_replace('"' , 's' , $_POST['treino']); //procedimento pra permitir a inclusao de aspas duplas
   $treino = str_replace("'" , "min" , $treino); // e simples no texto
   $serie_controle = $_POST['serie_controle'];
+  $tipo = $_POST['tipo'];
   $total = $_POST['total'];
   $A1 = $_POST['A1'];
   $A2 = $_POST['A2'];
@@ -196,14 +148,8 @@ if ($_POST){
 
 
   //tratamento da foto do treino a ser upada
-  $file = $_FILES['foto']['name'];
-  $ext = explode(".", $file);
-  $extensao = end($ext);
-  if (strlen($extensao) > 0) { //verifica se não esta gravando um arquivo vazio 
-    $novo_nome = "treino"."$data"."."."$extensao";
-    $diretorio = "../common/uploads/treinos/";
-    move_uploaded_file ($_FILES['foto']['tmp_name'], $diretorio.$novo_nome);
-  }
+  $novo_nome = salva_foto_treino('foto', $data, '');
+  if ($novo_nome === null) $novo_nome = '';
   
   //conexao e envio de informaçoes ao banco de dados
   require_once '../db_con.php';
@@ -223,6 +169,7 @@ if ($_POST){
     //header("Location: ./index.php"); exit;
   }
   else {
+      $id_novo = mysqli_insert_id($con);
       if($_SESSION['ID']!=81){
         //se não for o treinador das 17
         $query_id=mysqli_query($con, $sql2);
@@ -231,6 +178,12 @@ if ($_POST){
         $pse_query = mysqli_query($con, $sql3);
       }
       $_SESSION['MSG'] = "Treino do dia ".date_format(date_create($data),"d/m/Y")." incluído com sucesso." ;
+      //treino opcional do Grupo 2
+      if($_SESSION['ID']!=81 && grupo2_preenchido()){
+        if (!salva_grupo2($con, $id_novo, $data)){
+          $_SESSION['ALERTA'] = "O treino do Grupo 1 foi salvo, mas não foi possível salvar o do Grupo 2. Contate o DM.";
+        }
+      }
       echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
       echo "<script>$(window).on('load', function(){ $('#meta').empty(); $(window.document.location).attr('href', '../treinos/');});</script>";
       //header("Location: ../treinos/index.php"); exit;
