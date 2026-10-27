@@ -43,6 +43,19 @@
                     </div>
                 </div>
             </div>
+            <div class="row" style="padding-bottom:10px; align-items:flex-end;">
+                <div class="col-md-3 col-sm-6">
+                    <label for="exibir"><b>Exibir:</b></label>
+                    <select class="form-control" id="exibir">
+                        <option value="ambos">Comparar os dois grupos</option>
+                        <option value="g1">Só o Grupo 1</option>
+                        <option value="g2">Só o Grupo 2</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="./exportar.php" class="btn btn-primary">Exportar para Excel</a>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <canvas id="myChart_comparacao" width="100" height="38"></canvas>
@@ -80,27 +93,6 @@
             
             require_once '../db_con.php';
 
-            // Soma das metragens por zona em cada semana, para o Grupo 1 (tabela treinos) ou o Grupo 2 (treinos_grupo2).
-            // Z1=A1, Z2=A2, Z3=A3, Z4=AN, Z5=FO
-            function zonas_por_semana($con, $semana_atual, $grupo){
-                $zonas = array('A1' => array(), 'A2' => array(), 'A3' => array(), 'AN' => array(), 'FO' => array());
-                for($sem = 1; $sem <= $semana_atual; $sem++){
-                    if ($grupo == 2) {
-                        $sql = "SELECT SUM(g.A1), SUM(g.A2), SUM(g.A3), SUM(g.AN), SUM(g.FO) FROM treinos_grupo2 g INNER JOIN treinos t ON t.id = g.id_treino WHERE t.semana=$sem";
-                    } else {
-                        $sql = "SELECT SUM(A1), SUM(A2), SUM(A3), SUM(AN), SUM(FO) FROM treinos WHERE semana=$sem";
-                    }
-                    $res = consulta_segura($con, $sql);
-                    $r = $res ? mysqli_fetch_array($res) : array(0, 0, 0, 0, 0);
-                    $zonas['A1'][] = (int)$r[0];
-                    $zonas['A2'][] = (int)$r[1];
-                    $zonas['A3'][] = (int)$r[2];
-                    $zonas['AN'][] = (int)$r[3];
-                    $zonas['FO'][] = (int)$r[4];
-                }
-                return $zonas;
-            }
-
             $grupo1 = zonas_por_semana($con, $semana_atual, 1);
             $grupo2 = zonas_por_semana($con, $semana_atual, 2);
             $labels = array();
@@ -113,32 +105,35 @@
             g2: <?php echo json_encode($grupo2); ?>
         };
 
-        // zonas: coluna do banco, nome exibido e cor (RGB)
+        // Cada grupo tem a sua cor (Grupo 1 azul, Grupo 2 laranja); o tom vai do claro (Z1) ao escuro (Z5)
         var zonas = [
-            {col: 'A1', nome: 'Z1', cor: [0, 170, 255]},
-            {col: 'A2', nome: 'Z2', cor: [71, 214, 24]},
-            {col: 'A3', nome: 'Z3', cor: [255, 215, 13]},
-            {col: 'AN', nome: 'Z4', cor: [231, 95, 0]},
-            {col: 'FO', nome: 'Z5', cor: [155, 48, 217]}
+            {col: 'A1', nome: 'Z1'},
+            {col: 'A2', nome: 'Z2'},
+            {col: 'A3', nome: 'Z3'},
+            {col: 'AN', nome: 'Z4'},
+            {col: 'FO', nome: 'Z5'}
+        ];
+        var grupos = [
+            {id: 'g1', nome: 'Grupo 1', cores: ['#a6cee3', '#5aa9d6', '#2a7fbf', '#1a5a9a', '#0b2f66']},
+            {id: 'g2', nome: 'Grupo 2', cores: ['#fdd49e', '#fdae61', '#f07d2e', '#c9481a', '#7f1d0d']}
         ];
 
-        // Em cada semana, uma barra empilhada por grupo: Grupo 1 (cores fortes) e Grupo 2 (cores claras)
+        // Em cada semana, uma barra empilhada por grupo
         var datasets = [];
-        [{id: 'g1', nome: 'Grupo 1', alfa: 1}, {id: 'g2', nome: 'Grupo 2', alfa: 0.5}].forEach(function(grupo){
-            zonas.forEach(function(z){
+        grupos.forEach(function(grupo){
+            zonas.forEach(function(z, i){
                 datasets.push({
                     label: z.nome + ' - ' + grupo.nome,
-                    zona: z.nome,
                     stack: grupo.id,
-                    backgroundColor: 'rgba(' + z.cor.join(',') + ',' + grupo.alfa + ')',
-                    borderColor: 'rgb(' + z.cor.join(',') + ')',
+                    backgroundColor: grupo.cores[i],
+                    borderColor: '#ffffff',
                     borderWidth: 1,
                     data: dados[grupo.id][z.col]
                 });
             });
         });
 
-        new Chart(document.getElementById('myChart_comparacao'), {
+        var grafico = new Chart(document.getElementById('myChart_comparacao'), {
             type: 'bar',
             data: {labels: labels, datasets: datasets},
             options: {
@@ -146,28 +141,7 @@
                 title: {
                     display: true,
                     text: ['Distribuição das Metragens por Zona - Semana a Semana',
-                           'Em cada semana: barra da esquerda = Grupo 1 (cores fortes), barra da direita = Grupo 2 (cores claras)']
-                },
-                legend: {
-                    labels: {
-                        // uma entrada por zona (vale para os dois grupos)
-                        filter: function(item, data){ return data.datasets[item.datasetIndex].stack === 'g1'; },
-                        generateLabels: function(chart){
-                            return zonas.map(function(z, i){
-                                return {text: z.nome, fillStyle: 'rgb(' + z.cor.join(',') + ')', strokeStyle: 'rgb(' + z.cor.join(',') + ')',
-                                        hidden: chart.getDatasetMeta(i).hidden === true, datasetIndex: i};
-                            });
-                        }
-                    },
-                    // clicar numa zona esconde/mostra a zona nos dois grupos
-                    onClick: function(e, item){
-                        var chart = this.chart;
-                        var esconder = chart.getDatasetMeta(item.datasetIndex).hidden !== true;
-                        chart.data.datasets.forEach(function(d, i){
-                            if (d.zona === zonas[item.datasetIndex].nome) chart.getDatasetMeta(i).hidden = esconder;
-                        });
-                        chart.update();
-                    }
+                           'Azul = Grupo 1 (barra da esquerda)  |  Laranja = Grupo 2 (barra da direita)  |  tom mais escuro = zona mais intensa']
                 },
                 tooltips: {
                     callbacks: {
@@ -177,10 +151,19 @@
                     }
                 },
                 scales: {
-                    xAxes: [{stacked: true}],
+                    xAxes: [{stacked: true, categoryPercentage: 0.9, barPercentage: 0.95}],
                     yAxes: [{stacked: true, scaleLabel: {display: true, labelString: 'Metragem (m)'}}]
                 }
             }
+        });
+
+        // Escolha de exibição: comparar os dois grupos ou ver só um deles
+        document.getElementById('exibir').addEventListener('change', function(){
+            var modo = this.value;
+            grafico.data.datasets.forEach(function(d, i){
+                grafico.getDatasetMeta(i).hidden = (modo === 'g1' && d.stack === 'g2') || (modo === 'g2' && d.stack === 'g1');
+            });
+            grafico.update();
         });
 
     </script>

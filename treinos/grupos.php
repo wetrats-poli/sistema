@@ -170,4 +170,25 @@ function conteudo_treino_modal($nome_foto, $descricao, $metragem, $dia){
     }
     return $descricao.'<br>TOTAL: '.$metragem;
 }
+
+// Soma das metragens por zona em cada semana (1 até $semana_atual), para o Grupo 1 (tabela treinos) ou o Grupo 2 (treinos_grupo2).
+// Z1=A1, Z2=A2, Z3=A3, Z4=AN, Z5=FO. Retorna array com uma lista de valores por zona.
+function zonas_por_semana($con, $semana_atual, $grupo){
+    $zonas = array('A1' => array(), 'A2' => array(), 'A3' => array(), 'AN' => array(), 'FO' => array());
+    for($sem = 1; $sem <= $semana_atual; $sem++){
+        if ($grupo == 2) {
+            $sql = "SELECT SUM(g.A1), SUM(g.A2), SUM(g.A3), SUM(g.AN), SUM(g.FO) FROM treinos_grupo2 g INNER JOIN treinos t ON t.id = g.id_treino WHERE t.semana=$sem";
+        } else {
+            $sql = "SELECT SUM(A1), SUM(A2), SUM(A3), SUM(AN), SUM(FO) FROM treinos WHERE semana=$sem";
+        }
+        $res = consulta_segura($con, $sql);
+        $r = $res ? mysqli_fetch_array($res) : array(0, 0, 0, 0, 0);
+        $zonas['A1'][] = (int)$r[0];
+        $zonas['A2'][] = (int)$r[1];
+        $zonas['A3'][] = (int)$r[2];
+        $zonas['AN'][] = (int)$r[3];
+        $zonas['FO'][] = (int)$r[4];
+    }
+    return $zonas;
+}
 ?>
