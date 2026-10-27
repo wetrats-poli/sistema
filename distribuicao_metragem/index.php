@@ -43,14 +43,34 @@
                     </div>
                 </div>
             </div>
+            <?php
+            require_once '../treinos/grupos.php';
+            // Grupo exibido: 1 (padrão), 2 ou "ambos" para comparar
+            $grupo_sel = isset($_GET['grupo']) ? $_GET['grupo'] : '1';
+            if ($grupo_sel == '2') $grupos = array(2);
+            elseif ($grupo_sel == 'ambos') $grupos = array(1, 2);
+            else $grupos = array(1);
+            ?>
+            <div class="row" style="padding-bottom:15px;">
+                <form method="get" class="col-4">
+                    <label for="grupo"><b>Grupo:</b></label>
+                    <select class="form-control" name="grupo" id="grupo" onchange="this.form.submit()">
+                        <option value="1" <?php if ($grupo_sel != '2' && $grupo_sel != 'ambos') echo 'selected'; ?>>Grupo 1</option>
+                        <option value="2" <?php if ($grupo_sel == '2') echo 'selected'; ?>>Grupo 2</option>
+                        <option value="ambos" <?php if ($grupo_sel == 'ambos') echo 'selected'; ?>>Comparar os dois</option>
+                    </select>
+                </form>
+            </div>
+            <?php foreach ($grupos as $g) { ?>
             <div class="row">
-                <div class="col-6">                   
-                    <canvas id="myChart_dia" height="80%" width="100%"></canvas>
+                <div class="col-6">
+                    <canvas id="myChart_dia_<?php echo $g ?>" height="80%" width="100%"></canvas>
                 </div>
-                <div class="col-6">                   
-                    <canvas id="myChart_sem" height="80%" width="100%"></canvas>
+                <div class="col-6">
+                    <canvas id="myChart_sem_<?php echo $g ?>" height="80%" width="100%"></canvas>
                 </div>
             </div>
+            <?php } ?>
         </div>
     </div>
     
@@ -82,105 +102,83 @@
             
             require_once '../db_con.php';
 
-            $A1 = array();
-            $A2 = array();
-            $A3 = array();
-            $An = array();
-            
-            for($sem = 1; $sem <= $semana_atual; $sem++){
-                $sql_1 = "SELECT SUM(A1) FROM treinos WHERE semana=$sem";
-                $sql_2 = "SELECT SUM(A2) FROM treinos WHERE semana=$sem";
-                $sql_3 = "SELECT SUM(A3) FROM treinos WHERE semana=$sem";
-                $sql_n = "SELECT SUM(AN) FROM treinos WHERE semana=$sem";
-
-                $res1 = mysqli_fetch_array(mysqli_query($con, $sql_1));
-                $res2 = mysqli_fetch_array(mysqli_query($con, $sql_2));
-                $res3 = mysqli_fetch_array(mysqli_query($con, $sql_3));
-                $resn = mysqli_fetch_array(mysqli_query($con, $sql_n));
-
-                $A1[] = (int)$res1[0];
-                $A2[] = (int)$res2[0];
-                $A3[] = (int)$res3[0];
-                $An[] = (int)$resn[0];
-                
+            // Soma das metragens por zona em cada semana, para o Grupo 1 (tabela treinos) ou o Grupo 2 (treinos_grupo2)
+            function zonas_por_semana($con, $semana_atual, $grupo){
+                $zonas = array('A1' => array(), 'A2' => array(), 'A3' => array(), 'AN' => array());
+                for($sem = 1; $sem <= $semana_atual; $sem++){
+                    if ($grupo == 2) {
+                        $sql = "SELECT SUM(g.A1), SUM(g.A2), SUM(g.A3), SUM(g.AN) FROM treinos_grupo2 g INNER JOIN treinos t ON t.id = g.id_treino WHERE t.semana=$sem";
+                    } else {
+                        $sql = "SELECT SUM(A1), SUM(A2), SUM(A3), SUM(AN) FROM treinos WHERE semana=$sem";
+                    }
+                    $res = consulta_segura($con, $sql);
+                    $r = $res ? mysqli_fetch_array($res) : array(0, 0, 0, 0);
+                    $zonas['A1'][] = (int)$r[0];
+                    $zonas['A2'][] = (int)$r[1];
+                    $zonas['A3'][] = (int)$r[2];
+                    $zonas['AN'][] = (int)$r[3];
+                }
+                return $zonas;
             }
         ?>
-        var ctx_dia = document.getElementById('myChart_dia');
-        var ctx_sem = document.getElementById('myChart_sem');
 
-        var myChart_dia = new Chart(ctx_dia, {
-            type: 'bar',
-            data: {
-                labels: <?php echo "['S1'"; for($i=2; $i<=sizeof($A1); $i++){echo ",'S".$i."'";} echo ']'; ?>,
-                datasets: [{
-                    label: 'Z1',
-                    backgroundColor: '#00aaff',
-                    data: <?php echo '['.implode($A1, ',').']'; ?>
-                },{
-                    label: 'Z2',
-                    backgroundColor: '#47d618',
-                    data: <?php echo '['.implode($A2, ',').']'; ?>
-                },{
-                    label: 'Z3',
-                    backgroundColor: '#ffd70d',
-                    data: <?php echo '['.implode($A3, ',').']'; ?>
-                },{
-                    label: 'An1/2',
-                    backgroundColor: '#e75f00',
-                    data: <?php echo '['.implode($An, ',').']'; ?>
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Distribuição das Metragens - Separado'
-                },
-                responsive: true,
-            }    
-        });
+        // Monta os dois gráficos (separado e acumulado) de um grupo
+        function montaGraficos(grupo, labels, A1, A2, A3, An){
+            // cada gráfico precisa do seu próprio conjunto de dados (o Chart.js altera o objeto)
+            var criaDatasets = function(){
+                return [
+                    {label: 'Z1', backgroundColor: '#00aaff', data: A1.slice()},
+                    {label: 'Z2', backgroundColor: '#47d618', data: A2.slice()},
+                    {label: 'Z3', backgroundColor: '#ffd70d', data: A3.slice()},
+                    {label: 'An1/2', backgroundColor: '#e75f00', data: An.slice()}
+                ];
+            };
 
-        var myChart_sem = new Chart(ctx_sem, {
-            type: 'bar',
-            data: {
-                labels: <?php echo "['S1'"; for($i=2; $i<=sizeof($A1); $i++){echo ",'S".$i."'";} echo ']'; ?>,
-                datasets: [{
-                    label: 'Z1',
-                    backgroundColor: '#00aaff',
-                    data: <?php echo '['.implode($A1, ',').']'; ?>
-                },{
-                    label: 'Z2',
-                    backgroundColor: '#47d618',
-                    data: <?php echo '['.implode($A2, ',').']'; ?>
-                },{
-                    label: 'Z3',
-                    backgroundColor: '#ffd70d',
-                    data: <?php echo '['.implode($A3, ',').']'; ?>
-                },{
-                    label: 'An1/2',
-                    backgroundColor: '#e75f00',
-                    data: <?php echo '['.implode($An, ',').']'; ?>
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Distribuição das Metragens - Acumulado'
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false
-                },
-                responsive: true,
-                scales: {
-                    xAxes: [{
-                        stacked: true
-                    }],
-                    yAxes: [{
-                        stacked: true
-                    }]
+            new Chart(document.getElementById('myChart_dia_' + grupo), {
+                type: 'bar',
+                data: {labels: labels, datasets: criaDatasets()},
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Distribuição das Metragens - Separado - Grupo ' + grupo
+                    },
+                    responsive: true,
                 }
-            }    
-        });
+            });
+
+            new Chart(document.getElementById('myChart_sem_' + grupo), {
+                type: 'bar',
+                data: {labels: labels, datasets: criaDatasets()},
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Distribuição das Metragens - Acumulado - Grupo ' + grupo
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+        }
+
+        <?php
+            foreach ($grupos as $g) {
+                $z = zonas_por_semana($con, $semana_atual, $g);
+                $labels = array();
+                for ($i = 1; $i <= sizeof($z['A1']); $i++) $labels[] = 'S'.$i;
+                echo "montaGraficos($g, ".json_encode($labels).", ".json_encode($z['A1']).", ".json_encode($z['A2']).", ".json_encode($z['A3']).", ".json_encode($z['AN']).");".PHP_EOL;
+            }
+        ?>
 
     </script>
    

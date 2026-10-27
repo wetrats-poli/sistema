@@ -13,6 +13,7 @@
 
     // Conexão com o servidor MySQL
     require_once '../db_con.php';
+    require_once './grupos.php';
     
     if ($nivel_usuario != "2"){
     $sql1 =  "SELECT (SELECT COUNT(*) FROM `presencas` WHERE `id_atleta`=$id_usuario AND id_treino>=238) AS npresenca , 
@@ -146,9 +147,13 @@
 <?php
 
 // Busca dos treinos
-$sql =  "SELECT id, data, nome_foto, treino, serie_controle, tipo, total FROM treinos WHERE YEAR(data)=".$ano." ORDER BY data DESC ";
+$sql =  "SELECT t.id, t.data, t.nome_foto, t.treino, t.serie_controle, t.tipo, t.total, g.id_treino AS g2_id, g.nome_foto AS g2_foto, g.treino AS g2_treino, g.serie_controle AS g2_serie, g.total AS g2_total FROM treinos t LEFT JOIN treinos_grupo2 g ON g.id_treino = t.id WHERE YEAR(t.data)=".$ano." ORDER BY t.data DESC ";
 
-$treinos = mysqli_query($con, $sql);
+$treinos = consulta_segura($con, $sql);
+//se a tabela do Grupo 2 ainda não existir, usa a busca antiga
+if (!$treinos) {
+    $treinos = mysqli_query($con, "SELECT id, data, nome_foto, treino, serie_controle, tipo, total FROM treinos WHERE YEAR(data)=".$ano." ORDER BY data DESC ");
+}
 $i=0;
 $b=1000;
 $c=10000;
@@ -186,18 +191,19 @@ while ($treino = mysqli_fetch_array($treinos)){
     echo   '<tr>
                 <td>';if($nivel_usuario!="1") echo '<a href="../incluir_presenca/index.php?id='.$id.'&data='.$data.'">'; echo date_format($date,"d/m/Y"); if($nivel_usuario!="1") echo'</a>'; echo '</td> <td>'; //insere a data do treino com link para adicionar presença
                 
-    //caso o treino seja enviado por foto
-    if (strlen($nome_foto)>3) echo'<a href="../common/uploads/treinos/'.$nome_foto.'"><u>Visualizar</u></a> <a href="../common/uploads/treinos/'.$nome_foto.'" download="treino'.date_format($date,"d/m/Y").'"><u>Baixar</u></a></td>';
-    
-    //caso o treino seja digitado
-    else {
-        echo '<div><button style="color:#000000;" id="'.$i.'" class="treino" onclick="exibe(this.id)" value="Treino do dia: '.date_format($date,"d/m/Y").'<br>'.$descricao.'<br>TOTAL: '.$metragem.'" type="button" href="#">Visualizar</button></div></td>';
-        $i+=1;
+    //treino enviado por foto ou digitado; com Grupo 2, cada grupo aparece com seu rótulo
+    $tem_g2 = isset($treino['g2_id']);
+    echo celula_treino_html($nome_foto, $descricao, $metragem, $date, $i, $tem_g2 ? 'Grupo 1' : '');
+    if ($tem_g2) {
+        $descricao_g2 = str_replace('"' , ' `` ' , $treino['g2_treino']);
+        echo celula_treino_html($treino['g2_foto'], $descricao_g2, $treino['g2_total'], $date, $i, 'Grupo 2');
     }
-    
+    echo '</td>';
+
      //mostra a serie com link para adicionar performance
-    echo   '<td><a href="../adicionar_performance_treino/index.php?id='.$id.'">'.$serie.'</a></td>';
-    
+    echo   '<td><a href="../adicionar_performance_treino/index.php?id='.$id.'">'.$serie.'</a>';
+    if ($tem_g2 && strlen(trim($treino['g2_serie'])) > 0) echo '<br>Grupo 2: '.htmlspecialchars($treino['g2_serie']);
+    echo '</td>';
     
     if($nivel_usuario !='1') { // mostra a lista de presenca
         echo ' <td class="text-center"><div><button style="color:#000000;" id="'.$b.'" class="treino"

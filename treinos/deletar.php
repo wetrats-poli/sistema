@@ -4,6 +4,7 @@ ob_start();
 session_start();
 // Conexão com o servidor MySQL
 require_once '../db_con.php';
+require_once './grupos.php';
 
 $tabela = "treinos";
 if($_SESSION['ID']==81){
@@ -18,6 +19,7 @@ $sql3 = 'DELETE from pse WHERE id_treino="'.$_GET['id'].'"';
 if($_SESSION['ID']!=81){
     if (mysqli_query($con,$sql2)){
         if(mysqli_query($con,$sql)){
+            consulta_segura($con, "DELETE FROM treinos_grupo2 WHERE id_treino=".(int)$_GET['id']);
             mysqli_query($con,$sql3);
             $_SESSION['ALERTA'] = "Treino do dia:".$_GET['data']." excluído com sucesso.";
             //echo "<div id='meta'><meta http-equiv='refresh' content='1'></div>";
