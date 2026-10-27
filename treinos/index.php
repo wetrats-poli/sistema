@@ -191,13 +191,10 @@ while ($treino = mysqli_fetch_array($treinos)){
     echo   '<tr>
                 <td>';if($nivel_usuario!="1") echo '<a href="../incluir_presenca/index.php?id='.$id.'&data='.$data.'">'; echo date_format($date,"d/m/Y"); if($nivel_usuario!="1") echo'</a>'; echo '</td> <td>'; //insere a data do treino com link para adicionar presença
                 
-    //treino enviado por foto ou digitado; com Grupo 2, cada grupo aparece com seu rótulo
+    //treino enviado por foto ou digitado; com Grupo 2, o botão mostra os dois treinos
     $tem_g2 = isset($treino['g2_id']);
-    echo celula_treino_html($nome_foto, $descricao, $metragem, $date, $i, $tem_g2 ? 'Grupo 1' : '');
-    if ($tem_g2) {
-        $descricao_g2 = str_replace('"' , ' `` ' , $treino['g2_treino']);
-        echo celula_treino_html($treino['g2_foto'], $descricao_g2, $treino['g2_total'], $date, $i, 'Grupo 2');
-    }
+    $g2 = $tem_g2 ? array('nome_foto' => $treino['g2_foto'], 'treino' => $treino['g2_treino'], 'total' => $treino['g2_total']) : null;
+    echo celula_treino_html($nome_foto, $descricao, $metragem, $date, $i, $g2);
     echo '</td>';
 
      //mostra a serie com link para adicionar performance

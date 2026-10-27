@@ -140,19 +140,34 @@ function bloco_treino_grupo($sufixo, $titulo, $v = array(), $obrigatorio = true)
     <?php
 }
 
-// Conteúdo (botão ou links) de um treino na lista de treinos. $rotulo é "Grupo 1"/"Grupo 2" ou vazio (treino único).
+// Conteúdo (botão ou links) de um treino na lista de treinos.
+// $g2 é o treino do Grupo 2 (array com nome_foto, treino e total) ou null quando o dia tem só um treino.
+// Com os dois treinos, vira um único botão "Visualizar" que mostra os dois grupos.
 // $i é o contador de ids dos botões da página.
-function celula_treino_html($nome_foto, $descricao, $metragem, $date, &$i, $rotulo = ''){
+function celula_treino_html($nome_foto, $descricao, $metragem, $date, &$i, $g2 = null){
     $dia = date_format($date, "d/m/Y");
-    $prefixo = $rotulo != '' ? '<b>'.$rotulo.':</b> ' : '';
-    //caso o treino seja enviado por foto
-    if (strlen($nome_foto) > 3) {
-        return '<div>'.$prefixo.'<a href="../common/uploads/treinos/'.$nome_foto.'"><u>Visualizar</u></a> <a href="../common/uploads/treinos/'.$nome_foto.'" download="treino'.$dia.'"><u>Baixar</u></a></div>';
+    if ($g2 === null) {
+        //caso o treino seja enviado por foto
+        if (strlen($nome_foto) > 3) {
+            return '<div><a href="../common/uploads/treinos/'.$nome_foto.'"><u>Visualizar</u></a> <a href="../common/uploads/treinos/'.$nome_foto.'" download="treino'.$dia.'"><u>Baixar</u></a></div>';
+        }
+        //caso o treino seja digitado
+        $conteudo = 'Treino do dia: '.$dia.'<br>'.$descricao.'<br>TOTAL: '.$metragem;
+    } else {
+        $conteudo = 'Treino do dia: '.$dia
+            .'<hr><b>Grupo 1</b><br>'.conteudo_treino_modal($nome_foto, $descricao, $metragem, $dia)
+            .'<hr><b>Grupo 2</b><br>'.conteudo_treino_modal($g2['nome_foto'], str_replace('"', ' `` ', $g2['treino']), $g2['total'], $dia);
     }
-    //caso o treino seja digitado
-    $titulo = $rotulo != '' ? ' - '.$rotulo : '';
-    $html = '<div><button style="color:#000000;" id="'.$i.'" class="treino" onclick="exibe(this.id)" value="Treino do dia: '.$dia.$titulo.'<br>'.$descricao.'<br>TOTAL: '.$metragem.'" type="button" href="#">'.($rotulo != '' ? $rotulo : 'Visualizar').'</button></div>';
+    $html = '<div><button style="color:#000000;" id="'.$i.'" class="treino" onclick="exibe(this.id)" value="'.$conteudo.'" type="button" href="#">Visualizar</button></div>';
     $i += 1;
     return $html;
+}
+
+// Texto de um treino dentro do modal: links da foto ou a descrição digitada, seguidos do total.
+function conteudo_treino_modal($nome_foto, $descricao, $metragem, $dia){
+    if (strlen($nome_foto) > 3) {
+        return "<a href='../common/uploads/treinos/".$nome_foto."'><u>Visualizar foto</u></a> <a href='../common/uploads/treinos/".$nome_foto."' download='treino".$dia."'><u>Baixar</u></a><br>TOTAL: ".$metragem;
+    }
+    return $descricao.'<br>TOTAL: '.$metragem;
 }
 ?>
